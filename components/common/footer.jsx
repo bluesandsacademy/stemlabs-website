@@ -1,0 +1,191 @@
+import React from "react";
+import Image from "next/image";
+import { FaTwitter, FaLinkedinIn, FaFacebookF } from "react-icons/fa";
+
+const Footer = () => {
+  const companyLinks = [
+    { name: "Home", href: "#" },
+    { name: "Features", href: "#" },
+    { name: "Pricing", href: "#" },
+    { name: "Virtual STEM Labs", href: "#" },
+    { name: "About", href: "#" },
+  ];
+
+  const resourceLinks = [
+    { name: "Blog", href: "#" },
+    { name: "Newsletter", href: "#" },
+    { name: "Events", href: "#", badge: "Coming soon" },
+    { name: "Help centre", href: "#" },
+    { name: "Support", href: "#" },
+  ];
+
+  const socialLinks = [
+    { name: "LinkedIn", href: "#" },
+    { name: "Instagram", href: "#" },
+    { name: "Twitter", href: "#" },
+    { name: "Facebook", href: "#" },
+    { name: "Tiktok", href: "#" },
+  ];
+
+  const legalLinks = [
+    { name: "Terms", href: "#" },
+    { name: "Privacy", href: "#" },
+    { name: "Licenses", href: "#" },
+    { name: "Cookies", href: "#" },
+    { name: "Contact", href: "#" },
+  ];
+
+  return (
+    <footer className="bg-[#1D2939] text-white">
+      {/* Main Footer Content */}
+      <div className="max-w-8xl mx-auto px-6 py-12 lg:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-12">
+          <div className="lg:col-span-1">
+            <Image
+              src="/logo.png"
+              width={140}
+              height={50}
+              alt="Blue Sands STEM Labs Logo"
+              className="h-12 w-auto mb-4"
+            />
+            <p className="text-sm text-gray-300 leading-relaxed">
+              Blue Sands STEM Lab offers a standalone VR headset with a
+              student-friendly interface, integrated educational VR & AR
+              resources, and intuitive teacher controls.
+            </p>
+          </div>
+
+          {/* Company Links */}
+          <div>
+            <h3 className="font-semibold text-base mb-4">Company</h3>
+            <ul className="space-y-3">
+              {companyLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    className="text-sm text-gray-300 hover:text-white transition-colors duration-200"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Resources Links */}
+          <div>
+            <h3 className="font-semibold text-base mb-4">Resources</h3>
+            <ul className="space-y-3">
+              {resourceLinks.map((link) => (
+                <li key={link.name} className="flex items-center gap-2">
+                  <a
+                    href={link.href}
+                    className="text-sm text-gray-300 hover:text-white transition-colors duration-200"
+                  >
+                    {link.name}
+                  </a>
+                  {link.badge && (
+                    <span className="text-xs bg-primary text-white px-2 py-0.5 rounded-full">
+                      {link.badge}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Social Links */}
+          <div>
+            <h3 className="font-semibold text-base mb-4">Social</h3>
+            <ul className="space-y-3">
+              {socialLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    className="text-sm text-gray-300 hover:text-white transition-colors duration-200"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal Links */}
+          <div>
+            <h3 className="font-semibold text-base mb-4">Legal</h3>
+            <ul className="space-y-3">
+              {legalLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    className="text-sm text-gray-300 hover:text-white transition-colors duration-200"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="flex flex-col gap-2">
+            {" "}
+            <h3 className="font-semibold text-base mb-3">Location</h3>
+            <div className="flex flex-col gap-2 items-center justify-center">
+              {/* EDO STATE */}
+              <div>
+                <h4 className="font-semibold text-sm ">EDO STATE</h4>
+                <p className="text-sm text-gray-300 leading-relaxed">
+                  No 7 Omokhale Street, Off Federal Government Girls College
+                  Road. UBTH Back Gate, Benin City.
+                </p>
+              </div>
+
+              {/* LAGOS STATE */}
+              <div>
+                <h4 className="font-semibold text-sm ">LAGOS STATE</h4>
+                <p className="text-sm text-gray-300 leading-relaxed">
+                  Greenland Estate, House 10 Ogombo Rd, Subuola Abu St, Lagos
+                  Island, Sangotedo 105102, Lagos.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="bg-[#101828] border-t border-gray-700">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-gray-400">
+            ©2025 Blue Sands STEM Labs. All rights reserved.
+          </p>
+          <div className="flex items-center gap-4">
+            <a
+              href="#"
+              className="text-gray-400 hover:text-white transition-colors duration-200"
+              aria-label="Twitter"
+            >
+              <FaTwitter className="w-5 h-5" />
+            </a>
+            <a
+              href="#"
+              className="text-gray-400 hover:text-white transition-colors duration-200"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedinIn className="w-5 h-5" />
+            </a>
+            <a
+              href="#"
+              className="text-gray-400 hover:text-white transition-colors duration-200"
+              aria-label="Facebook"
+            >
+              <FaFacebookF className="w-5 h-5" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
