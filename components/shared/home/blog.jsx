@@ -3,72 +3,10 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { articles } from "@/lib/data";
 
 const BlogSection = () => {
   const [email, setEmail] = useState("");
-
-  const articles = [
-    {
-      author: "Alec Whitten",
-      date: "17 Jan 2025",
-      title: "Bill Walsh leadership lessons",
-      excerpt:
-        "Like to know the secrets of transforming a 2-14 team into a 3x Super Bowl winning Dynasty?",
-      image: "/blog/1.jpg",
-      tags: ["Leadership", "Management"],
-      link: "#",
-    },
-    {
-      author: "Demi Wilkinson",
-      date: "19 Jan 2022",
-      title: "PM mental models",
-      excerpt:
-        "Mental models are simple expressions of complex processes or relationships.",
-      image: "/blog/2.jpg",
-      tags: ["Product", "Research", "Frameworks"],
-      link: "#",
-    },
-    {
-      author: "Candice Wu",
-      date: "18 Jan 2022",
-      title: "What is Wireframing?",
-      excerpt:
-        "Introduction to Wireframing and its Principles. Learn from the best in the industry.",
-      image: "/blog/3.jpg",
-      tags: ["Design", "Research"],
-      link: "#",
-    },
-    {
-      author: "Natali Craig",
-      date: "14 Jan 2022",
-      title: "How collaboration makes us better designers",
-      excerpt:
-        "Collaboration can make our teams stronger, and our individual designs better.",
-      image: "/blog/4.jpg",
-      tags: ["Design", "Research"],
-      link: "#",
-    },
-    {
-      author: "Drew Cano",
-      date: "13 Jan 2022",
-      title: "Our top 10 Javascript frameworks to use",
-      excerpt:
-        "JavaScript frameworks make development easy with extensive features and functionalities.",
-      image: "/blog/5.jpg",
-      tags: ["Software Development", "Tools", "SaaS"],
-      link: "#",
-    },
-    {
-      author: "Orlando Diggs",
-      date: "17 Jan 2022",
-      title: "Podcast: Creating a better CX Community",
-      excerpt:
-        "Starting a community doesn't need to be complicated, but how do you get started?",
-      image: "/blog/6.jpg",
-      tags: ["Podcasts", "Customer Success"],
-      link: "#",
-    },
-  ];
 
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -168,13 +106,21 @@ const BlogSection = () => {
               className="group cursor-pointer"
             >
               <a href={article.link} className="block">
-                {/* Image */}
+                {/* Image with Blue Gradient Overlay */}
                 <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6 bg-gray-200">
                   <Image
                     src={article.image}
                     alt={article.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  {/* Blue gradient overlay from bottom - thicker at bottom, fades upward */}
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background:
+                        "linear-gradient(to top, rgba(4, 131, 226, 0.75) 0%, rgba(4, 131, 226, 0.5) 15%, rgba(4, 131, 226, 0.25) 30%, rgba(4, 131, 226, 0.1) 45%, transparent 60%)",
+                    }}
                   />
                 </div>
 

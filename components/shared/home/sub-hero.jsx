@@ -3,20 +3,20 @@ import React from "react";
 const SubHero = () => {
   const stats = [
     {
-      stat: "68%",
-      text: "Of African universities lack adequate lab equipment",
+      stat: "65%",
+      text: "of Nigerian secondary schools lack adequate lab infrastructure",
     },
     {
-      stat: "45%",
-      text: "Higher student engagement with virtual labs",
+      stat: "60%",
+      text: "of Ghanian secondary schools lack adequate lab infrastructure",
     },
     {
-      stat: "₦2M+",
-      text: "Average cost savings per institution annually",
+      stat: "74.5%",
+      text: "of Rwandan secondary schools lack adequate lab infrastructure",
     },
     {
-      stat: "24/7",
-      text: "Access from anywhere within Africa seamlessly",
+      stat: "70%",
+      text: "of South African secondary schools lack adequate lab infrastructure",
     },
   ];
 

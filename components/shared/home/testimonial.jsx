@@ -3,30 +3,10 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { testimonials } from "@/lib/data";
 
 const TestimonialsSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-
-  const testimonials = [
-    {
-      quote:
-        "We love Landingfolio! Our designers were using it for their projects, so clients already knew what Landingfolio was and how to use it.",
-      author: "Darlene Robertson",
-      role: "Product Manager at Iomanar",
-    },
-    {
-      quote:
-        "I didn't know designing in Webflow could be this individualized. I'd never considered it before, but Landingfolio changed my mind.",
-      author: "Bessie Cooper",
-      role: "Freelance UX Designer",
-    },
-    {
-      quote:
-        "We love Landingfolio! Our designers were using it for their projects, so clients already knew what Landingfolio was and how to use it.",
-      author: "Arlene McCoy",
-      role: "Product Designer at Marina.co",
-    },
-  ];
 
   return (
     <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-primary relative overflow-hidden">
@@ -58,7 +38,7 @@ const TestimonialsSection = () => {
 
               {/* Play Button - Simple Circle */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-full bg-white/10 backdrop-blur-sm border-2 border-white/40 flex items-center justify-center hover:bg-white/20 hover:scale-110 transition-all duration-300">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-20 lg:h-20 rounded-2xl bg-[#0483E2]/10 backdrop-blur-sm border-2 border-[#0483E2]/40 flex items-center justify-center hover:bg-white/20 hover:scale-110 transition-all duration-300">
                   <svg
                     className="w-8 h-8 sm:w-10 sm:h-10 text-white ml-1"
                     fill="currentColor"
@@ -72,11 +52,11 @@ const TestimonialsSection = () => {
               {/* Text Overlay */}
               <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 lg:p-12 flex items-center justify-center">
                 <p
-                  className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-white text-center max-w-4xl"
+                  className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-semibold text-white text-center max-w-5xl"
                   style={{ fontFamily: "var(--font-jarkata)" }}
                 >
                   Don't take our words for it, hear what our{" "}
-                  <span className="text-cyan-300">parents</span> have to say.
+                  <span className="text-[#0483E2]">parents</span> have to say.
                 </p>
               </div>
             </div>

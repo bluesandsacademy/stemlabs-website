@@ -18,20 +18,16 @@ const slides = [
     background: "primary",
     cta1Text: "Watch Video",
     link1: "/video",
-    cta2Text: "Get Pricing",
-    link2: "/pricing",
   },
   {
     title:
       "Virtual & Augmented Reality in STEM Education for Secondary & Tertiary Schools.",
     description:
-      "Virtual & Augmented Reality in STEM Education for Secondary & Tertiary Schools.",
+      "Virtual Science Labs offers students engaging STEM courses accessible on tablet or PC anywhere, anytime.",
     image: "/hero/1.jpg",
     background: "secondary",
     cta1Text: "Sign Up",
     link1: "/sign-up",
-    cta2Text: "Get Pricing",
-    link2: "/pricing",
   },
   {
     title: "Unlock Potential in Your Classroom",
@@ -41,8 +37,6 @@ const slides = [
     background: "primary",
     cta1Text: "Try a free demo",
     link1: "/demo",
-    cta2Text: "See Pricing",
-    link2: "/pricing",
   },
 ];
 
@@ -237,26 +231,15 @@ const HeroSlider = () => {
               </motion.p>
             </AnimatePresence>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link href={slides[currentSlide].link1}>
+            <div className=" gap-4">
+              <Link href="/register">
                 <motion.button
-                  className="px-8 py-4 bg-secondary text-white font-medium rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+                  className="px-12 py-4 bg-white text-secondary font-medium rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
                   style={{ fontFamily: "var(--font-jarkata)" }}
                   whileHover={{ scale: shouldReduceMotion ? 1 : 1.05 }}
                   whileTap={{ scale: shouldReduceMotion ? 1 : 0.95 }}
                 >
-                  <FaPlay className="w-4 h-4" />
-                  {slides[currentSlide].cta1Text}
-                </motion.button>
-              </Link>
-              <Link href={slides[currentSlide].link2}>
-                <motion.button
-                  className="px-8 py-4 bg-white text-primary font-medium rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
-                  style={{ fontFamily: "var(--font-jarkata)" }}
-                  whileHover={{ scale: shouldReduceMotion ? 1 : 1.05 }}
-                  whileTap={{ scale: shouldReduceMotion ? 1 : 0.95 }}
-                >
-                  {slides[currentSlide].cta2Text}
+                  Sign Up
                 </motion.button>
               </Link>
             </div>

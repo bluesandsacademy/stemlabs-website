@@ -1,9 +1,15 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, Suspense } from "react";
 import dynamic from "next/dynamic";
 import Hero from "@/components/shared/home/hero";
 import SubHero from "@/components/shared/home/sub-hero";
+import Loading from "./loading";
+import VirtualLabVideoSection from "@/components/shared/features/lab";
+import VirtualLabsSection from "@/components/shared/home/about";
+import MilestonesSection from "@/components/shared/home/milestones";
+import EmpoweringLearningSection from "@/components/shared/home/learn";
+import AfricaStatsSection from "@/components/shared/home/africaStats";
 
 // Lazy load components
 const FeaturesSection = dynamic(
@@ -54,68 +60,8 @@ function SectionSkeleton() {
   );
 }
 
-// Optimized Loading Screen Component
-function OptimizedLoadingScreen({ onComplete }) {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    const progressInterval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(progressInterval);
-          return 100;
-        }
-        return prev + Math.random() * 25; // Faster increment
-      });
-    }, 100);
-
-    const timer = setTimeout(() => {
-      onComplete();
-    }, 400);
-
-    return () => {
-      clearInterval(progressInterval);
-      clearTimeout(timer);
-    };
-  }, [onComplete]);
-
-  return (
-    <div className="fixed inset-0 bg-white z-50 flex items-center justify-center">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50 opacity-60" />
-
-      <div className="relative z-10 flex flex-col items-center gap-6">
-        <div className="relative w-24 h-24 flex items-center justify-center">
-          <img
-            src="/logo.png"
-            alt="Blue Stem Labs"
-            className="w-full h-full object-contain"
-            loading="eager"
-          />
-        </div>
-
-        {/* Simplified text */}
-        <h1
-          className="text-3xl font-bold text-primary"
-          style={{ fontFamily: "var(--font-jarkata)" }}
-        >
-          BLUE STEM LABS
-        </h1>
-
-        {/* Progress bar only */}
-        <div className="w-48 h-1 bg-gray-100 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-gradient-to-r from-primary to-secondary rounded-full transition-all duration-100 ease-out"
-            style={{ width: `${Math.min(progress, 100)}%` }}
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
-
 const Homepage = () => {
   const [showLoading, setShowLoading] = useState(() => {
-    // Only show on first visit using sessionStorage
     if (typeof window !== "undefined") {
       const hasVisited = sessionStorage.getItem("hasVisited");
       return !hasVisited;
@@ -130,28 +76,25 @@ const Homepage = () => {
     setShowLoading(false);
   };
 
-  // Show loading only on first visit
   if (showLoading) {
-    return <OptimizedLoadingScreen onComplete={handleLoadingComplete} />;
+    return <Loading onComplete={handleLoadingComplete} />;
   }
 
   return (
     <div className="min-h-screen">
       <Hero />
-      <SubHero />
+      <VirtualLabsSection />
+      <MilestonesSection />
+      <EmpoweringLearningSection />
 
+      <SubHero />
+      <AfricaStatsSection />
       <Suspense fallback={<SectionSkeleton />}>
         <FeaturesSection />
       </Suspense>
-
-      <Suspense fallback={<SectionSkeleton />}>
-        <SolutionWorksHero />
-      </Suspense>
-
       <Suspense fallback={<SectionSkeleton />}>
         <STEMChallengesSection />
       </Suspense>
-
       <Suspense fallback={<SectionSkeleton />}>
         <PricingSection />
       </Suspense>
