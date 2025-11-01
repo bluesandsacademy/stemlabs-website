@@ -16,9 +16,10 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Features", href: "/features" },
+    { name: "How it works", href: "/how-it-works" },
     { name: "Pricing", href: "/pricing" },
-    { name: "VirtualSTEMLabs", href: "#" },
+    { name: "Partnership", href: "#" },
+    { name: "ASEE 2025", href: "#" },
     { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ];
@@ -28,13 +29,13 @@ const Navbar = () => {
       {/* Promotional Banner */}
       <div className="bg-secondary flex items-center justify-center gap-1 py-2.5 px-4">
         <p className="text-white text-xs sm:text-sm font-sans text-center">
-          Free Courses 🌟 Sale Ends Soon, Get It Now
+          Sign up to get started now
         </p>
         <GoArrowRight className="text-white text-base sm:text-xl flex-shrink-0" />
       </div>
 
       {/* Main Navigation */}
-      <nav className="flex justify-between items-center px-4 sm:px-6 lg:px-8 py-4 bg-white shadow-sm">
+      <nav className="flex justify-between items-center px-4 sm:px-6 lg:px-28 py-4 bg-white shadow-sm">
         {/* Logo */}
         <div className="flex items-center z-50">
           <Image

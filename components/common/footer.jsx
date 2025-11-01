@@ -15,8 +15,8 @@ const Footer = () => {
     { name: "Blog", href: "#" },
     { name: "Newsletter", href: "#" },
     { name: "Events", href: "#", badge: "Coming soon" },
-    { name: "Help centre", href: "#" },
-    { name: "Support", href: "#" },
+    { name: "Contact", href: "#" },
+    { name: "Career", href: "#", badge: "Coming soon" },
   ];
 
   const socialLinks = [
@@ -49,9 +49,9 @@ const Footer = () => {
               className="h-12 w-auto mb-4"
             />
             <p className="text-sm text-gray-300 leading-relaxed">
-              Blue Sands STEM Lab offers a standalone VR headset with a
-              student-friendly interface, integrated educational VR & AR
-              resources, and intuitive teacher controls.
+              Blue Sands STEM Labs gives students access to realistic, hands-on
+              Physics, Chemistry, and Biology experiments anytime, anywhere, 
+              even without internet.
             </p>
           </div>
 

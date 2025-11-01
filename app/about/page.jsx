@@ -1,20 +1,22 @@
-import Gallery from "@/components/shared/about/images";
-import Title from "@/components/shared/about/title";
+import CTA from "@/components/shared/about/c";
+import AboutHero from "@/components/shared/about/hero";
+
 import CoreValuesSection from "@/components/shared/about/values";
-import VisionMissionSection from "@/components/shared/about/vision";
+import VisionMissionPurpose from "@/components/shared/about/vision";
+import WhoWeAre from "@/components/shared/about/who";
+
 import TeamSection from "@/components/shared/home/team";
 import React from "react";
 
-const Aboutpage = () => {
+export default function Aboutpage() {
   return (
     <div>
-      <Title />
-      <Gallery />
-      <VisionMissionSection />
+      <AboutHero />
+      <WhoWeAre />
+      <VisionMissionPurpose />
       <CoreValuesSection />
       <TeamSection />
+      <CTA />
     </div>
   );
-};
-
-export default Aboutpage;
+}

@@ -186,7 +186,7 @@ const HeroSlider = () => {
       )}
     >
       {/* Grid Background - optimized with will-change */}
-      <div className="absolute inset-0 opacity-[0.15] pointer-events-none z-0">
+      <div className="absolute inset-0 opacity-[0.10] pointer-events-none z-0">
         <div
           className="absolute inset-0"
           style={{
@@ -197,7 +197,7 @@ const HeroSlider = () => {
         />
       </div>
 
-      <div className="max-w-8xl mx-auto px-10 py-16 lg:py-16 relative z-10">
+      <div className="max-w-7xl mx-auto py-16 lg:py-16 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 z-10">
             <AnimatePresence mode="wait">
@@ -262,7 +262,7 @@ const HeroSlider = () => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={`image-${currentSlide}`}
-                className="absolute right-0 top-1/2 -translate-y-1/2 w-full max-w-[500px] h-[450px] rounded-3xl overflow-hidden shadow-2xl"
+                className="absolute right-0 top-1/2 -translate-y-1/2 w-full max-w-[600px] h-[450px] rounded-6xl overflow-hidden shadow-2xl"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}

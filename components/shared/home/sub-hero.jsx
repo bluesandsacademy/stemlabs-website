@@ -1,68 +1,87 @@
 import React from "react";
+import Image from "next/image";
 
 const SubHero = () => {
   const stats = [
     {
+      country: "Nigeria",
       stat: "65%",
+      flagCode: "ng",
       text: "of Nigerian secondary schools lack adequate lab infrastructure",
     },
     {
+      country: "Ghana",
       stat: "60%",
+      flagCode: "gh",
       text: "of Ghanian secondary schools lack adequate lab infrastructure",
     },
     {
+      country: "Rwanda",
       stat: "74.5%",
+      flagCode: "rw",
       text: "of Rwandan secondary schools lack adequate lab infrastructure",
     },
     {
-      stat: "70%",
-      text: "of South African secondary schools lack adequate lab infrastructure",
+      country: "Kenya",
+      stat: "45%",
+      flagCode: "ke",
+      text: "of Kenyan secondary schools lack adequate lab infrastructure",
     },
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 xl:py-24 bg-gradient-to-b from-white to-blue-50/30">
+    <div className="flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 bg-white">
       {/* Header Section */}
-      <div className="flex flex-col gap-1 items-center justify-center max-w-4xl w-full text-center mb-6 sm:mb-8 lg:mb-10">
+      <div className="flex flex-col gap-3 items-center justify-center max-w-4xl w-full text-center mb-12 sm:mb-16">
         <h1
-          className="font-bold text-2xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl text-secondary leading-tight"
+          className="font-bold text-3xl sm:text-4xl md:text-4xl lg:text-5xl text-secondary leading-tight"
           style={{ fontFamily: "var(--font-jarkata)" }}
         >
-          Completely Leverage Product
+          Transforming African STEM Education
         </h1>
 
         <p
-          className="font-extralight text-base md:text-lg text-gray-600 max-w-5xl leading-loose"
+          className="font-normal text-base md:text-lg text-gray-600 max-w-3xl"
           style={{ fontFamily: "var(--font-jarkata)" }}
         >
           Addressing the unique challenges facing African universities and
           students
         </p>
-
-        {/* Decorative divider */}
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-6 xl:gap-8 max-w-7xl w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-6 xl:gap-8 max-w-7xl w-full">
         {stats.map((stat, index) => (
           <div
             key={index}
-            className="flex flex-col items-center justify-center gap-3 
-                       transition-all duration-300  group"
+            className="flex flex-col items-center justify-start gap-4 
+                       bg-gray-50/50 rounded-2xl p-8 
+                       transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
           >
-            {/* Stat Number */}
-            <h2
-              className="text-primary text-4xl sm:text-5xl lg:text-4xl xl:text-5xl font-bold "
+            {/* Flag Circle */}
+            <div className="relative w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center shadow-lg overflow-hidden">
+              <div className="relative w-8 h-8 rounded-full overflow-hidden">
+                <Image
+                  src={`https://flagcdn.com/w80/${stat.flagCode}.png`}
+                  alt={`${stat.country} flag`}
+                  fill
+                  className="object-cover rounded-full"
+                  unoptimized
+                />
+              </div>
+            </div>
+
+            {/* Country Name and Percentage */}
+            <h3
+              className="text-primary text-xl font-bold"
               style={{ fontFamily: "var(--font-jarkata)" }}
             >
-              {stat.stat}
-            </h2>
+              {stat.country}: {stat.stat}
+            </h3>
 
-            {/* Divider */}
-
-            {/* Stat Text */}
+            {/* Description Text */}
             <p
-              className="text-gray-600 text-sm sm:text-base text-center leading-relaxed font-light"
+              className="text-gray-600 text-sm text-center leading-relaxed font-normal"
               style={{ fontFamily: "var(--font-jarkata)" }}
             >
               {stat.text}

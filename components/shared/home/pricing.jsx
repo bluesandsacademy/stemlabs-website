@@ -42,7 +42,7 @@ const PricingSection = () => {
         "Perfect for individual learners and students exploring science on their own.",
       priceUSD: 5,
       priceNGN: 5000,
-      period: "/Month",
+      period: "/Term",
       features: [
         "Access to core Physics, Chemistry, and Biology simulations",
         "Graded assignments, tracking & quizzes",
@@ -60,7 +60,7 @@ const PricingSection = () => {
         "Empower your whole school with immersive practical science and powerful lessons.",
       priceUSD: 50,
       priceNGN: 50000,
-      period: "/Month",
+      period: "/Term",
       features: [
         "Multi-user school license (admins, teachers, students)",
         "Teacher dashboard, performance analytics & exports",
@@ -106,7 +106,7 @@ const PricingSection = () => {
   };
 
   return (
-    <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <section className="py-16 sm:py-20 lg:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -186,10 +186,10 @@ const PricingSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="relative"
+              className="relative overflow-hidden"
             >
               <div
-                className={`h-full rounded-2xl p-8 transition-all duration-300 ${
+                className={`h-full p-8 transition-all overflow-hidden duration-300 ${
                   plan.popular
                     ? "bg-primary text-white shadow-xl scale-105"
                     : "bg-white text-secondary shadow-lg hover:shadow-xl"
@@ -245,7 +245,7 @@ const PricingSection = () => {
                   {plan.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start gap-3">
                       <svg
-                        className={`w-5 h-5 flex-shrink-0 mt-0.5 ${
+                        className={`w-5 h-5 flex-shrink-0 mt-0.5 bg-primary/10 rounded-full ${
                           plan.popular ? "text-white" : "text-primary"
                         }`}
                         fill="currentColor"
@@ -272,7 +272,7 @@ const PricingSection = () => {
                 <button
                   className={`w-full py-4 rounded-xl font-semibold transition-all duration-300 ${
                     plan.buttonStyle === "white"
-                      ? "bg-white text-primary hover:bg-gray-50"
+                      ? "bg-white text-primary hover:bg-secondary hover:text-white"
                       : plan.popular
                       ? "bg-white text-primary hover:bg-gray-50"
                       : "bg-primary text-white hover:bg-secondary"
@@ -284,37 +284,8 @@ const PricingSection = () => {
 
               {/* Most Popular Arrow (only for middle card) */}
               {plan.popular && (
-                <div className="absolute -top-8 right-4">
-                  <svg
-                    width="60"
-                    height="60"
-                    viewBox="0 0 60 60"
-                    className="text-primary"
-                  >
-                    <path
-                      d="M30 5 L35 25 L50 15 L40 30 L55 35 L35 35 L40 50 L30 35 L20 50 L25 35 L5 35 L20 30 L10 15 L25 25 Z"
-                      fill="currentColor"
-                      opacity="0.2"
-                    />
-                    <text
-                      x="30"
-                      y="20"
-                      textAnchor="middle"
-                      className="text-xs font-bold fill-primary"
-                      transform="rotate(-15 30 20)"
-                    >
-                      Most
-                    </text>
-                    <text
-                      x="30"
-                      y="32"
-                      textAnchor="middle"
-                      className="text-xs font-bold fill-primary"
-                      transform="rotate(-15 30 32)"
-                    >
-                      Popular!
-                    </text>
-                  </svg>
+                <div className="absolute top-2  -right-6 bg-white text-primary text-xs font-semibold px-10 py-2 shadow-md transform rotate-[30deg] text-center">
+                  <p className="relative pl-10">Most Popular</p>
                 </div>
               )}
             </motion.div>

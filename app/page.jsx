@@ -1,57 +1,52 @@
-"use client";
-
-import React, { useState, Suspense } from "react";
+import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
 import Hero from "@/components/shared/home/hero";
 import SubHero from "@/components/shared/home/sub-hero";
-import Loading from "./loading";
-import VirtualLabVideoSection from "@/components/shared/features/lab";
 import VirtualLabsSection from "@/components/shared/home/about";
 import MilestonesSection from "@/components/shared/home/milestones";
 import EmpoweringLearningSection from "@/components/shared/home/learn";
-import AfricaStatsSection from "@/components/shared/home/africaStats";
+import Features from "@/components/shared/home/africaStats";
+import Collaborations from "@/components/shared/home/features";
 
-// Lazy load components
+// Lazy load components with SSR enabled
 const FeaturesSection = dynamic(
   () => import("@/components/shared/home/features"),
-  { loading: () => <SectionSkeleton />, ssr: true }
+  { ssr: true }
 );
 
 const SolutionWorksHero = dynamic(
   () => import("@/components/shared/home/solution"),
-  { loading: () => <SectionSkeleton />, ssr: true }
+  { ssr: true }
 );
 
 const STEMChallengesSection = dynamic(
   () => import("@/components/shared/home/challenges"),
-  { loading: () => <SectionSkeleton />, ssr: true }
+  { ssr: true }
 );
 
 const PricingSection = dynamic(
   () => import("@/components/shared/home/pricing"),
-  { loading: () => <SectionSkeleton />, ssr: true }
+  { ssr: true }
 );
 
 const TeamSection = dynamic(() => import("@/components/shared/home/team"), {
-  loading: () => <SectionSkeleton />,
   ssr: true,
 });
 
 const BlogSection = dynamic(() => import("@/components/shared/home/blog"), {
-  loading: () => <SectionSkeleton />,
   ssr: true,
 });
 
 const TestimonialsSection = dynamic(
   () => import("@/components/shared/home/testimonial"),
-  { loading: () => <SectionSkeleton />, ssr: true }
+  { ssr: true }
 );
 
 const FAQSection = dynamic(() => import("@/components/shared/home/faq"), {
-  loading: () => <SectionSkeleton />,
   ssr: true,
 });
 
+// Skeleton component for loading states
 function SectionSkeleton() {
   return (
     <div className="w-full h-96 bg-gray-50 animate-pulse flex items-center justify-center">
@@ -60,41 +55,27 @@ function SectionSkeleton() {
   );
 }
 
-const Homepage = () => {
-  const [showLoading, setShowLoading] = useState(() => {
-    if (typeof window !== "undefined") {
-      const hasVisited = sessionStorage.getItem("hasVisited");
-      return !hasVisited;
-    }
-    return false;
-  });
-
-  const handleLoadingComplete = () => {
-    if (typeof window !== "undefined") {
-      sessionStorage.setItem("hasVisited", "true");
-    }
-    setShowLoading(false);
-  };
-
-  if (showLoading) {
-    return <Loading onComplete={handleLoadingComplete} />;
-  }
-
+// This is now a server component - no "use client" directive
+export default function Homepage() {
   return (
     <div className="min-h-screen">
+      {/* Critical above-the-fold content - rendered immediately */}
       <Hero />
       <VirtualLabsSection />
       <MilestonesSection />
       <EmpoweringLearningSection />
-
       <SubHero />
-      <AfricaStatsSection />
+      <Features />
+
+      {/* Below-the-fold content with streaming */}
       <Suspense fallback={<SectionSkeleton />}>
-        <FeaturesSection />
+        <Collaborations />
       </Suspense>
+
       <Suspense fallback={<SectionSkeleton />}>
         <STEMChallengesSection />
       </Suspense>
+
       <Suspense fallback={<SectionSkeleton />}>
         <PricingSection />
       </Suspense>
@@ -116,6 +97,4 @@ const Homepage = () => {
       </Suspense>
     </div>
   );
-};
-
-export default Homepage;
+}
