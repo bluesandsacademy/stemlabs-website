@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState } from "react";
 import { GoArrowRight } from "react-icons/go";
 import { HiMenuAlt3 } from "react-icons/hi";
@@ -27,11 +28,16 @@ const Navbar = () => {
   return (
     <header className="flex flex-col fixed top-0 left-0 right-0 z-50">
       {/* Promotional Banner */}
-      <div className="bg-secondary flex items-center justify-center gap-1 py-2.5 px-4">
-        <p className="text-white text-xs sm:text-sm font-sans text-center">
-          Sign up to get started now
-        </p>
-        <GoArrowRight className="text-white text-base sm:text-xl flex-shrink-0" />
+      <div className="bg-secondary gap-1 py-2.5 px-4">
+        <Link
+          href="https://app.bluesandstemlabs.com/auth/login"
+          className=" flex items-center justify-center"
+        >
+          <p className="text-white text-xs sm:text-sm font-sans text-center">
+            Sign up to get started now
+          </p>
+          <GoArrowRight className="text-white text-base sm:text-xl flex-shrink-0" />
+        </Link>
       </div>
 
       {/* Main Navigation */}
@@ -62,13 +68,18 @@ const Navbar = () => {
         </ul>
 
         {/* Desktop Action Buttons */}
+
         <div className="hidden lg:flex items-center gap-3">
-          <button className="px-5 py-2.5 text-sm font-medium text-foreground hover:text-primary transition-colors duration-200">
-            Sign in
-          </button>
-          <button className="px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-lg hover:bg-opacity-90 transition-all duration-200 shadow-md hover:shadow-lg">
-            Get Started
-          </button>
+          <Link href="https://app.bluesandstemlabs.com/auth/login">
+            <button className="px-5 py-2.5 text-sm font-medium text-foreground hover:text-primary transition-colors duration-200 cursor-pointer">
+              Sign in
+            </button>
+          </Link>
+          <Link href="https://app.bluesandstemlabs.com/auth/register">
+            <button className="px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-lg hover:bg-opacity-90 transition-all duration-200 shadow-md hover:shadow-lg cursor-pointer">
+              Get Started
+            </button>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
