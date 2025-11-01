@@ -232,7 +232,7 @@ const HeroSlider = () => {
             </AnimatePresence>
 
             <div className=" gap-4">
-              <Link href="/register">
+              <Link href="https://github.com/bluesandsacademy/stemlabs-website.git">
                 <motion.button
                   className="px-12 py-4 bg-white text-secondary font-medium rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
                   style={{ fontFamily: "var(--font-jarkata)" }}
