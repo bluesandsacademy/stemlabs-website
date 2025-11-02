@@ -131,15 +131,6 @@ const Footer = () => {
             {" "}
             <h3 className="font-semibold text-base mb-3">Location</h3>
             <div className="flex flex-col gap-2 items-center justify-center">
-              {/* EDO STATE */}
-              <div>
-                <h4 className="font-semibold text-sm ">EDO STATE</h4>
-                <p className="text-sm text-gray-300 leading-relaxed">
-                  No 7 Omokhale Street, Off Federal Government Girls College
-                  Road. UBTH Back Gate, Benin City.
-                </p>
-              </div>
-
               {/* LAGOS STATE */}
               <div>
                 <h4 className="font-semibold text-sm ">LAGOS STATE</h4>

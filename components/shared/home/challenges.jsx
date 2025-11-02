@@ -3,45 +3,13 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { challenges } from "@/lib/data";
 
 const STEMChallengesSection = () => {
   const [activeChallenge, setActiveChallenge] = useState(0);
 
-  const challenges = [
-    {
-      title: "Infrastructure Gaps",
-      description:
-        "Many African universities struggle with outdated or non-existent laboratory facilities. Blue Sands provides state-of-the-art virtual labs accessible from any device.",
-    },
-    {
-      title: "Brain Drain Prevention",
-      description:
-        "Keep top talent in Africa by providing world-class educational tools that rival international institutions.",
-    },
-    {
-      title: "Rural Student Access",
-      description:
-        "Bridge the urban-rural divide with mobile-optimized virtual labs that work on low-bandwidth connections.",
-    },
-    {
-      title: "Curriculum Localization",
-      description:
-        "Content tailored to African contexts with locally relevant examples and case studies.",
-    },
-    {
-      title: "Large Class Sizes",
-      description:
-        "Scale quality education to thousands of students without compromising on hands-on learning.",
-    },
-    {
-      title: "Maintenance-Free",
-      description:
-        "No expensive equipment maintenance, chemical supplies, or laboratory upkeep needed.",
-    },
-  ];
-
   return (
-    <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-secondary via-[#024570] to-secondary relative overflow-hidden">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-secondary via-[#024570] to-secondary relative overflow-hidden">
       {/* Grid Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div
@@ -54,68 +22,77 @@ const STEMChallengesSection = () => {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
+        {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-3xl sm:text-3xl lg:text-4xl font-bold text-white text-center mb-12 sm:mb-16 "
+          className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white text-center mb-8 sm:mb-12 md:mb-14 lg:mb-16 px-4"
           style={{ fontFamily: "var(--font-jarkata)" }}
         >
           Solving Real African STEM Challenges
         </motion.h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16 xl:gap-20 items-center">
+          {/* Image Section */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative h-[400px] sm:h-[500px] lg:h-[600px]"
+            className="relative h-[350px] xs:h-[380px] sm:h-[450px] md:h-[500px] lg:h-[550px] xl:h-[600px] w-full"
           >
-            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[38%] sm:w-[40%] z-10">
-              <div className="relative rounded-[28px] sm:rounded-[32px] overflow-hidden shadow-2xl transform -rotate-12 hover:rotate-0 transition-transform duration-500">
-                <div className="aspect-[9/19] bg-gradient-to-br from-cyan-400 to-blue-500 relative">
+            {/* Left Image */}
+            <div className="absolute left-[2%] sm:left-0 top-1/2 -translate-y-1/2 w-[32%] sm:w-[36%] md:w-[38%] lg:w-[40%] z-10">
+              <div className="relative rounded-[20px] sm:rounded-[24px] md:rounded-[28px] lg:rounded-[32px] overflow-hidden shadow-xl sm:shadow-2xl transform -rotate-6 sm:-rotate-8 md:-rotate-10 lg:-rotate-12 hover:rotate-0 transition-transform duration-500">
+                <div className=" aspect-[6/19] md:aspect-[10/19]  lg:aspect-[10/19 bg-gradient-to-br from-cyan-400 to-blue-500 relative">
                   <Image
                     src="/home/challenges/1.jpg"
                     alt="Student using mobile app"
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 38vw, 20vw"
+                    sizes="(max-width: 640px) 32vw, (max-width: 768px) 36vw, (max-width: 1024px) 38vw, 20vw"
+                    priority
                   />
                 </div>
               </div>
             </div>
 
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[38%] sm:w-[40%] z-20">
-              <div className="relative rounded-[28px] sm:rounded-[32px] overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-500">
-                <div className="aspect-[9/19] bg-gradient-to-br from-green-400 to-emerald-600 relative">
+            {/* Center Image */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[32%] sm:w-[36%] md:w-[38%] lg:w-[40%] z-20">
+              <div className="relative rounded-[20px] sm:rounded-[24px] md:rounded-[28px] lg:rounded-[32px] overflow-hidden shadow-xl sm:shadow-2xl transform hover:scale-105 transition-transform duration-500">
+                <div className="aspect-[6/19] md:aspect-[10/19]  bg-gradient-to-br from-green-400 to-emerald-600 relative">
                   <Image
                     src="/home/challenges/2.jpg"
                     alt="Student with VR headset"
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 38vw, 20vw"
+                    sizes="(max-width: 640px) 32vw, (max-width: 768px) 36vw, (max-width: 1024px) 38vw, 20vw"
+                    priority
                   />
                 </div>
               </div>
             </div>
 
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[38%] sm:w-[40%] z-10">
-              <div className="relative rounded-[28px] sm:rounded-[32px] overflow-hidden shadow-2xl transform rotate-12 hover:rotate-0 transition-transform duration-500">
-                <div className="aspect-[9/19] bg-gradient-to-br from-purple-400 to-pink-500 relative">
+            {/* Right Image */}
+            <div className="absolute right-[2%] sm:right-0 top-1/2 -translate-y-1/2 w-[32%] sm:w-[36%] md:w-[38%] lg:w-[40%] z-10">
+              <div className="relative rounded-[20px] sm:rounded-[24px] md:rounded-[28px] lg:rounded-[32px] overflow-hidden shadow-xl sm:shadow-2xl transform rotate-6 sm:rotate-8 md:rotate-10 lg:rotate-12 hover:rotate-0 transition-transform duration-500">
+                <div className="aspect-[6/19] md:aspect-[10/19] bg-gradient-to-br from-purple-400 to-pink-500 relative">
                   <Image
                     src="/home/challenges/3.jpg"
                     alt="Student in lab"
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 38vw, 20vw"
+                    sizes="(max-width: 640px) 32vw, (max-width: 768px) 36vw, (max-width: 1024px) 38vw, 20vw"
+                    priority
                   />
                 </div>
               </div>
             </div>
           </motion.div>
 
+          {/* Challenges List Section */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -124,10 +101,11 @@ const STEMChallengesSection = () => {
             className="relative"
           >
             {/* Vertical Line */}
-            <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-white/20" />
+            <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-white/20 hidden sm:block" />
 
+            {/* Animated Progress Line */}
             <motion.div
-              className="absolute left-0 w-[2px] bg-primary"
+              className="absolute left-0 w-[2px] bg-primary hidden sm:block"
               initial={false}
               animate={{
                 top: `${(activeChallenge / challenges.length) * 100}%`,
@@ -145,15 +123,15 @@ const STEMChallengesSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`w-full text-left relative pl-8 transition-all duration-300 ${
+                  className={`w-full text-left relative sm:pl-8 transition-all duration-300 ${
                     activeChallenge === index
-                      ? "bg-primary/90 backdrop-blur-sm rounded-2xl py-6 pr-6 sm:py-8 sm:pr-8"
-                      : "py-5 pr-4 hover:bg-white/5"
+                      ? "bg-primary/90 backdrop-blur-sm rounded-xl sm:rounded-2xl py-4 px-4 sm:py-6 sm:pr-6 md:py-7 md:pr-7 lg:py-8 lg:pr-8"
+                      : "py-3 px-4 sm:py-4 sm:pr-4 md:py-5 md:pr-4 hover:bg-white/5 rounded-lg"
                   }`}
                 >
-                  {/* Dot on the line */}
+                  {/* Dot on the line - Hidden on mobile */}
                   <div
-                    className={`absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full transition-all duration-300 ${
+                    className={`absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full transition-all duration-300 hidden sm:block ${
                       activeChallenge === index
                         ? "bg-primary scale-150"
                         : "bg-white/40"
@@ -162,8 +140,8 @@ const STEMChallengesSection = () => {
 
                   <div>
                     <h3
-                      className={`text-lg sm:text-xl lg:text-2xl font-bold text-white transition-all duration-300 ${
-                        activeChallenge === index ? "mb-3" : ""
+                      className={`text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white transition-all duration-300 ${
+                        activeChallenge === index ? "mb-2 sm:mb-3" : ""
                       }`}
                       style={{ fontFamily: "var(--font-jarkata)" }}
                     >
@@ -181,7 +159,7 @@ const STEMChallengesSection = () => {
                           className="overflow-hidden"
                         >
                           <p
-                            className="text-sm sm:text-base text-white/90 leading-relaxed"
+                            className="text-xs sm:text-sm md:text-base text-white/90 leading-relaxed"
                             style={{ fontFamily: "var(--font-jarkata)" }}
                           >
                             {challenge.description}
