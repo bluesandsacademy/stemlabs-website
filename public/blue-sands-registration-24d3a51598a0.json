@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "blue-sands-registration",
+  "private_key_id": "24d3a51598a0ddcc4d05e522a64684c8077dde4f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC1GJlmcDrCDSBj\np22KNPcxjO3TJnnBGg6uVAG+az10TBTyPEjKxw+qHqyX1bSmXJtL6VKqv1kCOPmE\n3Kx49QZjyZEKqMldv0JZXpPM0hMscbp4Q74cVqyI6vTiQjK5RXpdWYWJhPii3mrV\nIs0lnBEkB60iX0tWUeX5lMdGXmuUcubktWRN+1lWdAeIOW+YmJLcBNT9MZzZzqmK\n1lRCEMMMGTv6WOdjrHvjX3rFcmFL/Ue6OGqwGmRaXN405kPiVIxcNNXLmwwfpN/V\nJdJ5k5kV1IBwsoDR4Nggon2ddJ5Ar8f4EF1y9OfYkqcCLUjdnmz7MMLBdahhRXek\nRF8TygWpAgMBAAECggEAG7amQRIzN7+VAZMddQ1Kd/OCcLH+Z3HypbR26NpV9v5u\npSxbEmcYq1bS4FCEuwHIhTsxWq56M1gfPTkdDsyme+5ciyZN3JIYl/8cfLd4VjCY\nUe/B/+m2sSRNsfNh+k7a3T7GLAekmh4R+MiA3vzNdbdUBELTj2Psnv9o6IiqC3cx\nEt3aqqq832Igwmb4EPNznI6d3pK7G7EW+M7X8CkB6m6HNN8nPmnuRvUGS3ojRqyk\nlPbKm5lvS2yjfc9/Vz98VTffFawfmGZAlCi5cRopKUc2y4APPgvbGDVfJNu9hnBh\nAQ8BcUIR2oTdSvbuVfFgwZ7P9f2BdsOW+M5nWfNnZQKBgQDfYJqzKhfNAQgfXJuT\nAVysI4qDDmtCjbtu2YpL2UK70pWF24Kd4Uxuh1MeVNEmh+I6Bw3HJCXRaRA5EOHi\nP/aXr3PJH8LIPqRHtXUebpiucO0B8hOs+LFttIZWlup9AWDu6bXEXwuiZdND7+Jz\na8nZbIou++9QD/dlT1tIbekWBQKBgQDPizpI+8c6D/rVGIY09iZF99uXtS/lNuPy\nHslJKSO9iNlDLrLAv8qFFspTtdMHh1nfB8rsYtOatlZqw/pyut6QKD8xwirymWn9\nKWa6cQCW2JVgks1KS8daCIybq6PyAhGbj4zWkwiRofoHpoMij1auKt0vxlRmQqOo\njq1xyja+VQKBgHbSH1hAgsqUyupLy6Gl7tLOUQanq9yKIfK0GwF/vyTDvq+mdVNg\nHdUJfOg8e8jALVFqoSSWENvUxEFmvpEoLxa+yJtqnqT/1Ukjt/oJIIRiI2COkXLI\nEzFk/rSesHrwOcy8WujrGfg3q+qOdumoo4VZXCPj9YekBphIXykm9f61AoGATOCx\n0l8RSTyqGU1gSTX0r25EdUm0WB+hCArHXMZUatzKPcyKgkOI7QuoHqH3bY6Bh9AH\nJtDkuSZZlGrL1rvJvXRrFC9sYTjaveAcIWvCYB4SFxfJ239+dKc+Dlvh+r8xboIa\nFVGZlvh8+WCAqsiVvyY5kHzSvp5oqQNQ1BmndZECgYEA1rVXSECDbcSKq6FB28AD\nOZ+IjVGDVB6nqMlE1MlGKkkc2RQ3EQkd7URiRgxonXanY5iyVieNShJTlslzo6LH\n0OAJeXr0ykrGZALcIJyGGOfRwT4SrJTXt5s76mAV7RIfEch7M2laX8hLqd3tqxyQ\ndUx5yvQEbKc+nbnRE2OCFTk=\n-----END PRIVATE KEY-----\n",
+  "client_email": "blue-sands-stem-labs@blue-sands-registration.iam.gserviceaccount.com",
+  "client_id": "106228247415385316041",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/blue-sands-stem-labs%40blue-sands-registration.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
