@@ -30,8 +30,13 @@ export default function AseeHero() {
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
                 Africa STEM EdTech Expo
               </h2>
+
               <p className="text-white/90 text-lg sm:text-xl font-medium">
-                25th Nov 2025 — Lagos, Nigeria
+                The Patron Hotel Km 20 Lekki - Epe Expy, Eti-Osa, Lekki 106104,
+                Lagos, Nigeria
+              </p>
+              <p className="text-white/90 text-lg sm:text-xl font-medium">
+                25th November 2025
               </p>
             </div>
 
