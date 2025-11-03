@@ -4,10 +4,9 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const PricingSection = () => {
-  const [currency, setCurrency] = useState("naira"); // 'dollar' or 'naira' - default to naira
-  const [exchangeRate, setExchangeRate] = useState(1600); // Default NGN to USD rate
+  const [currency, setCurrency] = useState("naira");
+  const [exchangeRate, setExchangeRate] = useState(1600);
 
-  // Fetch live exchange rate
   useEffect(() => {
     const fetchExchangeRate = async () => {
       try {
@@ -15,22 +14,12 @@ const PricingSection = () => {
           "https://v6.exchangerate-api.com/v6/892a9ad526f14e1e8f7652e0/latest/USD"
         );
         const data = await response.json();
-
-        // v6 API uses 'conversion_rates' instead of 'rates'
-        if (data.conversion_rates && data.conversion_rates.NGN) {
+        if (data.conversion_rates?.NGN)
           setExchangeRate(data.conversion_rates.NGN);
-          console.log("Exchange rate fetched:", data.conversion_rates.NGN);
-        } else if (data.rates && data.rates.NGN) {
-          // Fallback for other API versions
-          setExchangeRate(data.rates.NGN);
-          console.log("Exchange rate fetched:", data.rates.NGN);
-        }
       } catch (error) {
         console.error("Failed to fetch exchange rate:", error);
-        // Keep default rate if fetch fails
       }
     };
-
     fetchExchangeRate();
   }, []);
 
@@ -93,20 +82,15 @@ const PricingSection = () => {
     },
   ];
 
-  const formatPrice = (usdPrice, ngnPrice) => {
+  const formatPrice = (usdPrice) => {
     if (usdPrice === null) return "Custom";
-
-    if (currency === "dollar") {
-      return `$${usdPrice}`;
-    } else {
-      // Use live exchange rate to convert USD to NGN
-      const convertedPrice = Math.round(usdPrice * exchangeRate);
-      return `₦${convertedPrice.toLocaleString()}`;
-    }
+    return currency === "dollar"
+      ? `$${usdPrice}`
+      : `₦${Math.round(usdPrice * exchangeRate).toLocaleString()}`;
   };
 
   return (
-    <section className="py-16 sm:py-20 lg:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <section className="py-14 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -115,7 +99,7 @@ const PricingSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-sm font-semibold text-primary uppercase tracking-wider mb-3"
+            className="text-sm sm:text-base font-semibold text-primary uppercase tracking-wider mb-3"
           >
             Pricing
           </motion.p>
@@ -135,7 +119,7 @@ const PricingSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base sm:text-lg text-gray-600 mb-8"
+            className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto"
           >
             Flexible pricing designed for African educational budgets
           </motion.p>
@@ -146,20 +130,20 @@ const PricingSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex items-center justify-center gap-4"
+            className="flex items-center justify-center gap-3 mt-6"
           >
             <span
-              className={`text-sm font-semibold transition-colors ${
+              className={`text-sm font-semibold ${
                 currency === "dollar" ? "text-secondary" : "text-gray-400"
               }`}
             >
-              Dollar
+              USD
             </span>
             <button
               onClick={() =>
                 setCurrency(currency === "dollar" ? "naira" : "dollar")
               }
-              className="relative w-14 h-7 bg-primary rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              className="relative w-14 h-7 bg-primary rounded-full transition-all duration-300"
             >
               <span
                 className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full transition-transform duration-300 ${
@@ -168,17 +152,17 @@ const PricingSection = () => {
               />
             </button>
             <span
-              className={`text-sm font-semibold transition-colors ${
+              className={`text-sm font-semibold ${
                 currency === "naira" ? "text-secondary" : "text-gray-400"
               }`}
             >
-              Naira
+              NGN
             </span>
           </motion.div>
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-6 mt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {plans.map((plan, index) => (
             <motion.div
               key={index}
@@ -189,31 +173,28 @@ const PricingSection = () => {
               className="relative overflow-hidden"
             >
               <div
-                className={`h-full p-8 transition-all overflow-hidden duration-300 ${
+                className={`h-full p-6 sm:p-8 rounded-2xl transition-all duration-300 ${
                   plan.popular
-                    ? "bg-primary text-white shadow-xl scale-105"
-                    : "bg-white text-secondary shadow-lg hover:shadow-xl"
+                    ? "bg-primary text-white shadow-xl scale-[1.02]"
+                    : "bg-white text-secondary shadow-md hover:shadow-lg"
                 }`}
               >
                 {/* Badge */}
                 <div className="mb-4">
                   <span
-                    className={`inline-block px-4 py-1.5 rounded-full text-xs font-semibold ${
-                      plan.popular
-                        ? "bg-white/20 text-white"
-                        : "bg-primary text-white"
+                    className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
+                      plan.popular ? "bg-white/20" : "bg-primary text-white"
                     }`}
                   >
                     {plan.badge}
                   </span>
                 </div>
 
-                {/* Plan Name */}
-                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-
-                {/* Tagline */}
+                <h3 className="text-xl sm:text-2xl font-bold mb-2">
+                  {plan.name}
+                </h3>
                 <p
-                  className={`text-sm mb-6 ${
+                  className={`text-sm sm:text-base mb-6 ${
                     plan.popular ? "text-white/90" : "text-gray-600"
                   }`}
                 >
@@ -222,30 +203,28 @@ const PricingSection = () => {
 
                 {/* Price */}
                 <div className="mb-8">
-                  {plan.priceUSD !== null ? (
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-5xl font-bold">
-                        {formatPrice(plan.priceUSD, plan.priceNGN)}
-                      </span>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-4xl sm:text-5xl font-bold">
+                      {formatPrice(plan.priceUSD)}
+                    </span>
+                    {plan.period && (
                       <span
-                        className={`text-lg ${
+                        className={`text-base sm:text-lg ${
                           plan.popular ? "text-white/80" : "text-gray-600"
                         }`}
                       >
                         {plan.period}
                       </span>
-                    </div>
-                  ) : (
-                    <span className="text-5xl font-bold">Custom</span>
-                  )}
+                    )}
+                  </div>
                 </div>
 
                 {/* Features */}
-                <ul className="space-y-4 mb-8">
+                <ul className="space-y-3 mb-8">
                   {plan.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start gap-3">
                       <svg
-                        className={`w-5 h-5 flex-shrink-0 mt-0.5 bg-primary/10 rounded-full ${
+                        className={`w-5 h-5 flex-shrink-0 mt-0.5 ${
                           plan.popular ? "text-white" : "text-primary"
                         }`}
                         fill="currentColor"
@@ -270,7 +249,7 @@ const PricingSection = () => {
 
                 {/* CTA Button */}
                 <button
-                  className={`w-full py-4 rounded-xl font-semibold transition-all duration-300 ${
+                  className={`w-full py-3 sm:py-4 rounded-lg font-semibold transition-all duration-300 ${
                     plan.buttonStyle === "white"
                       ? "bg-white text-primary hover:bg-secondary hover:text-white"
                       : plan.popular
@@ -282,10 +261,9 @@ const PricingSection = () => {
                 </button>
               </div>
 
-              {/* Most Popular Arrow (only for middle card) */}
               {plan.popular && (
-                <div className="absolute top-2  -right-6 bg-white text-primary text-xs font-semibold px-10 py-2 shadow-md transform rotate-[30deg] text-center">
-                  <p className="relative pl-10">Most Popular</p>
+                <div className="absolute top-2 right-[-1%] sm:right-[-6%] bg-white text-primary text-[10px] sm:text-xs font-semibold px-8 py-2 shadow-md transform rotate-[30deg]">
+                  Most Popular
                 </div>
               )}
             </motion.div>

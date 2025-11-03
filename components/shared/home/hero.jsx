@@ -2,95 +2,62 @@
 
 import React, { useState, useEffect, useCallback, memo } from "react";
 import Image from "next/image";
-import { FaPlay } from "react-icons/fa";
 import { PiBookOpenTextFill } from "react-icons/pi";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import clsx from "clsx";
 import Link from "next/link";
+import { slides } from "@/lib/data";
 
-// Move slides data outside to prevent recreation
-const slides = [
-  {
-    title: "Empowering Africa's Next Generation of STEM Innovators",
-    description:
-      "Bridging the digital divide with world-class virtual laboratory experiences. From Lagos to Cape Town, unlock limitless potential in Science, Technology, Engineering, and Mathematics.",
-    image: "/hero/1.jpg",
-    background: "primary",
-    cta1Text: "Watch Video",
-    link1: "/video",
-  },
-  {
-    title:
-      "Virtual & Augmented Reality in STEM Education for Secondary & Tertiary Schools.",
-    description:
-      "Virtual Science Labs offers students engaging STEM courses accessible on tablet or PC anywhere, anytime.",
-    image: "/hero/1.jpg",
-    background: "secondary",
-    cta1Text: "Sign Up",
-    link1: "/sign-up",
-  },
-  {
-    title: "Unlock Potential in Your Classroom",
-    description:
-      "Transform your classroom with Blue Sands STEM Labs. Our virtual labs use VR and AR to give students practical, hands-on science experience, preparing them for a future in innovation.",
-    image: "/hero/2.jpg",
-    background: "primary",
-    cta1Text: "Try a free demo",
-    link1: "/demo",
-  },
-];
+// Slide data
 
 const backgroundClasses = {
   primary: "bg-[#0483e2]",
   secondary: "bg-[#02345A]",
 };
 
-// Memoize floating cards to prevent re-renders
+// Floating Cards (memoized for performance)
 const FloatingCards = memo(() => {
   return (
     <>
+      {/* Top-left card */}
       <motion.div
-        className="absolute top-8 left-0 bg-white rounded-2xl shadow-xl p-4 w-64 z-10"
-        initial={{ opacity: 0, y: 50, scale: 0.8 }}
+        className="absolute top-6 left-3 sm:top-10 sm:left-8 bg-white rounded-2xl shadow-lg p-3 sm:p-4 w-48 sm:w-64 z-10"
+        initial={{ opacity: 0, y: 50, scale: 0.9 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
+        transition={{ duration: 0.8 }}
       >
-        <div className="flex items-center gap-3 mb-2">
-          <div className="flex -space-x-2">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <div
-                key={i}
-                className="relative w-10 h-10 rounded-full bg-gray-300 border-2 border-white overflow-hidden"
-              >
-                <Image
-                  src={`/hero/community/${i}.jpg`}
-                  alt="Student"
-                  fill
-                  className="object-cover"
-                  sizes="40px"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
+        <div className="flex -space-x-2 mb-2">
+          {[1, 2, 3, 4, 5].map((i) => (
+            <div
+              key={i}
+              className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-300 border-2 border-white overflow-hidden"
+            >
+              <Image
+                src={`/hero/community/${i}.jpg`}
+                alt="Student"
+                fill
+                className="object-cover"
+                sizes="40px"
+                loading="lazy"
+              />
+            </div>
+          ))}
         </div>
-        <p
-          className="text-sm text-gray-600"
-          style={{ fontFamily: "var(--font-jarkata)" }}
-        >
+        <p className="text-xs sm:text-sm text-gray-600">
           Join our community of <br />
           <span className="font-bold text-foreground">1,200+ Students</span>
         </p>
       </motion.div>
 
+      {/* Top-right progress arc */}
       <motion.div
-        className="absolute top-4 right-8 bg-white rounded-2xl shadow-xl p-4 w-56 z-10"
-        initial={{ opacity: 0, y: 50, scale: 0.8 }}
+        className="absolute top-4 right-4 sm:top-6 sm:right-8 bg-white rounded-2xl shadow-lg p-3 sm:p-4 w-44 sm:w-56 z-10"
+        initial={{ opacity: 0, y: 50, scale: 0.9 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.7 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
       >
-        <div className="flex items-start justify-center gap-4">
-          <div className="relative w-32 h-24">
+        <div className="flex justify-center">
+          <div className="relative w-28 h-20 sm:w-32 sm:h-24">
             <svg viewBox="0 0 100 60" className="w-full h-full">
               <path
                 d="M10,50 A40,40 0 0,1 90,50"
@@ -109,19 +76,11 @@ const FloatingCards = memo(() => {
                 animate={{
                   strokeDashoffset: Math.PI * 80 * (1 - 87.6 / 100),
                 }}
-                transition={{
-                  duration: 2,
-                  delay: 0.5,
-                  ease: "easeOut",
-                }}
+                transition={{ duration: 2, ease: "easeOut" }}
               />
-              <circle cx="50" cy="50" r="5" fill="#0483e2" />
             </svg>
             <div className="absolute w-full flex justify-center top-[78%]">
-              <span
-                className="text-sm font-bold text-primary"
-                style={{ fontFamily: "var(--font-jarkata)" }}
-              >
+              <span className="text-xs sm:text-sm font-bold text-primary">
                 87.6%
               </span>
             </div>
@@ -129,27 +88,22 @@ const FloatingCards = memo(() => {
         </div>
       </motion.div>
 
+      {/* Bottom-left course card */}
       <motion.div
-        className="absolute bottom-20 left-8 bg-white rounded-2xl shadow-xl p-5 w-60 z-10"
-        initial={{ opacity: 0, y: 50, scale: 0.8 }}
+        className="absolute bottom-6 sm:bottom-12 left-4 sm:left-8 bg-white rounded-2xl shadow-lg p-4 sm:p-5 w-48 sm:w-60 z-10"
+        initial={{ opacity: 0, y: 50, scale: 0.9 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.9 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
       >
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-            <PiBookOpenTextFill className="w-6 h-6 text-primary" />
+        <div className="flex items-center gap-3 sm:gap-4">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+            <PiBookOpenTextFill className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
           </div>
           <div>
-            <p
-              className="text-xs text-gray-600"
-              style={{ fontFamily: "var(--font-jarkata)" }}
-            >
+            <p className="text-[10px] sm:text-xs text-gray-600">
               Total number of courses
             </p>
-            <p
-              className="text-2xl font-bold text-foreground"
-              style={{ fontFamily: "var(--font-jarkata)" }}
-            >
+            <p className="text-lg sm:text-2xl font-bold text-foreground">
               100,000+
             </p>
           </div>
@@ -158,7 +112,6 @@ const FloatingCards = memo(() => {
     </>
   );
 });
-
 FloatingCards.displayName = "FloatingCards";
 
 const HeroSlider = () => {
@@ -169,42 +122,39 @@ const HeroSlider = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % totalSlides);
-    }, 5000);
-
+    }, 6000);
     return () => clearInterval(interval);
   }, [totalSlides]);
 
-  const goToSlide = useCallback((index) => {
-    setCurrentSlide(index);
-  }, []);
+  const goToSlide = useCallback((index) => setCurrentSlide(index), []);
 
   return (
     <section
       className={clsx(
-        "relative overflow-hidden min-h-[600px] lg:min-h-max",
+        "relative overflow-hidden min-h-[600px] sm:min-h-[650px] md:min-h-[700px] flex items-center",
         backgroundClasses[slides[currentSlide].background]
       )}
     >
-      {/* Grid Background - optimized with will-change */}
-      <div className="absolute inset-0 opacity-[0.10] pointer-events-none z-0">
+      {/* Subtle grid background */}
+      <div className="absolute inset-0 opacity-[0.1] pointer-events-none z-0">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)`,
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)",
             backgroundSize: "60px 60px",
-            willChange: "opacity",
           }}
         />
       </div>
 
-      <div className="max-w-7xl mx-auto py-16 lg:py-16 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8 z-10">
+      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-12 py-16 md:py-24 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
+          {/* LEFT: Text Section */}
+          <div className="space-y-6 md:space-y-8 text-center lg:text-left">
             <AnimatePresence mode="wait">
               <motion.h1
                 key={`title-${currentSlide}`}
-                className="text-2xl sm:text-3xl lg:text-5xl font-bold text-white leading-tight"
-                style={{ fontFamily: "var(--font-jarkata)" }}
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
@@ -217,15 +167,11 @@ const HeroSlider = () => {
             <AnimatePresence mode="wait">
               <motion.p
                 key={`desc-${currentSlide}`}
-                className="text-base sm:text-lg text-white/90 leading-relaxed max-w-xl"
-                style={{ fontFamily: "var(--font-jarkata)" }}
+                className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl mx-auto lg:mx-0"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                transition={{
-                  duration: shouldReduceMotion ? 0 : 0.6,
-                  delay: 0.2,
-                }}
+                transition={{ duration: 0.6, delay: 0.2 }}
               >
                 {slides[currentSlide].description}
               </motion.p>
@@ -234,8 +180,7 @@ const HeroSlider = () => {
             <div className=" gap-4">
               <Link href="https://app.bluesandstemlabs.com/auth/register">
                 <motion.button
-                  className="px-12 py-4 bg-white text-secondary font-medium rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
-                  style={{ fontFamily: "var(--font-jarkata)" }}
+                  className="px-8 sm:px-10 py-3 sm:py-4 bg-white text-secondary font-medium rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
                   whileHover={{ scale: shouldReduceMotion ? 1 : 1.05 }}
                   whileTap={{ scale: shouldReduceMotion ? 1 : 0.95 }}
                 >
@@ -244,13 +189,16 @@ const HeroSlider = () => {
               </Link>
             </div>
 
-            <div className="flex items-center gap-3 pt-4">
+            {/* Slide Indicators */}
+            <div className="flex justify-center lg:justify-start items-center gap-2 pt-6">
               {Array.from({ length: totalSlides }).map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    currentSlide === index ? "w-12 bg-white" : "w-2 bg-white/40"
+                  className={`h-2 sm:h-3 rounded-full transition-all duration-300 ${
+                    currentSlide === index
+                      ? "w-10 sm:w-12 bg-white"
+                      : "w-2 sm:w-3 bg-white/40"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
@@ -258,11 +206,12 @@ const HeroSlider = () => {
             </div>
           </div>
 
-          <div className="relative h-[500px] lg:h-[600px] hidden lg:block">
+          {/* RIGHT: Image */}
+          <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] flex justify-center items-center mt-10 lg:mt-0">
             <AnimatePresence mode="wait">
               <motion.div
                 key={`image-${currentSlide}`}
-                className="absolute right-0 top-1/2 -translate-y-1/2 w-full max-w-[600px] h-[450px] rounded-6xl overflow-hidden shadow-2xl"
+                className="relative w-full max-w-[500px] md:max-w-[600px] h-[250px] sm:h-[350px] md:h-[450px] rounded-3xl overflow-hidden shadow-2xl"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
@@ -274,12 +223,14 @@ const HeroSlider = () => {
                   fill
                   className="object-cover"
                   priority={currentSlide === 0}
-                  loading={currentSlide === 0 ? "eager" : "lazy"}
                 />
               </motion.div>
             </AnimatePresence>
 
-            {currentSlide === 0 && <FloatingCards />}
+            {/* Floating cards visible only on desktop */}
+            <div className="hidden md:block">
+              {currentSlide === 0 && <FloatingCards />}
+            </div>
           </div>
         </div>
       </div>
