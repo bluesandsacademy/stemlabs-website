@@ -103,7 +103,7 @@ export default function RegistrationForm() {
             ASEE 2025 Registration Form
           </h1>
           <p className="text-gray-600 text-lg">
-            Africa STEM EdTech Expo - Mini ASEE | November 14, 2025
+            Africa STEM EdTech Expo - Mini ASEE | November 25, 2025
           </p>
           <p className="text-secondary font-medium mt-1">
             Hosted by <span className="font-bold">Blue Sands STEM Labs</span>
