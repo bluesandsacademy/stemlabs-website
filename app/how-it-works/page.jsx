@@ -10,6 +10,12 @@ import TechnicalHighlightsSection from "@/components/shared/features/technical";
 import TypicalWeekSection from "@/components/shared/features/week";
 import React from "react";
 
+export const metadata = {
+  title:
+    "How It Works | Virtual STEM Learning Platform by Blue Sands STEM Labs",
+  description:
+    "See how Blue Sands STEM Labs helps teachers and students perform real science experiments through AI, AR, and VR simulations,even without internet access.",
+};
 export default function FeaturesPage() {
   return (
     <div>

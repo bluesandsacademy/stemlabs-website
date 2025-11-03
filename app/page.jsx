@@ -55,6 +55,12 @@ function SectionSkeleton() {
   );
 }
 
+export const metadata = {
+  title: "Blue Sands STEM Labs | Virtual Science Labs for African Schools",
+  description:
+    "Virtual Labs Africa - Empowering African Education with Virtual Labs and STEM Solutions.",
+};
+
 // This is now a server component - no "use client" directive
 export default function Homepage() {
   return (
