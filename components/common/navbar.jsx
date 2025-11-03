@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import React, { useState } from "react";
 import { GoArrowRight } from "react-icons/go";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
@@ -26,32 +27,54 @@ export default function Navbar() {
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
   const closeMenu = () => setIsMenuOpen(false);
 
-  // Measure header height dynamically (banner + nav)
-  useEffect(() => {
-    const updateHeight = () => {
-      if (headerRef.current) {
-        setHeaderHeight(headerRef.current.offsetHeight);
-      }
-    };
+  return (
+    <header className="flex flex-col fixed top-0 left-0 right-0 z-50">
+      {/* Promotional Banner */}
+      <div className="bg-secondary gap-1 py-2.5 px-4">
+        <Link
+          href="https://app.bluesandstemlabs.com/auth/login"
+          className=" flex items-center justify-center"
+        >
+          <p className="text-white text-xs sm:text-sm font-sans text-center">
+            Sign up to get started now
+          </p>
+          <GoArrowRight className="text-white text-base sm:text-xl flex-shrink-0" />
+        </Link>
+      </div>
 
     updateHeight();
     window.addEventListener("resize", updateHeight);
     return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
-  // Close on outside click or Escape
-  useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (
-        isMenuOpen &&
-        mobileMenuRef.current &&
-        !mobileMenuRef.current.contains(e.target) &&
-        headerRef.current &&
-        !headerRef.current.contains(e.target)
-      ) {
-        closeMenu();
-      }
-    };
+        {/* Desktop Navigation Links */}
+        <ul className="hidden lg:flex flex-row items-center space-x-8 font-sans text-sm font-medium text-foreground">
+          {navLinks.map((link) => (
+            <li key={link.name}>
+              <a
+                href={link.href}
+                className="hover:text-primary transition-all duration-300 relative px-3 py-2 rounded-md hover:bg-primary/5 hover:scale-105"
+              >
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        {/* Desktop Action Buttons */}
+
+        <div className="hidden lg:flex items-center gap-3">
+          <Link href="https://app.bluesandstemlabs.com/auth/login">
+            <button className="px-5 py-2.5 text-sm font-medium text-foreground hover:text-primary transition-colors duration-200 cursor-pointer">
+              Sign in
+            </button>
+          </Link>
+          <Link href="https://app.bluesandstemlabs.com/auth/register">
+            <button className="px-6 py-2.5 bg-primary text-white text-sm font-medium rounded-lg hover:bg-opacity-90 transition-all duration-200 shadow-md hover:shadow-lg cursor-pointer">
+              Get Started
+            </button>
+          </Link>
+        </div>
 
     const handleEscape = (e) => {
       if (e.key === "Escape") closeMenu();
