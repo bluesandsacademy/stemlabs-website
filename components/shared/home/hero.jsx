@@ -177,8 +177,8 @@ const HeroSlider = () => {
               </motion.p>
             </AnimatePresence>
 
-            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-4">
-              <Link href="/sign-up">
+            <div className=" gap-4">
+              <Link href="https://app.bluesandstemlabs.com/auth/register">
                 <motion.button
                   className="px-8 sm:px-10 py-3 sm:py-4 bg-white text-secondary font-medium rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
                   whileHover={{ scale: shouldReduceMotion ? 1 : 1.05 }}
