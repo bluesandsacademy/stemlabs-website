@@ -31,7 +31,7 @@ export default function AseeHero() {
                 Africa STEM EdTech Expo
               </h2>
               <p className="text-white/90 text-lg sm:text-xl font-medium">
-                21st Nov 2025 — Lagos, Nigeria
+                25th Nov 2025 — Lagos, Nigeria
               </p>
             </div>
 
