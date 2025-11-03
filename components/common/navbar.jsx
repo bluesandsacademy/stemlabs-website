@@ -13,7 +13,7 @@ const navLinks = [
   { name: "How it works", href: "/how-it-works" },
   { name: "Pricing", href: "/pricing" },
   { name: "Partnership", href: "#" },
-  { name: "ASEE 2025", href: "#" },
+  { name: "ASEE 2025", href: "/asee-2025" },
   { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },
 ];
