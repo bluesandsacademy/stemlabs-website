@@ -6,16 +6,31 @@ export async function POST(request) {
     const body = await request.json();
 
     // === Validate required env vars ===
-    const { GOOGLE_CLIENT_EMAIL, GOOGLE_PRIVATE_KEY, GOOGLE_SHEET_ID } =
-      process.env;
+    const requiredEnvs = [
+      "GOOGLE_CLIENT_EMAIL",
+      "GOOGLE_PRIVATE_KEY",
+      "GOOGLE_SHEET_ID",
+    ];
 
-    if (!GOOGLE_CLIENT_EMAIL || !GOOGLE_PRIVATE_KEY || !GOOGLE_SHEET_ID) {
-      console.error("Missing Google credentials in environment");
+    const missingEnvs = requiredEnvs.filter((key) => !process.env[key]);
+
+    if (missingEnvs.length > 0) {
+      console.error(
+        `Missing environment variable(s): ${missingEnvs.join(", ")}`
+      );
+
       return new Response(
-        JSON.stringify({ error: "Server configuration error." }),
+        JSON.stringify({
+          error: `Server configuration error: Missing environment variable(s): ${missingEnvs.join(
+            ", "
+          )}.`,
+        }),
         { status: 500, headers: { "Content-Type": "application/json" } }
       );
     }
+
+    const { GOOGLE_CLIENT_EMAIL, GOOGLE_PRIVATE_KEY, GOOGLE_SHEET_ID } =
+      process.env;
 
     // === Fix private key line breaks ===
     const privateKey = GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n");
@@ -72,11 +87,12 @@ export async function POST(request) {
   } catch (error) {
     console.error("Google Sheets Error:", error.message);
 
-    // More helpful error messages
+    // === More helpful error handling ===
     if (error.message.includes("invalid_grant")) {
       return new Response(
         JSON.stringify({
-          error: "Authentication failed. Check Google service account key.",
+          error:
+            "Authentication failed. Check your Google service account credentials.",
         }),
         { status: 500 }
       );
@@ -86,14 +102,16 @@ export async function POST(request) {
       return new Response(
         JSON.stringify({
           error:
-            "Bot does not have access to the Google Sheet. Share the sheet with the service account email.",
+            "Permission denied. Ensure the Google Sheet is shared with the service account email.",
         }),
         { status: 500 }
       );
     }
 
     return new Response(
-      JSON.stringify({ error: "Failed to submit. Please try again later." }),
+      JSON.stringify({
+        error: "An unexpected error occurred. Please try again later.",
+      }),
       { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }
