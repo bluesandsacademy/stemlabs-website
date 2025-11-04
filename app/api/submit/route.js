@@ -1,5 +1,6 @@
 // app/api/submit-registration/route.js
 import { google } from "googleapis";
+export const runtime = "nodejs";
 
 export async function POST(request) {
   try {
