@@ -2,8 +2,9 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-function Loading({ onComplete }) {
+function Loading() {
   const [progress, setProgress] = useState(0);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const progressInterval = setInterval(() => {
@@ -17,17 +18,19 @@ function Loading({ onComplete }) {
     }, 100);
 
     const timer = setTimeout(() => {
-      onComplete();
-    }, 400);
+      setVisible(false);
+    }, 1500); // Adjust delay before hiding if needed
 
     return () => {
       clearInterval(progressInterval);
       clearTimeout(timer);
     };
-  }, [onComplete]);
+  }, []);
+
+  if (!visible) return null;
 
   return (
-    <div className="fixed inset-0 bg-white z-50 flex items-center justify-center">
+    <div className="fixed inset-0 bg-white z-50 flex items-center justify-center transition-opacity duration-500">
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50 opacity-60" />
 
       <div className="relative z-10 flex flex-col items-center gap-6">
