@@ -170,14 +170,14 @@ const PricingSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="relative overflow-hidden"
+              className="relative overflow-hidden rounded-2xl" // ← Added rounded-2xl here
             >
               <div
                 className={`h-full p-6 sm:p-8 rounded-2xl transition-all duration-300 ${
                   plan.popular
                     ? "bg-primary text-white shadow-xl scale-[1.02]"
                     : "bg-white text-secondary shadow-md hover:shadow-lg"
-                }`}
+                }`} // ← Unified to rounded-2xl, removed conflicting rounded-3xl
               >
                 {/* Badge */}
                 <div className="mb-4">
@@ -224,8 +224,10 @@ const PricingSection = () => {
                   {plan.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start gap-3">
                       <svg
-                        className={`w-5 h-5 flex-shrink-0 mt-0.5 ${
-                          plan.popular ? "text-white" : "text-primary"
+                        className={`w-5 h-5 shrink-0 mt-0.5 ${
+                          plan.popular
+                            ? "text-white"
+                            : "bg-blue-100 text-primary rounded-3xl"
                         }`}
                         fill="currentColor"
                         viewBox="0 0 20 20"

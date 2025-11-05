@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import toast from "react-hot-toast";
+import formbricks from "@formbricks/js";
 
 export default function RegistrationForm() {
   const [registrationType, setRegistrationType] = useState("individual");
@@ -42,7 +43,8 @@ export default function RegistrationForm() {
     const toastId = toast.loading("Submitting your registration...");
 
     try {
-      const res = await fetch("/api/submit", {
+      // Submit to Formbricks
+      const response = await fetch("/api/submit-registration", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -53,15 +55,25 @@ export default function RegistrationForm() {
         }),
       });
 
-      const data = await res.json();
+      const data = await response.json();
 
-      if (res.ok) {
+      if (response.ok) {
         toast.success(
           "Thank you! Your registration has been successfully submitted.",
           {
             id: toastId,
+            duration: 5000,
           }
         );
+
+        // Track successful registration in Formbricks
+        if (typeof window !== "undefined" && window.formbricks) {
+          window.formbricks.track("registration_completed", {
+            registrationType,
+            role: formData.role,
+            location: formData.location,
+          });
+        }
 
         // Reset form
         setFormData({
@@ -90,6 +102,7 @@ export default function RegistrationForm() {
         });
       }
     } catch (err) {
+      console.error("Registration error:", err);
       toast.error(
         "Network error. Please check your connection and try again.",
         {
@@ -121,41 +134,41 @@ export default function RegistrationForm() {
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 md:p-10">
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Registration Type */}
+            <div>
+              <label className="block text-base font-semibold text-gray-900 mb-4">
+                Registration Type
+              </label>
+              <div className="flex gap-4">
+                <button
+                  type="button"
+                  onClick={() => setRegistrationType("individual")}
+                  disabled={loading}
+                  className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all duration-200 ${
+                    registrationType === "individual"
+                      ? "bg-primary text-white shadow-lg shadow-primary/30"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  } ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
+                >
+                  Individual
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setRegistrationType("school")}
+                  disabled={loading}
+                  className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all duration-200 ${
+                    registrationType === "school"
+                      ? "bg-primary text-white shadow-lg shadow-primary/30"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  } ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
+                >
+                  School / Group
+                </button>
+              </div>
+            </div>
+
+            {/* Individual Registration Fields */}
             {registrationType === "individual" && (
               <>
-                <div>
-                  <label className="block text-base font-semibold text-gray-900 mb-4">
-                    Registration Type
-                  </label>
-                  <div className="flex gap-4">
-                    <button
-                      type="button"
-                      onClick={() => setRegistrationType("individual")}
-                      disabled={loading}
-                      className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all duration-200 ${
-                        registrationType === "individual"
-                          ? "bg-primary text-white shadow-lg shadow-primary/30"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                      } ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
-                    >
-                      Individual
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setRegistrationType("school")}
-                      disabled={loading}
-                      className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all duration-200 ${
-                        registrationType === "school"
-                          ? "bg-primary text-white shadow-lg shadow-primary/30"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                      } ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
-                    >
-                      School / Group
-                    </button>
-                  </div>
-                </div>
-
-                {/* Personal Information */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Full Name */}
                   <div>
@@ -309,9 +322,9 @@ export default function RegistrationForm() {
               </>
             )}
 
-            {/* School/Group Details - Conditional */}
+            {/* School/Group Registration Fields */}
             {registrationType === "school" && (
-              <div className="border-t border-gray-200 pt-8 space-y-6">
+              <div className="space-y-6">
                 <h3 className="text-xl font-bold text-primary mb-6">
                   School / Group Details
                 </h3>
@@ -333,6 +346,7 @@ export default function RegistrationForm() {
                       onChange={handleInputChange}
                       placeholder="Name of School"
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
+                      required
                       disabled={loading}
                     />
                   </div>
@@ -351,6 +365,7 @@ export default function RegistrationForm() {
                       value={formData.schoolType}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none bg-white"
+                      required
                       disabled={loading}
                     >
                       <option value="">Type of School</option>
@@ -376,8 +391,9 @@ export default function RegistrationForm() {
                       name="schoolEmail"
                       value={formData.schoolEmail}
                       onChange={handleInputChange}
-                      placeholder="School Email"
+                      placeholder="school@example.com"
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
+                      required
                       disabled={loading}
                     />
                   </div>
@@ -396,8 +412,9 @@ export default function RegistrationForm() {
                       name="schoolPhone"
                       value={formData.schoolPhone}
                       onChange={handleInputChange}
-                      placeholder="School Phone Number"
+                      placeholder="+234XXXXXXXXX"
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
+                      required
                       disabled={loading}
                     />
                   </div>
@@ -416,8 +433,9 @@ export default function RegistrationForm() {
                       name="contactPerson"
                       value={formData.contactPerson}
                       onChange={handleInputChange}
-                      placeholder="Contact Person Name"
+                      placeholder="Full Name"
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
+                      required
                       disabled={loading}
                     />
                   </div>
@@ -428,7 +446,7 @@ export default function RegistrationForm() {
                       htmlFor="designation"
                       className="block text-sm font-semibold text-gray-900 mb-2"
                     >
-                      Designation (e.g. principal)
+                      Designation
                     </label>
                     <input
                       type="text"
@@ -436,8 +454,9 @@ export default function RegistrationForm() {
                       name="designation"
                       value={formData.designation}
                       onChange={handleInputChange}
-                      placeholder="Designation (e.g. principal)"
+                      placeholder="e.g., Principal, Teacher"
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
+                      required
                       disabled={loading}
                     />
                   </div>
@@ -459,6 +478,7 @@ export default function RegistrationForm() {
                       placeholder="0"
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                       min="0"
+                      required
                       disabled={loading}
                     />
                   </div>
@@ -480,6 +500,7 @@ export default function RegistrationForm() {
                       placeholder="0"
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                       min="0"
+                      required
                       disabled={loading}
                     />
                   </div>
@@ -494,6 +515,7 @@ export default function RegistrationForm() {
                       checked={formData.photoConsent}
                       onChange={handleInputChange}
                       className="mt-1 w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary"
+                      required
                       disabled={loading}
                     />
                     <span className="text-sm text-gray-700 leading-relaxed">
@@ -576,7 +598,7 @@ export default function RegistrationForm() {
               </a>{" "}
               |{" "}
               <a
-                href="tel:+234XXXXXXXXX"
+                href="tel:+2348139622583"
                 className="text-primary hover:underline font-medium"
               >
                 +2348139622583

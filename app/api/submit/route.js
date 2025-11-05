@@ -1,16 +1,14 @@
-// app/api/submit-registration/route.js
-import { google } from "googleapis";
 export const runtime = "nodejs";
 
 export async function POST(request) {
   try {
     const body = await request.json();
 
-    // === Validate required env vars ===
+    // Validate required environment variables
     const requiredEnvs = [
-      "GOOGLE_CLIENT_EMAIL",
-      "GOOGLE_PRIVATE_KEY",
-      "GOOGLE_SHEET_ID",
+      "FORMBRICKS_API_HOST",
+      "FORMBRICKS_ENVIRONMENT_ID",
+      "FORMBRICKS_API_KEY",
     ];
 
     const missingEnvs = requiredEnvs.filter((key) => !process.env[key]);
@@ -19,99 +17,97 @@ export async function POST(request) {
       console.error(
         `Missing environment variable(s): ${missingEnvs.join(", ")}`
       );
-
       return new Response(
         JSON.stringify({
-          error: `Server configuration error: Missing environment variable(s): ${missingEnvs.join(
+          error: `Server configuration error: Missing ${missingEnvs.join(
             ", "
-          )}.`,
+          )}`,
         }),
         { status: 500, headers: { "Content-Type": "application/json" } }
       );
     }
 
-    const { GOOGLE_CLIENT_EMAIL, GOOGLE_PRIVATE_KEY, GOOGLE_SHEET_ID } =
-      process.env;
+    const {
+      FORMBRICKS_API_HOST,
+      FORMBRICKS_ENVIRONMENT_ID,
+      FORMBRICKS_API_KEY,
+    } = process.env;
 
-    // === Fix private key line breaks ===
-    const privateKey = GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n");
-
-    // === Initialize auth ===
-    const auth = new google.auth.GoogleAuth({
-      credentials: {
-        client_email: GOOGLE_CLIENT_EMAIL,
-        private_key: privateKey,
+    // Prepare response data for Formbricks
+    const responseData = {
+      surveyId: "your-survey-id-here", // Replace with your actual survey ID
+      userId: body.email || `user_${Date.now()}`,
+      finished: true,
+      data: {
+        // Common fields
+        registrationType: body.registrationType,
+        timestamp: new Date().toISOString(),
+        specialNeeds: body.specialNeeds || "None",
       },
-      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-    });
+    };
 
-    const sheets = google.sheets({ version: "v4", auth });
+    // Add individual or school-specific fields
+    if (body.registrationType === "individual") {
+      responseData.data = {
+        ...responseData.data,
+        fullName: body.fullName,
+        gender: body.gender,
+        role: body.role,
+        school: body.school,
+        email: body.email,
+        phone: body.phone,
+        location: body.location,
+      };
+    } else if (body.registrationType === "school") {
+      responseData.data = {
+        ...responseData.data,
+        schoolName: body.schoolName,
+        schoolType: body.schoolType,
+        schoolEmail: body.schoolEmail,
+        schoolPhone: body.schoolPhone,
+        contactPerson: body.contactPerson,
+        designation: body.designation,
+        studentsAttending: body.studentsAttending,
+        teachersAttending: body.teachersAttending,
+        photoConsent: body.photoConsent ? "Yes" : "No",
+      };
+    }
 
-    // === Prepare row data ===
-    const row = [
-      new Date().toISOString(), // ISO timestamp
-      body.registrationType || "individual",
-      body.fullName || "",
-      body.gender || "",
-      body.role || "",
-      body.school || "",
-      body.email || "",
-      body.phone || "",
-      body.location || "",
-      body.schoolName || "",
-      body.schoolType || "",
-      body.schoolEmail || "",
-      body.schoolPhone || "",
-      body.contactPerson || "",
-      body.designation || "",
-      body.studentsAttending || "",
-      body.teachersAttending || "",
-      body.photoConsent ? "Yes" : "No",
-      body.specialNeeds || "",
-    ];
-
-    // === Append to sheet ===
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: GOOGLE_SHEET_ID,
-      range: "Sheet1!A1",
-      valueInputOption: "USER_ENTERED",
-      insertDataOption: "INSERT_ROWS",
-      requestBody: {
-        values: [row],
-      },
-    });
-
-    return new Response(
-      JSON.stringify({ message: "Registration successful!" }),
-      { status: 200, headers: { "Content-Type": "application/json" } }
+    // Submit to Formbricks
+    const formbricksResponse = await fetch(
+      `${FORMBRICKS_API_HOST}/api/v1/client/${FORMBRICKS_ENVIRONMENT_ID}/responses`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": FORMBRICKS_API_KEY,
+        },
+        body: JSON.stringify(responseData),
+      }
     );
-  } catch (error) {
-    console.error("Google Sheets Error:", error.message);
 
-    // === More helpful error handling ===
-    if (error.message.includes("invalid_grant")) {
-      return new Response(
-        JSON.stringify({
-          error:
-            "Authentication failed. Check your Google service account credentials.",
-        }),
-        { status: 500 }
-      );
+    if (!formbricksResponse.ok) {
+      const errorData = await formbricksResponse.json();
+      console.error("Formbricks API Error:", errorData);
+      throw new Error(errorData.message || "Failed to submit to Formbricks");
     }
 
-    if (error.message.includes("Permission denied")) {
-      return new Response(
-        JSON.stringify({
-          error:
-            "Permission denied. Ensure the Google Sheet is shared with the service account email.",
-        }),
-        { status: 500 }
-      );
-    }
+    const result = await formbricksResponse.json();
 
     return new Response(
       JSON.stringify({
-        error: "An unexpected error occurred. Please try again later.",
+        message: "Registration successful!",
+        responseId: result.id,
+      }),
+      { status: 200, headers: { "Content-Type": "application/json" } }
+    );
+  } catch (error) {
+    console.error("Registration Error:", error);
+
+    return new Response(
+      JSON.stringify({
+        error:
+          error.message || "An unexpected error occurred. Please try again.",
       }),
       { status: 500, headers: { "Content-Type": "application/json" } }
     );

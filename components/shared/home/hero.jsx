@@ -96,15 +96,21 @@ const FloatingCards = memo(() => {
         transition={{ duration: 0.8, delay: 0.4 }}
       >
         <div className="flex items-center gap-3 sm:gap-4">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-            <PiBookOpenTextFill className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-xl flex items-center justify-center p-1.5">
+            <Image
+              src="/hero/icon.png"
+              alt="Total Simulations"
+              width={40}
+              height={40}
+              className="w-full h-full object-contain"
+            />
           </div>
           <div>
             <p className="text-[10px] sm:text-xs text-gray-600">
-              Total number of courses
+              Total Simulations
             </p>
             <p className="text-lg sm:text-2xl font-bold text-foreground">
-              100,000+
+              100+
             </p>
           </div>
         </div>

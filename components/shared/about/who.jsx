@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const WhoWeAre = () => {
   return (
-    <section className="bg-secondary py-10 sm:py-10 lg:py-14 px-4 sm:px-6 lg:px-8">
+    <section className="bg-[#172B4D] py-10 sm:py-10 lg:py-14 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Side - Image with Decorative Blob */}
