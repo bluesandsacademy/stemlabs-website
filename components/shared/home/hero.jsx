@@ -2,11 +2,12 @@
 
 import React, { useState, useEffect, useCallback, memo } from "react";
 import Image from "next/image";
-import { PiBookOpenTextFill } from "react-icons/pi";
+
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import clsx from "clsx";
 import Link from "next/link";
 import { slides } from "@/lib/data";
+import { BiAtom } from "react-icons/bi";
 
 // Slide data
 
@@ -56,8 +57,8 @@ const FloatingCards = memo(() => {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
       >
-        <div className="flex justify-center">
-          <div className="relative w-28 h-20 sm:w-32 sm:h-24">
+        <div className="flex flex-col items-center pb-8">
+          <div className="relative w-32 h-20 sm:w-32 sm:h-24 flex flex-col">
             <svg viewBox="0 0 100 60" className="w-full h-full">
               <path
                 d="M10,50 A40,40 0 0,1 90,50"
@@ -79,9 +80,14 @@ const FloatingCards = memo(() => {
                 transition={{ duration: 2, ease: "easeOut" }}
               />
             </svg>
-            <div className="absolute w-full flex justify-center top-[78%]">
+            <div className="absolute w-full flex flex-col items-center justify-center top-[48%]">
+              <div className="w-3 h-3 bg-primary rounded-full my-2"></div>
+
               <span className="text-xs sm:text-sm font-bold text-primary">
                 87.6%
+              </span>
+              <span className="text-xs sm:text-sm font-bold text-[#7A869A]">
+                Completion rate of our experiments
               </span>
             </div>
           </div>
@@ -97,14 +103,14 @@ const FloatingCards = memo(() => {
       >
         <div className="flex items-center gap-3 sm:gap-4">
           <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-xl flex items-center justify-center">
-            <PiBookOpenTextFill className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+            <BiAtom className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
           </div>
           <div>
             <p className="text-[10px] sm:text-xs text-gray-600">
-              Total number of courses
+              Total Simulations
             </p>
             <p className="text-lg sm:text-2xl font-bold text-foreground">
-              100,000+
+              100+
             </p>
           </div>
         </div>

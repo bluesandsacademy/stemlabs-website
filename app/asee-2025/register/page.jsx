@@ -7,6 +7,7 @@ export default function RegistrationForm() {
   const [registrationType, setRegistrationType] = useState("individual");
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
+    // Individual fields
     fullName: "",
     gender: "",
     role: "",
@@ -14,6 +15,7 @@ export default function RegistrationForm() {
     email: "",
     phone: "",
     location: "",
+    notes: "",
     // School/Group fields
     schoolName: "",
     schoolType: "",
@@ -23,15 +25,13 @@ export default function RegistrationForm() {
     designation: "",
     studentsAttending: "",
     teachersAttending: "",
-    photoConsent: false,
-    specialNeeds: "",
   });
 
   const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     }));
   };
 
@@ -42,24 +42,52 @@ export default function RegistrationForm() {
     const toastId = toast.loading("Submitting your registration...");
 
     try {
-      const res = await fetch("/api/submit", {
+      // Prepare payload based on registration type
+      let payload;
+
+      if (registrationType === "individual") {
+        payload = {
+          registrationType: "individual",
+          fullName: formData.fullName,
+          gender: formData.gender,
+          role: formData.role,
+          school: formData.school,
+          email: formData.email,
+          phone: formData.phone,
+          location: formData.location,
+          notes: formData.notes || "",
+        };
+      } else {
+        payload = {
+          registrationType: "school",
+          schoolName: formData.schoolName,
+          schoolType: formData.schoolType,
+          schoolEmail: formData.schoolEmail,
+          schoolPhone: formData.schoolPhone,
+          contactPerson: formData.contactPerson,
+          designation: formData.designation,
+          studentsAttending: formData.studentsAttending,
+          teachersAttending: formData.teachersAttending,
+        };
+      }
+
+      // Submit to API
+      const response = await fetch("/api/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          registrationType,
-          ...formData,
-        }),
+        body: JSON.stringify(payload),
       });
 
-      const data = await res.json();
+      const data = await response.json();
 
-      if (res.ok) {
+      if (response.ok) {
         toast.success(
           "Thank you! Your registration has been successfully submitted.",
           {
             id: toastId,
+            duration: 5000,
           }
         );
 
@@ -72,6 +100,7 @@ export default function RegistrationForm() {
           email: "",
           phone: "",
           location: "",
+          notes: "",
           schoolName: "",
           schoolType: "",
           schoolEmail: "",
@@ -80,8 +109,6 @@ export default function RegistrationForm() {
           designation: "",
           studentsAttending: "",
           teachersAttending: "",
-          photoConsent: false,
-          specialNeeds: "",
         });
         setRegistrationType("individual");
       } else {
@@ -90,6 +117,7 @@ export default function RegistrationForm() {
         });
       }
     } catch (err) {
+      console.error("Registration error:", err);
       toast.error(
         "Network error. Please check your connection and try again.",
         {
@@ -121,41 +149,41 @@ export default function RegistrationForm() {
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 md:p-10">
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Registration Type */}
+            <div>
+              <label className="block text-base font-semibold text-gray-900 mb-4">
+                Registration Type
+              </label>
+              <div className="flex gap-4">
+                <button
+                  type="button"
+                  onClick={() => setRegistrationType("individual")}
+                  disabled={loading}
+                  className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all duration-200 ${
+                    registrationType === "individual"
+                      ? "bg-primary text-white shadow-lg shadow-primary/30"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  } ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
+                >
+                  Individual
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setRegistrationType("school")}
+                  disabled={loading}
+                  className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all duration-200 ${
+                    registrationType === "school"
+                      ? "bg-primary text-white shadow-lg shadow-primary/30"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  } ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
+                >
+                  School / Group
+                </button>
+              </div>
+            </div>
+
+            {/* Individual Registration Fields */}
             {registrationType === "individual" && (
               <>
-                <div>
-                  <label className="block text-base font-semibold text-gray-900 mb-4">
-                    Registration Type
-                  </label>
-                  <div className="flex gap-4">
-                    <button
-                      type="button"
-                      onClick={() => setRegistrationType("individual")}
-                      disabled={loading}
-                      className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all duration-200 ${
-                        registrationType === "individual"
-                          ? "bg-primary text-white shadow-lg shadow-primary/30"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                      } ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
-                    >
-                      Individual
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setRegistrationType("school")}
-                      disabled={loading}
-                      className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all duration-200 ${
-                        registrationType === "school"
-                          ? "bg-primary text-white shadow-lg shadow-primary/30"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                      } ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
-                    >
-                      School / Group
-                    </button>
-                  </div>
-                </div>
-
-                {/* Personal Information */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Full Name */}
                   <div>
@@ -198,6 +226,7 @@ export default function RegistrationForm() {
                       <option value="">Select gender</option>
                       <option value="male">Male</option>
                       <option value="female">Female</option>
+                      <option value="other">Other</option>
                     </select>
                   </div>
 
@@ -306,12 +335,32 @@ export default function RegistrationForm() {
                     disabled={loading}
                   />
                 </div>
+
+                {/* Notes */}
+                <div>
+                  <label
+                    htmlFor="notes"
+                    className="block text-sm font-semibold text-gray-900 mb-2"
+                  >
+                    Special Needs or Notes
+                  </label>
+                  <textarea
+                    id="notes"
+                    name="notes"
+                    value={formData.notes}
+                    onChange={handleInputChange}
+                    placeholder="Enter any special requests, accessibility needs, or additional information..."
+                    rows="4"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none resize-none"
+                    disabled={loading}
+                  />
+                </div>
               </>
             )}
 
-            {/* School/Group Details - Conditional */}
+            {/* School/Group Registration Fields */}
             {registrationType === "school" && (
-              <div className="border-t border-gray-200 pt-8 space-y-6">
+              <div className="space-y-6">
                 <h3 className="text-xl font-bold text-primary mb-6">
                   School / Group Details
                 </h3>
@@ -333,6 +382,7 @@ export default function RegistrationForm() {
                       onChange={handleInputChange}
                       placeholder="Name of School"
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
+                      required
                       disabled={loading}
                     />
                   </div>
@@ -351,9 +401,10 @@ export default function RegistrationForm() {
                       value={formData.schoolType}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none bg-white"
+                      required
                       disabled={loading}
                     >
-                      <option value="">Type of School</option>
+                      <option value="">Select Type</option>
                       <option value="primary">Primary School</option>
                       <option value="secondary">Secondary School</option>
                       <option value="tertiary">Tertiary Institution</option>
@@ -376,8 +427,9 @@ export default function RegistrationForm() {
                       name="schoolEmail"
                       value={formData.schoolEmail}
                       onChange={handleInputChange}
-                      placeholder="School Email"
+                      placeholder="school@example.com"
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
+                      required
                       disabled={loading}
                     />
                   </div>
@@ -396,8 +448,9 @@ export default function RegistrationForm() {
                       name="schoolPhone"
                       value={formData.schoolPhone}
                       onChange={handleInputChange}
-                      placeholder="School Phone Number"
+                      placeholder="+234XXXXXXXXX"
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
+                      required
                       disabled={loading}
                     />
                   </div>
@@ -416,8 +469,9 @@ export default function RegistrationForm() {
                       name="contactPerson"
                       value={formData.contactPerson}
                       onChange={handleInputChange}
-                      placeholder="Contact Person Name"
+                      placeholder="Full Name"
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
+                      required
                       disabled={loading}
                     />
                   </div>
@@ -428,7 +482,7 @@ export default function RegistrationForm() {
                       htmlFor="designation"
                       className="block text-sm font-semibold text-gray-900 mb-2"
                     >
-                      Designation (e.g. principal)
+                      Designation
                     </label>
                     <input
                       type="text"
@@ -436,8 +490,9 @@ export default function RegistrationForm() {
                       name="designation"
                       value={formData.designation}
                       onChange={handleInputChange}
-                      placeholder="Designation (e.g. principal)"
+                      placeholder="e.g., Principal, Teacher"
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
+                      required
                       disabled={loading}
                     />
                   </div>
@@ -459,6 +514,7 @@ export default function RegistrationForm() {
                       placeholder="0"
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                       min="0"
+                      required
                       disabled={loading}
                     />
                   </div>
@@ -480,51 +536,13 @@ export default function RegistrationForm() {
                       placeholder="0"
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                       min="0"
+                      required
                       disabled={loading}
                     />
                   </div>
                 </div>
-
-                {/* Photo/Video Consent */}
-                <div className="bg-blue-50 border border-blue-100 rounded-lg p-4">
-                  <label className="flex items-start gap-3 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      name="photoConsent"
-                      checked={formData.photoConsent}
-                      onChange={handleInputChange}
-                      className="mt-1 w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary"
-                      disabled={loading}
-                    />
-                    <span className="text-sm text-gray-700 leading-relaxed">
-                      I consent to the use of photos/videos taken during the
-                      event for educational and promotional purposes. I agree to
-                      follow event protocols for safety and participation.
-                    </span>
-                  </label>
-                </div>
               </div>
             )}
-
-            {/* Special Needs */}
-            <div>
-              <label
-                htmlFor="specialNeeds"
-                className="block text-sm font-semibold text-gray-900 mb-2"
-              >
-                Special Needs or Notes
-              </label>
-              <textarea
-                id="specialNeeds"
-                name="specialNeeds"
-                value={formData.specialNeeds}
-                onChange={handleInputChange}
-                placeholder="Enter comments, requests or accessibility needs..."
-                rows="4"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none resize-none"
-                disabled={loading}
-              />
-            </div>
 
             {/* Submit Button */}
             <button
@@ -576,7 +594,7 @@ export default function RegistrationForm() {
               </a>{" "}
               |{" "}
               <a
-                href="tel:+234XXXXXXXXX"
+                href="tel:+2348139622583"
                 className="text-primary hover:underline font-medium"
               >
                 +2348139622583

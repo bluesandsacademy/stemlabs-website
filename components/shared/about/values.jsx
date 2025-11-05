@@ -2,37 +2,10 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { values } from "@/lib/data";
 
 const CoreValuesSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
-
-  const values = [
-    {
-      title: "Customers",
-      content:
-        "We put our customers at the heart of everything we do. Their success is our success, and we're committed to delivering exceptional value and support that helps them achieve their educational goals.",
-    },
-    {
-      title: "Integrity",
-      content:
-        "We operate with transparency, honesty, and ethical practices in all our interactions. Building trust through consistent actions and keeping our commitments is fundamental to who we are.",
-    },
-    {
-      title: "Growth",
-      content:
-        "We believe in continuous improvement and learning. We encourage innovation, embrace challenges, and invest in the development of our team, our products, and our impact on education.",
-    },
-    {
-      title: "Tenacity",
-      content:
-        "We persevere through challenges and remain dedicated to our mission. Our determination to overcome obstacles and find solutions drives us to create lasting change in Nigerian education.",
-    },
-    {
-      title: "People",
-      content:
-        "We value every individual—our team members, partners, educators, and students. We foster a collaborative, inclusive environment where diverse perspectives are celebrated and everyone can thrive.",
-    },
-  ];
 
   const toggleAccordion = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -41,7 +14,7 @@ const CoreValuesSection = () => {
   return (
     <section className="relative py-20 sm:py-24 lg:py-10 px-4 sm:px-6 lg:px-8 bg-primary overflow-hidden">
       {/* Simple gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-[#0370c4] opacity-90" />
+      <div className="absolute inset-0 bg-linear-to-br from-primary via-primary to-[#0370c4] opacity-90" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
@@ -51,19 +24,20 @@ const CoreValuesSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="space-y-6"
+            className="flex flex-col justify-center sm:items-start lg:items-start space-y-5 sm:space-y-6"
           >
-            <p className="text-sm font-medium text-white/90">Our Core Values</p>
+            <p className="text-sm font-medium text-white/90 uppercase tracking-wider">
+              Our Core Values
+            </p>
 
-            <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.1]">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold pr-8 text-white leading-tight">
               Staying true to
-              <br />
-              our values.
+              <br className="hidden sm:inline" /> our values.
             </h2>
 
-            <p className="text-base sm:text-lg text-white/90 leading-relaxed max-w-md pt-2">
-              Culture is more than just a word to us, it's a mindset. You can
-              see it in all we do.
+            <p className="text-base sm:text-lg text-white/85 leading-relaxed max-w-md">
+              Culture is more than just a word to us, it&apos;s a mindset. You
+              can see it in all we do.
             </p>
           </motion.div>
 
