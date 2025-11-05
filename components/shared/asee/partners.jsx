@@ -69,6 +69,12 @@ export default function PartnersSection() {
       domain: "ironcladapp.com",
       logo: "https://logo.clearbit.com/ironcladapp.com",
     },
+    {
+      id: 11,
+      name: "AiTeacha",
+      domain: "https://aiteacha.com/",
+      logo: "/home/team/aiteacha.png",
+    },
   ];
 
   return (
@@ -77,7 +83,7 @@ export default function PartnersSection() {
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-secondary tracking-tight mb-4">
-            Our Partners / Friends of ASEE
+            Our Partners
           </h2>
           <p className="text-foreground/60 text-base md:text-lg font-light">
             Want to be on this wall? → see partnership contacts below.

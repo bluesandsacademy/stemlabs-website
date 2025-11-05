@@ -13,7 +13,7 @@ export default function PartnershipDesk() {
       name: "Thaddeus Awase",
       role: "Partnerships & Ecosystem",
       phone: "+234 813 307 7505",
-      email: "partnerships@bluesandstemlabs.com",
+      email: "partnerships@bluesandstemlabs.org",
       image: "/home/team/1.png",
     },
     {
@@ -21,7 +21,7 @@ export default function PartnershipDesk() {
       name: "Cliff Kingsley",
       role: "Events & School Relations",
       phone: "+234 916 431 0578",
-      email: "events@bluesandstemlabs.com",
+      email: "info@bluesandsacademy.org",
       image: "/home/team/1.png",
     },
   ];
