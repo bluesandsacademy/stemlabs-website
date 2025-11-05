@@ -3,12 +3,15 @@ export const runtime = "nodejs";
 export async function POST(request) {
   try {
     const body = await request.json();
+    const { registrationType } = body;
 
     // Validate required environment variables
     const requiredEnvs = [
       "FORMBRICKS_API_HOST",
       "FORMBRICKS_ENVIRONMENT_ID",
       "FORMBRICKS_API_KEY",
+      "FORMBRICKS_SURVEY_ID_INDIVIDUAL",
+      "FORMBRICKS_SURVEY_ID_SCHOOL",
     ];
 
     const missingEnvs = requiredEnvs.filter((key) => !process.env[key]);
@@ -31,46 +34,60 @@ export async function POST(request) {
       FORMBRICKS_API_HOST,
       FORMBRICKS_ENVIRONMENT_ID,
       FORMBRICKS_API_KEY,
+      FORMBRICKS_SURVEY_ID_INDIVIDUAL,
+      FORMBRICKS_SURVEY_ID_SCHOOL,
     } = process.env;
 
-    // Prepare response data for Formbricks
-    const responseData = {
-      surveyId: "your-survey-id-here", // Replace with your actual survey ID
-      userId: body.email || `user_${Date.now()}`,
-      finished: true,
-      data: {
-        // Common fields
-        registrationType: body.registrationType,
-        timestamp: new Date().toISOString(),
-        specialNeeds: body.specialNeeds || "None",
-      },
-    };
+    // Select the appropriate survey ID based on registration type
+    const surveyId =
+      registrationType === "individual"
+        ? FORMBRICKS_SURVEY_ID_INDIVIDUAL
+        : FORMBRICKS_SURVEY_ID_SCHOOL;
 
-    // Add individual or school-specific fields
-    if (body.registrationType === "individual") {
-      responseData.data = {
-        ...responseData.data,
-        fullName: body.fullName,
-        gender: body.gender,
-        role: body.role,
-        school: body.school,
-        email: body.email,
-        phone: body.phone,
-        location: body.location,
+    // Prepare response data based on registration type
+    let responseData;
+
+    if (registrationType === "individual") {
+      // Individual payload structure
+      responseData = {
+        surveyId,
+        userId: body.email || `individual_${Date.now()}`,
+        finished: true,
+        data: {
+          "Full-name": body.fullName,
+          Gender: body.gender,
+          Role: body.role,
+          School: body.school,
+          Email: body.email,
+          Phone: body.phone,
+          Location: body.location,
+          Notes: body.notes || "",
+        },
       };
-    } else if (body.registrationType === "school") {
-      responseData.data = {
-        ...responseData.data,
-        schoolName: body.schoolName,
-        schoolType: body.schoolType,
-        schoolEmail: body.schoolEmail,
-        schoolPhone: body.schoolPhone,
-        contactPerson: body.contactPerson,
-        designation: body.designation,
-        studentsAttending: body.studentsAttending,
-        teachersAttending: body.teachersAttending,
-        photoConsent: body.photoConsent ? "Yes" : "No",
+    } else if (registrationType === "school") {
+      // School/Group payload structure
+      responseData = {
+        surveyId,
+        userId: body.schoolEmail || `school_${Date.now()}`,
+        finished: true,
+        data: {
+          "School-name": body.schoolName,
+          Type: body.schoolType,
+          Email: body.schoolEmail,
+          Phone: body.schoolPhone,
+          "Contact-person": body.contactPerson,
+          Designation: body.designation,
+          "Student-count": body.studentsAttending.toString(),
+          "Teacher-count": body.teachersAttending.toString(),
+        },
       };
+    } else {
+      return new Response(
+        JSON.stringify({
+          error: "Invalid registration type",
+        }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
     }
 
     // Submit to Formbricks
@@ -86,18 +103,28 @@ export async function POST(request) {
       }
     );
 
-    if (!formbricksResponse.ok) {
-      const errorData = await formbricksResponse.json();
-      console.error("Formbricks API Error:", errorData);
-      throw new Error(errorData.message || "Failed to submit to Formbricks");
+    const responseText = await formbricksResponse.text();
+    let result;
+
+    try {
+      result = JSON.parse(responseText);
+    } catch (e) {
+      console.error("Failed to parse Formbricks response:", responseText);
+      throw new Error("Invalid response from Formbricks");
     }
 
-    const result = await formbricksResponse.json();
+    if (!formbricksResponse.ok) {
+      console.error("Formbricks API Error:", result);
+      throw new Error(
+        result.message || `Formbricks error: ${formbricksResponse.status}`
+      );
+    }
 
     return new Response(
       JSON.stringify({
         message: "Registration successful!",
-        responseId: result.id,
+        responseId: result.id || result.data?.id,
+        registrationType,
       }),
       { status: 200, headers: { "Content-Type": "application/json" } }
     );

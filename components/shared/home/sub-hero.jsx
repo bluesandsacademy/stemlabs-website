@@ -25,12 +25,16 @@ const SubHero = () => {
       country: "Kenya",
       stat: "45%",
       flagCode: "ke",
-      text: "of Kenyan secondary schools lack adequate lab infrastructure",
+    },
+    {
+      country: "South Africa",
+      stat: "70%",
+      flagCode: "za",
     },
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 bg-white">
+    <div className="flex flex-col items-center gap-4 justify-center px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 bg-white">
       {/* Header Section */}
       <div className="flex flex-col gap-3 items-center justify-center max-w-4xl w-full text-center mb-12 sm:mb-16">
         <h1
@@ -50,17 +54,17 @@ const SubHero = () => {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-6 xl:gap-8 max-w-7xl w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-10 lg:gap-2 max-w-6xl w-full">
         {stats.map((stat, index) => (
           <div
             key={index}
             className="flex flex-col items-center justify-start gap-4 
-                       bg-gray-50/50 rounded-2xl p-8 
+                       bg-gray-50/50 rounded-2xl p-2
                        transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
           >
             {/* Flag Circle */}
-            <div className="relative w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center shadow-lg overflow-hidden">
-              <div className="relative w-8 h-8 rounded-full overflow-hidden">
+            <div className="relative   flex items-center justify-center overflow-hidden">
+              <div className="relative w-16 h-16 rounded-full overflow-hidden">
                 <Image
                   src={`https://flagcdn.com/w80/${stat.flagCode}.png`}
                   alt={`${stat.country} flag`}
@@ -76,19 +80,19 @@ const SubHero = () => {
               className="text-primary text-xl font-bold"
               style={{ fontFamily: "var(--font-jarkata)" }}
             >
-              {stat.country}: {stat.stat}
+              {stat.stat}
             </h3>
 
             {/* Description Text */}
-            <p
-              className="text-gray-600 text-sm text-center leading-relaxed font-normal"
-              style={{ fontFamily: "var(--font-jarkata)" }}
-            >
-              {stat.text}
-            </p>
           </div>
         ))}
       </div>
+      <p
+        className="text-gray-600 text-lg text-center leading-relaxed font-normal"
+        style={{ fontFamily: "var(--font-jarkata)" }}
+      >
+        secondary schools lack adequate lab infrastructure
+      </p>
     </div>
   );
 };

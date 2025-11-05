@@ -41,53 +41,18 @@ const STEMChallengesSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative h-[350px] xs:h-[380px] sm:h-[450px] md:h-[500px] lg:h-[550px] xl:h-[600px] w-full"
+            className="relative h-[350px] xs:h-[380px] sm:h-[450px] md:h-[500px] lg:h-[550px] xl:h-[600px] w-full flex items-center justify-center"
           >
-            {/* Left Image */}
-            <div className="absolute left-[2%] sm:left-0 top-1/2 -translate-y-1/2 w-[32%] sm:w-[36%] md:w-[38%] lg:w-[40%] z-10">
-              <div className="relative rounded-[20px] sm:rounded-[24px] md:rounded-[28px] lg:rounded-[32px] overflow-hidden shadow-xl sm:shadow-2xl transform -rotate-6 sm:-rotate-8 md:-rotate-10 lg:-rotate-12 hover:rotate-0 transition-transform duration-500">
-                <div className=" aspect-[6/19] md:aspect-[10/19]  lg:aspect-[10/19 bg-gradient-to-br from-cyan-400 to-blue-500 relative">
-                  <Image
-                    src="/home/challenges/1.jpg"
-                    alt="Student using mobile app"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 32vw, (max-width: 768px) 36vw, (max-width: 1024px) 38vw, 20vw"
-                    priority
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Center Image */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[32%] sm:w-[36%] md:w-[38%] lg:w-[40%] z-20">
-              <div className="relative rounded-[20px] sm:rounded-[24px] md:rounded-[28px] lg:rounded-[32px] overflow-hidden shadow-xl sm:shadow-2xl transform hover:scale-105 transition-transform duration-500">
-                <div className="aspect-[6/19] md:aspect-[10/19]  bg-gradient-to-br from-green-400 to-emerald-600 relative">
-                  <Image
-                    src="/home/challenges/2.jpg"
-                    alt="Student with VR headset"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 32vw, (max-width: 768px) 36vw, (max-width: 1024px) 38vw, 20vw"
-                    priority
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Right Image */}
-            <div className="absolute right-[2%] sm:right-0 top-1/2 -translate-y-1/2 w-[32%] sm:w-[36%] md:w-[38%] lg:w-[40%] z-10">
-              <div className="relative rounded-[20px] sm:rounded-[24px] md:rounded-[28px] lg:rounded-[32px] overflow-hidden shadow-xl sm:shadow-2xl transform rotate-6 sm:rotate-8 md:rotate-10 lg:rotate-12 hover:rotate-0 transition-transform duration-500">
-                <div className="aspect-[6/19] md:aspect-[10/19] bg-gradient-to-br from-purple-400 to-pink-500 relative">
-                  <Image
-                    src="/home/challenges/3.jpg"
-                    alt="Student in lab"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 32vw, (max-width: 768px) 36vw, (max-width: 1024px) 38vw, 20vw"
-                    priority
-                  />
-                </div>
+            <div className="relative w-[80%] sm:w-[70%] md:w-[60%] lg:w-[60%] xl:w-[80%] rounded-[20px] sm:rounded-[24px] md:rounded-[28px] lg:rounded-[32px] overflow-hidden shadow-xl sm:shadow-2xl hover:scale-[1.03] transition-transform duration-500">
+              <div className="aspect-[13/14] bg-gradient-to-br from-cyan-400 to-blue-600 relative">
+                <Image
+                  src="/home/challenges/4.jpg"
+                  alt="STEM student experiment"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 80vw, (max-width: 1024px) 60vw, 40vw"
+                  priority
+                />
               </div>
             </div>
           </motion.div>
