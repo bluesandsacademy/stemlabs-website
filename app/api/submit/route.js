@@ -33,7 +33,6 @@ export async function POST(request) {
     const {
       FORMBRICKS_API_HOST,
       FORMBRICKS_ENVIRONMENT_ID,
-      FORMBRICKS_API_KEY,
       FORMBRICKS_SURVEY_ID_INDIVIDUAL,
       FORMBRICKS_SURVEY_ID_SCHOOL,
     } = process.env;
@@ -97,7 +96,6 @@ export async function POST(request) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-api-key": FORMBRICKS_API_KEY,
         },
         body: JSON.stringify(responseData),
       }
