@@ -3,6 +3,7 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { config } from "@/lib/config";
+
 export default function RegistrationForm() {
   const [registrationType, setRegistrationType] = useState("individual");
   const [loading, setLoading] = useState(false);
@@ -42,97 +43,64 @@ export default function RegistrationForm() {
     const toastId = toast.loading("Submitting your registration...");
 
     try {
-      // Get environment variables (must be prefixed with NEXT_PUBLIC_)
-      const FORMBRICKS_API_HOST = config.NEXT_PUBLIC_FORMBRICKS_API_HOST;
-      const FORMBRICKS_ENVIRONMENT_ID =
-        config.NEXT_PUBLIC_FORMBRICKS_ENVIRONMENT_ID;
-      const SURVEY_ID_INDIVIDUAL =
-        config.NEXT_PUBLIC_FORMBRICKS_SURVEY_ID_INDIVIDUAL;
-      const SURVEY_ID_SCHOOL = config.NEXT_PUBLIC_FORMBRICKS_SURVEY_ID_SCHOOL;
+      // Get API base URL from config or use default
+      const API_BASE_URL =
+        process.env.NEXT_PUBLIC_API_BASE_URL || "https://localhost:5245";
 
-      // Validate environment variables
-      if (
-        !FORMBRICKS_API_HOST ||
-        !FORMBRICKS_ENVIRONMENT_ID ||
-        !SURVEY_ID_INDIVIDUAL ||
-        !SURVEY_ID_SCHOOL
-      ) {
-        throw new Error(
-          "Missing required configuration. Please contact support."
-        );
-      }
-
-      // Select the appropriate survey ID based on registration type
-      const surveyId =
+      // Select the appropriate endpoint based on registration type
+      const endpoint =
         registrationType === "individual"
-          ? SURVEY_ID_INDIVIDUAL
-          : SURVEY_ID_SCHOOL;
+          ? `${API_BASE_URL}/api/Inquiries/individual`
+          : `${API_BASE_URL}/api/Inquiries/school`;
 
-      // Prepare response data based on registration type
-      let responseData;
+      // Prepare request data based on registration type
+      let requestData;
 
       if (registrationType === "individual") {
-        responseData = {
-          surveyId,
-          userId: formData.email || `individual_${Date.now()}`,
-          finished: true,
-          data: {
-            "Full-name": formData.fullName,
-            Gender: formData.gender,
-            Role: formData.role,
-            School: formData.school,
-            Email: formData.email,
-            Phone: formData.phone,
-            Location: formData.location,
-            Notes: formData.notes || "",
-          },
+        requestData = {
+          fullName: formData.fullName,
+          gender: formData.gender,
+          role: formData.role,
+          school: formData.school,
+          email: formData.email,
+          phone: formData.phone,
+          location: formData.location,
+          notes: formData.notes || "",
         };
       } else {
-        responseData = {
-          surveyId,
-          userId: formData.schoolEmail || `school_${Date.now()}`,
-          finished: true,
-          data: {
-            "School-name": formData.schoolName,
-            Type: formData.schoolType,
-            Email: formData.schoolEmail,
-            Phone: formData.schoolPhone,
-            "Contact-person": formData.contactPerson,
-            Designation: formData.designation,
-            "Student-count": formData.studentsAttending.toString(),
-            "Teacher-count": formData.teachersAttending.toString(),
-          },
+        requestData = {
+          schoolName: formData.schoolName,
+          schoolType: formData.schoolType,
+          email: formData.schoolEmail,
+          phone: formData.schoolPhone,
+          contactPerson: formData.contactPerson,
+          designation: formData.designation,
+          studentsAttending: parseInt(formData.studentsAttending, 10),
+          teachersAttending: parseInt(formData.teachersAttending, 10),
         };
       }
 
-      // Submit directly to Formbricks
-      const response = await fetch(
-        `${FORMBRICKS_API_HOST}/api/v1/client/${FORMBRICKS_ENVIRONMENT_ID}/responses`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(responseData),
-        }
-      );
-
-      const responseText = await response.text();
-      let result;
-
-      try {
-        result = JSON.parse(responseText);
-      } catch (e) {
-        console.error("Failed to parse response:", responseText);
-        throw new Error("Invalid response from server");
-      }
+      // Submit to backend API
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+      });
 
       if (!response.ok) {
-        console.error("API Error:", result);
+        const errorData = await response.json().catch(() => null);
+        console.error("API Error:", errorData);
         throw new Error(
-          result.message || `Submission failed with status ${response.status}`
+          errorData?.message ||
+            errorData?.title ||
+            `Submission failed with status ${response.status}`
         );
       }
+
+      // Parse successful response
+      const result = await response.json().catch(() => null);
 
       toast.success(
         "Thank you! Your registration has been successfully submitted.",
@@ -177,11 +145,11 @@ export default function RegistrationForm() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-white via-blue-50/30 to-gray-50 py-16 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50/30 to-gray-50 py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent mb-3">
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-3">
             ASEE 2025 Registration
           </h1>
           <p className="text-gray-600 text-lg mb-1">
