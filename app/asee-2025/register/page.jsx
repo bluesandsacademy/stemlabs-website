@@ -44,8 +44,7 @@ export default function RegistrationForm() {
 
     try {
       // Get API base URL from config or use default
-      const API_BASE_URL =
-        process.env.NEXT_PUBLIC_API_BASE_URL || "https://localhost:5245";
+      const API_BASE_URL = "https://bluesandsstem-001-site1.ktempurl.com";
 
       // Select the appropriate endpoint based on registration type
       const endpoint =
