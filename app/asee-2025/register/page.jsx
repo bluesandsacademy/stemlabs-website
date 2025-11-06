@@ -2,13 +2,11 @@
 
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { config } from "@/lib/config";
 
 export default function RegistrationForm() {
   const [registrationType, setRegistrationType] = useState("individual");
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    // Individual fields
     fullName: "",
     gender: "",
     role: "",
@@ -16,7 +14,6 @@ export default function RegistrationForm() {
     email: "",
     phone: "",
     location: "",
-    notes: "",
     // School/Group fields
     schoolName: "",
     schoolType: "",
@@ -26,13 +23,15 @@ export default function RegistrationForm() {
     designation: "",
     studentsAttending: "",
     teachersAttending: "",
+    photoConsent: false,
+    specialNeeds: "",
   });
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
@@ -43,97 +42,56 @@ export default function RegistrationForm() {
     const toastId = toast.loading("Submitting your registration...");
 
     try {
-      // Get API base URL from config or use default
-      const API_BASE_URL = "https://bluesandsstem-001-site1.ktempurl.com";
-
-      // Select the appropriate endpoint based on registration type
-      const endpoint =
-        registrationType === "individual"
-          ? `${API_BASE_URL}/api/Inquiries/individual`
-          : `${API_BASE_URL}/api/Inquiries/school`;
-
-      // Prepare request data based on registration type
-      let requestData;
-
-      if (registrationType === "individual") {
-        requestData = {
-          fullName: formData.fullName,
-          gender: formData.gender,
-          role: formData.role,
-          school: formData.school,
-          email: formData.email,
-          phone: formData.phone,
-          location: formData.location,
-          notes: formData.notes || "",
-        };
-      } else {
-        requestData = {
-          schoolName: formData.schoolName,
-          schoolType: formData.schoolType,
-          email: formData.schoolEmail,
-          phone: formData.schoolPhone,
-          contactPerson: formData.contactPerson,
-          designation: formData.designation,
-          studentsAttending: parseInt(formData.studentsAttending, 10),
-          teachersAttending: parseInt(formData.teachersAttending, 10),
-        };
-      }
-
-      // Submit to backend API
-      const response = await fetch(endpoint, {
+      const res = await fetch("/api/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(requestData),
+        body: JSON.stringify({
+          registrationType,
+          ...formData,
+        }),
       });
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => null);
-        console.error("API Error:", errorData);
-        throw new Error(
-          errorData?.message ||
-            errorData?.title ||
-            `Submission failed with status ${response.status}`
+      const data = await res.json();
+
+      if (res.ok) {
+        toast.success(
+          "Thank you! Your registration has been successfully submitted.",
+          {
+            id: toastId,
+          }
         );
-      }
 
-      // Parse successful response
-      const result = await response.json().catch(() => null);
-
-      toast.success(
-        "Thank you! Your registration has been successfully submitted.",
-        {
+        // Reset form
+        setFormData({
+          fullName: "",
+          gender: "",
+          role: "",
+          school: "",
+          email: "",
+          phone: "",
+          location: "",
+          schoolName: "",
+          schoolType: "",
+          schoolEmail: "",
+          schoolPhone: "",
+          contactPerson: "",
+          designation: "",
+          studentsAttending: "",
+          teachersAttending: "",
+          photoConsent: false,
+          specialNeeds: "",
+        });
+        setRegistrationType("individual");
+      } else {
+        toast.error(data.error || "Submission failed. Please try again.", {
           id: toastId,
-          duration: 5000,
-        }
-      );
-
-      // Reset form
-      setFormData({
-        fullName: "",
-        gender: "",
-        role: "",
-        school: "",
-        email: "",
-        phone: "",
-        location: "",
-        notes: "",
-        schoolName: "",
-        schoolType: "",
-        schoolEmail: "",
-        schoolPhone: "",
-        contactPerson: "",
-        designation: "",
-        studentsAttending: "",
-        teachersAttending: "",
-      });
-      setRegistrationType("individual");
+        });
+      }
     } catch (err) {
-      console.error("Registration error:", err);
       toast.error(
-        err.message ||
-          "Network error. Please check your connection and try again.",
+        "Network error. Please check your connection and try again.",
         {
           id: toastId,
         }
@@ -144,68 +102,68 @@ export default function RegistrationForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50/30 to-gray-50 py-16 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-3">
-            ASEE 2025 Registration
+          <h1 className="text-4xl font-bold text-primary mb-3">
+            ASEE 2025 Registration Form
           </h1>
-          <p className="text-gray-600 text-lg mb-1">
+          <p className="text-gray-600 text-lg">
             Africa STEM EdTech Expo | November 14, 2025
           </p>
-          <p className="text-secondary font-semibold">
-            Hosted by Blue Sands STEM Labs
+          <p className="text-secondary font-medium mt-1">
+            Hosted by <span className="font-bold">Blue Sands STEM Labs</span>
           </p>
         </div>
 
         {/* Form Container */}
-        <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 md:p-12 backdrop-blur-sm">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 md:p-10">
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Registration Type */}
-            <div>
-              <label className="block text-base font-bold text-gray-900 mb-4">
-                Registration Type
-              </label>
-              <div className="grid grid-cols-2 gap-4 p-1 bg-gray-100 rounded-xl">
-                <button
-                  type="button"
-                  onClick={() => setRegistrationType("individual")}
-                  disabled={loading}
-                  className={`py-3.5 px-6 rounded-lg font-semibold transition-all duration-300 ${
-                    registrationType === "individual"
-                      ? "bg-gradient-to-r from-primary to-blue-600 text-white shadow-lg shadow-primary/40 scale-[1.02]"
-                      : "bg-transparent text-gray-700 hover:bg-white/50"
-                  } ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
-                >
-                  Individual
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setRegistrationType("school")}
-                  disabled={loading}
-                  className={`py-3.5 px-6 rounded-lg font-semibold transition-all duration-300 ${
-                    registrationType === "school"
-                      ? "bg-gradient-to-r from-primary to-blue-600 text-white shadow-lg shadow-primary/40 scale-[1.02]"
-                      : "bg-transparent text-gray-700 hover:bg-white/50"
-                  } ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
-                >
-                  School / Group
-                </button>
-              </div>
-            </div>
-
-            {/* Individual Registration Fields */}
             {registrationType === "individual" && (
               <>
+                <div>
+                  <label className="block text-base font-semibold text-gray-900 mb-4">
+                    Registration Type
+                  </label>
+                  <div className="flex gap-4">
+                    <button
+                      type="button"
+                      onClick={() => setRegistrationType("individual")}
+                      disabled={loading}
+                      className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all duration-200 ${
+                        registrationType === "individual"
+                          ? "bg-primary text-white shadow-lg shadow-primary/30"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      } ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
+                    >
+                      Individual
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setRegistrationType("school")}
+                      disabled={loading}
+                      className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all duration-200 ${
+                        registrationType === "school"
+                          ? "bg-primary text-white shadow-lg shadow-primary/30"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      } ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
+                    >
+                      School / Group
+                    </button>
+                  </div>
+                </div>
+
+                {/* Personal Information */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Full Name */}
-                  <div className="space-y-2">
+                  <div>
                     <label
                       htmlFor="fullName"
-                      className="block text-sm font-bold text-gray-900"
+                      className="block text-sm font-semibold text-gray-900 mb-2"
                     >
-                      Full Name <span className="text-red-500">*</span>
+                      Full Name
                     </label>
                     <input
                       type="text"
@@ -214,43 +172,42 @@ export default function RegistrationForm() {
                       value={formData.fullName}
                       onChange={handleInputChange}
                       placeholder="John Doe"
-                      className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50 focus:bg-white"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                       required
                       disabled={loading}
                     />
                   </div>
 
                   {/* Gender */}
-                  <div className="space-y-2">
+                  <div>
                     <label
                       htmlFor="gender"
-                      className="block text-sm font-bold text-gray-900"
+                      className="block text-sm font-semibold text-gray-900 mb-2"
                     >
-                      Gender <span className="text-red-500">*</span>
+                      Gender
                     </label>
                     <select
                       id="gender"
                       name="gender"
                       value={formData.gender}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50 focus:bg-white"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none bg-white"
                       required
                       disabled={loading}
                     >
                       <option value="">Select gender</option>
                       <option value="male">Male</option>
                       <option value="female">Female</option>
-                      <option value="other">Other</option>
                     </select>
                   </div>
 
                   {/* Role/Designation */}
-                  <div className="space-y-2">
+                  <div>
                     <label
                       htmlFor="role"
-                      className="block text-sm font-bold text-gray-900"
+                      className="block text-sm font-semibold text-gray-900 mb-2"
                     >
-                      Role / Designation <span className="text-red-500">*</span>
+                      Role / Designation
                     </label>
                     <input
                       type="text"
@@ -259,20 +216,19 @@ export default function RegistrationForm() {
                       value={formData.role}
                       onChange={handleInputChange}
                       placeholder="Student/Teacher/Parent"
-                      className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50 focus:bg-white"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                       required
                       disabled={loading}
                     />
                   </div>
 
                   {/* School/Organization */}
-                  <div className="space-y-2">
+                  <div>
                     <label
                       htmlFor="school"
-                      className="block text-sm font-bold text-gray-900"
+                      className="block text-sm font-semibold text-gray-900 mb-2"
                     >
-                      School / Organization{" "}
-                      <span className="text-red-500">*</span>
+                      School / Organization
                     </label>
                     <input
                       type="text"
@@ -281,19 +237,19 @@ export default function RegistrationForm() {
                       value={formData.school}
                       onChange={handleInputChange}
                       placeholder="Name of school or organization"
-                      className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50 focus:bg-white"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                       required
                       disabled={loading}
                     />
                   </div>
 
                   {/* Email */}
-                  <div className="space-y-2">
+                  <div>
                     <label
                       htmlFor="email"
-                      className="block text-sm font-bold text-gray-900"
+                      className="block text-sm font-semibold text-gray-900 mb-2"
                     >
-                      Email <span className="text-red-500">*</span>
+                      Email
                     </label>
                     <input
                       type="email"
@@ -302,19 +258,19 @@ export default function RegistrationForm() {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="you@example.com"
-                      className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50 focus:bg-white"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                       required
                       disabled={loading}
                     />
                   </div>
 
                   {/* Phone Number */}
-                  <div className="space-y-2">
+                  <div>
                     <label
                       htmlFor="phone"
-                      className="block text-sm font-bold text-gray-900"
+                      className="block text-sm font-semibold text-gray-900 mb-2"
                     >
-                      Phone Number <span className="text-red-500">*</span>
+                      Phone Number
                     </label>
                     <input
                       type="tel"
@@ -323,7 +279,7 @@ export default function RegistrationForm() {
                       value={formData.phone}
                       onChange={handleInputChange}
                       placeholder="+2348139622583"
-                      className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50 focus:bg-white"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                       required
                       disabled={loading}
                     />
@@ -331,13 +287,12 @@ export default function RegistrationForm() {
                 </div>
 
                 {/* Location */}
-                <div className="space-y-2">
+                <div>
                   <label
                     htmlFor="location"
-                    className="block text-sm font-bold text-gray-900"
+                    className="block text-sm font-semibold text-gray-900 mb-2"
                   >
-                    Location (City / State){" "}
-                    <span className="text-red-500">*</span>
+                    Location (City / State)
                   </label>
                   <input
                     type="text"
@@ -346,66 +301,29 @@ export default function RegistrationForm() {
                     value={formData.location}
                     onChange={handleInputChange}
                     placeholder="Lagos, Nigeria"
-                    className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50 focus:bg-white"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                     required
-                    disabled={loading}
-                  />
-                </div>
-
-                {/* Notes */}
-                <div className="space-y-2">
-                  <label
-                    htmlFor="notes"
-                    className="block text-sm font-bold text-gray-900"
-                  >
-                    Special Needs or Notes
-                  </label>
-                  <textarea
-                    id="notes"
-                    name="notes"
-                    value={formData.notes}
-                    onChange={handleInputChange}
-                    placeholder="Enter any special requests, accessibility needs, or additional information..."
-                    rows="4"
-                    className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none resize-none bg-gray-50 focus:bg-white"
                     disabled={loading}
                   />
                 </div>
               </>
             )}
 
-            {/* School/Group Registration Fields */}
+            {/* School/Group Details - Conditional */}
             {registrationType === "school" && (
-              <div className="space-y-6">
-                <div className="flex items-center gap-3 pb-4 border-b-2 border-primary/20">
-                  <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
-                    <svg
-                      className="w-5 h-5 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                      />
-                    </svg>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900">
-                    School / Group Details
-                  </h3>
-                </div>
+              <div className="border-t border-gray-200 pt-8 space-y-6">
+                <h3 className="text-xl font-bold text-primary mb-6">
+                  School / Group Details
+                </h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Name of School */}
-                  <div className="space-y-2">
+                  <div>
                     <label
                       htmlFor="schoolName"
-                      className="block text-sm font-bold text-gray-900"
+                      className="block text-sm font-semibold text-gray-900 mb-2"
                     >
-                      Name of School <span className="text-red-500">*</span>
+                      Name of School
                     </label>
                     <input
                       type="text"
@@ -414,30 +332,28 @@ export default function RegistrationForm() {
                       value={formData.schoolName}
                       onChange={handleInputChange}
                       placeholder="Name of School"
-                      className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50 focus:bg-white"
-                      required
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                       disabled={loading}
                     />
                   </div>
 
                   {/* Type of School */}
-                  <div className="space-y-2">
+                  <div>
                     <label
                       htmlFor="schoolType"
-                      className="block text-sm font-bold text-gray-900"
+                      className="block text-sm font-semibold text-gray-900 mb-2"
                     >
-                      Type of School <span className="text-red-500">*</span>
+                      Type of School
                     </label>
                     <select
                       id="schoolType"
                       name="schoolType"
                       value={formData.schoolType}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50 focus:bg-white"
-                      required
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none bg-white"
                       disabled={loading}
                     >
-                      <option value="">Select Type</option>
+                      <option value="">Type of School</option>
                       <option value="primary">Primary School</option>
                       <option value="secondary">Secondary School</option>
                       <option value="tertiary">Tertiary Institution</option>
@@ -447,12 +363,12 @@ export default function RegistrationForm() {
                   </div>
 
                   {/* School Email */}
-                  <div className="space-y-2">
+                  <div>
                     <label
                       htmlFor="schoolEmail"
-                      className="block text-sm font-bold text-gray-900"
+                      className="block text-sm font-semibold text-gray-900 mb-2"
                     >
-                      School Email <span className="text-red-500">*</span>
+                      School Email
                     </label>
                     <input
                       type="email"
@@ -460,21 +376,19 @@ export default function RegistrationForm() {
                       name="schoolEmail"
                       value={formData.schoolEmail}
                       onChange={handleInputChange}
-                      placeholder="school@example.com"
-                      className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50 focus:bg-white"
-                      required
+                      placeholder="School Email"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                       disabled={loading}
                     />
                   </div>
 
                   {/* School Phone */}
-                  <div className="space-y-2">
+                  <div>
                     <label
                       htmlFor="schoolPhone"
-                      className="block text-sm font-bold text-gray-900"
+                      className="block text-sm font-semibold text-gray-900 mb-2"
                     >
-                      School Phone Number{" "}
-                      <span className="text-red-500">*</span>
+                      School Phone Number
                     </label>
                     <input
                       type="tel"
@@ -482,21 +396,19 @@ export default function RegistrationForm() {
                       name="schoolPhone"
                       value={formData.schoolPhone}
                       onChange={handleInputChange}
-                      placeholder="+234XXXXXXXXX"
-                      className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50 focus:bg-white"
-                      required
+                      placeholder="School Phone Number"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                       disabled={loading}
                     />
                   </div>
 
                   {/* Contact Person */}
-                  <div className="space-y-2">
+                  <div>
                     <label
                       htmlFor="contactPerson"
-                      className="block text-sm font-bold text-gray-900"
+                      className="block text-sm font-semibold text-gray-900 mb-2"
                     >
-                      Contact Person Name{" "}
-                      <span className="text-red-500">*</span>
+                      Contact Person Name
                     </label>
                     <input
                       type="text"
@@ -504,20 +416,19 @@ export default function RegistrationForm() {
                       name="contactPerson"
                       value={formData.contactPerson}
                       onChange={handleInputChange}
-                      placeholder="Full Name"
-                      className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50 focus:bg-white"
-                      required
+                      placeholder="Contact Person Name"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                       disabled={loading}
                     />
                   </div>
 
                   {/* Designation */}
-                  <div className="space-y-2">
+                  <div>
                     <label
                       htmlFor="designation"
-                      className="block text-sm font-bold text-gray-900"
+                      className="block text-sm font-semibold text-gray-900 mb-2"
                     >
-                      Designation <span className="text-red-500">*</span>
+                      Designation (e.g. principal)
                     </label>
                     <input
                       type="text"
@@ -525,21 +436,19 @@ export default function RegistrationForm() {
                       name="designation"
                       value={formData.designation}
                       onChange={handleInputChange}
-                      placeholder="e.g., Principal, Teacher"
-                      className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50 focus:bg-white"
-                      required
+                      placeholder="Designation (e.g. principal)"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                       disabled={loading}
                     />
                   </div>
 
                   {/* Students Attending */}
-                  <div className="space-y-2">
+                  <div>
                     <label
                       htmlFor="studentsAttending"
-                      className="block text-sm font-bold text-gray-900"
+                      className="block text-sm font-semibold text-gray-900 mb-2"
                     >
-                      No. of Students Attending{" "}
-                      <span className="text-red-500">*</span>
+                      No. of Students Attending
                     </label>
                     <input
                       type="number"
@@ -548,21 +457,19 @@ export default function RegistrationForm() {
                       value={formData.studentsAttending}
                       onChange={handleInputChange}
                       placeholder="0"
-                      className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50 focus:bg-white"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                       min="0"
-                      required
                       disabled={loading}
                     />
                   </div>
 
                   {/* Teachers Attending */}
-                  <div className="space-y-2">
+                  <div>
                     <label
                       htmlFor="teachersAttending"
-                      className="block text-sm font-bold text-gray-900"
+                      className="block text-sm font-semibold text-gray-900 mb-2"
                     >
-                      No. of Teachers Attending{" "}
-                      <span className="text-red-500">*</span>
+                      No. of Teachers Attending
                     </label>
                     <input
                       type="number"
@@ -571,24 +478,62 @@ export default function RegistrationForm() {
                       value={formData.teachersAttending}
                       onChange={handleInputChange}
                       placeholder="0"
-                      className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none bg-gray-50 focus:bg-white"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
                       min="0"
-                      required
                       disabled={loading}
                     />
                   </div>
                 </div>
+
+                {/* Photo/Video Consent */}
+                <div className="bg-blue-50 border border-blue-100 rounded-lg p-4">
+                  <label className="flex items-start gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="photoConsent"
+                      checked={formData.photoConsent}
+                      onChange={handleInputChange}
+                      className="mt-1 w-5 h-5 text-primary border-gray-300 rounded focus:ring-primary"
+                      disabled={loading}
+                    />
+                    <span className="text-sm text-gray-700 leading-relaxed">
+                      I consent to the use of photos/videos taken during the
+                      event for educational and promotional purposes. I agree to
+                      follow event protocols for safety and participation.
+                    </span>
+                  </label>
+                </div>
               </div>
             )}
+
+            {/* Special Needs */}
+            <div>
+              <label
+                htmlFor="specialNeeds"
+                className="block text-sm font-semibold text-gray-900 mb-2"
+              >
+                Special Needs or Notes
+              </label>
+              <textarea
+                id="specialNeeds"
+                name="specialNeeds"
+                value={formData.specialNeeds}
+                onChange={handleInputChange}
+                placeholder="Enter comments, requests or accessibility needs..."
+                rows="4"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none resize-none"
+                disabled={loading}
+              />
+            </div>
 
             {/* Submit Button */}
             <button
               type="submit"
               disabled={loading}
-              className={`w-full font-bold py-4 px-6 rounded-xl transition-all duration-300 shadow-xl transform hover:scale-[1.02] flex items-center justify-center gap-3 ${
+              className={`w-full font-semibold py-4 px-6 rounded-lg transition-all duration-200 shadow-lg transform hover:-translate-y-0.5 flex items-center justify-center gap-2 ${
                 loading
-                  ? "bg-gradient-to-r from-primary/70 to-blue-600/70 text-white cursor-not-allowed"
-                  : "bg-gradient-to-r from-primary to-blue-600 text-white hover:shadow-2xl hover:shadow-primary/40"
+                  ? "bg-primary/80 text-white cursor-not-allowed"
+                  : "bg-primary hover:bg-blue-600 text-white hover:shadow-xl hover:shadow-primary/30"
               }`}
             >
               {loading ? (
@@ -616,72 +561,27 @@ export default function RegistrationForm() {
                   Submitting...
                 </>
               ) : (
-                <>
-                  Submit Registration
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 7l5 5m0 0l-5 5m5-5H6"
-                    />
-                  </svg>
-                </>
+                "Submit Registration"
               )}
             </button>
 
             {/* Contact Info */}
-            <div className="bg-gradient-to-r from-blue-50 to-gray-50 rounded-xl p-6 text-center border border-blue-100">
-              <p className="text-sm text-gray-700 mb-2 font-semibold">
-                Need help? Contact us:
-              </p>
-              <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
-                <a
-                  href="mailto:event@bluesandstemlabs.com"
-                  className="inline-flex items-center gap-2 text-primary hover:text-secondary font-semibold transition-colors"
-                >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
-                  event@bluesandstemlabs.com
-                </a>
-                <span className="text-gray-400">|</span>
-                <a
-                  href="tel:+2348139622583"
-                  className="inline-flex items-center gap-2 text-primary hover:text-secondary font-semibold transition-colors"
-                >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                    />
-                  </svg>
-                  +2348139622583
-                </a>
-              </div>
-            </div>
+            <p className="text-center text-sm text-gray-600 mt-6">
+              For enquiries:{" "}
+              <a
+                href="mailto:event@bluesandstemlabs.com"
+                className="text-primary hover:underline font-medium"
+              >
+                event@bluesandstemlabs.com
+              </a>{" "}
+              |{" "}
+              <a
+                href="tel:+234XXXXXXXXX"
+                className="text-primary hover:underline font-medium"
+              >
+                +2348139622583
+              </a>
+            </p>
           </form>
         </div>
       </div>

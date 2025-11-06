@@ -8,8 +8,21 @@ export default function AseeHero() {
 
   return (
     <section className="relative bg-[#02345a] overflow-hidden">
+      {/* Grid Line Vector Background */}
+      <div className="absolute inset-0 w-full h-full z-0">
+        <div
+          className="absolute inset-0 w-full h-full opacity-40"
+          style={{
+            backgroundImage: "url(/grid.png)", // Adjust the path to your actual file name
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        />
+      </div>
+
       {/* Decorative dots pattern */}
-      <div className="absolute right-0 top-0 bottom-0 w-1/3 opacity-60 hidden md:block">
+      <div className="absolute right-0 top-0 bottom-0 w-1/3 opacity-60 hidden md:block z-[1]">
         <div className="grid grid-cols-6 gap-4 h-full items-center pr-8">
           {[...Array(60)].map((_, i) => (
             <div key={i} className="w-2 h-2 rounded-full bg-white/20" />
