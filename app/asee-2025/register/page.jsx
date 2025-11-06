@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import toast from "react-hot-toast";
-
+import { config } from "@/lib/config";
 export default function RegistrationForm() {
   const [registrationType, setRegistrationType] = useState("individual");
   const [loading, setLoading] = useState(false);
@@ -43,13 +43,12 @@ export default function RegistrationForm() {
 
     try {
       // Get environment variables (must be prefixed with NEXT_PUBLIC_)
-      const FORMBRICKS_API_HOST = process.env.NEXT_PUBLIC_FORMBRICKS_API_HOST;
+      const FORMBRICKS_API_HOST = config.NEXT_PUBLIC_FORMBRICKS_API_HOST;
       const FORMBRICKS_ENVIRONMENT_ID =
-        process.env.NEXT_PUBLIC_FORMBRICKS_ENVIRONMENT_ID;
+        config.NEXT_PUBLIC_FORMBRICKS_ENVIRONMENT_ID;
       const SURVEY_ID_INDIVIDUAL =
-        process.env.NEXT_PUBLIC_FORMBRICKS_SURVEY_ID_INDIVIDUAL;
-      const SURVEY_ID_SCHOOL =
-        process.env.NEXT_PUBLIC_FORMBRICKS_SURVEY_ID_SCHOOL;
+        config.NEXT_PUBLIC_FORMBRICKS_SURVEY_ID_INDIVIDUAL;
+      const SURVEY_ID_SCHOOL = config.NEXT_PUBLIC_FORMBRICKS_SURVEY_ID_SCHOOL;
 
       // Validate environment variables
       if (
@@ -178,11 +177,11 @@ export default function RegistrationForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50/30 to-gray-50 py-16 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-linear-to-br from-white via-blue-50/30 to-gray-50 py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-3">
+          <h1 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent mb-3">
             ASEE 2025 Registration
           </h1>
           <p className="text-gray-600 text-lg mb-1">
