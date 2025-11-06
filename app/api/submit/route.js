@@ -62,7 +62,6 @@ s8WRgyiHCbmFdwjFh8/59vw=
 
     // === Prepare row data ===
     const row = [
-      new Date().toISOString(), // ISO timestamp
       body.registrationType || "individual",
       body.fullName || "",
       body.gender || "",
@@ -79,8 +78,10 @@ s8WRgyiHCbmFdwjFh8/59vw=
       body.designation || "",
       body.studentsAttending || "",
       body.teachersAttending || "",
-      body.photoConsent ? "Yes" : "No",
       body.specialNeeds || "",
+      body.photoConsent ? "Yes" : "No",
+
+      new Date().toISOString(), // ISO timestamp
     ];
 
     // === Append to sheet ===

@@ -3,9 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { GoArrowRight } from "react-icons/go";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
+import { FaChevronDown } from "react-icons/fa";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -14,12 +16,19 @@ const navLinks = [
   { name: "Pricing", href: "/pricing" },
   { name: "Partnership", href: "#" },
   { name: "ASEE 2025", href: "/asee-2025" },
-  { name: "Blog", href: "/blog" },
+  {
+    name: "Insights",
+    dropdown: [
+      { name: "Blog", href: "/blog" },
+      // Future: { name: "Case Studies", href: "/case-studies" },
+    ],
+  },
   { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
   const [headerHeight, setHeaderHeight] = useState(0);
   const headerRef = useRef(null);
   const mobileMenuRef = useRef(null);
@@ -27,19 +36,20 @@ export default function Navbar() {
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
   const closeMenu = () => setIsMenuOpen(false);
 
-  // Dynamically measure header height
+  const toggleDropdown = (name) =>
+    setOpenDropdown((prev) => (prev === name ? null : name));
+
+  // Measure header height
   useEffect(() => {
     const updateHeight = () => {
-      if (headerRef.current) {
-        setHeaderHeight(headerRef.current.offsetHeight);
-      }
+      if (headerRef.current) setHeaderHeight(headerRef.current.offsetHeight);
     };
     updateHeight();
     window.addEventListener("resize", updateHeight);
     return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
-  // Close mobile menu on outside click or Escape
+  // Handle outside click and ESC
   useEffect(() => {
     const handleOutsideClick = (e) => {
       if (
@@ -52,28 +62,22 @@ export default function Navbar() {
         closeMenu();
       }
     };
-
-    const handleEscape = (e) => {
-      if (e.key === "Escape") closeMenu();
-    };
+    const handleEscape = (e) => e.key === "Escape" && closeMenu();
 
     if (isMenuOpen) {
       document.addEventListener("mousedown", handleOutsideClick);
       document.addEventListener("keydown", handleEscape);
     }
-
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
       document.removeEventListener("keydown", handleEscape);
     };
   }, [isMenuOpen]);
 
-  // Prevent body scroll when mobile menu is open
+  // Prevent scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
-    return () => {
-      document.body.style.overflow = "unset";
-    };
+    return () => (document.body.style.overflow = "unset");
   }, [isMenuOpen]);
 
   return (
@@ -108,16 +112,58 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* Desktop Navigation Links */}
+          {/* Desktop Navigation */}
           <ul className="hidden lg:flex items-center gap-4 xl:gap-6">
             {navLinks.map((link) => (
-              <li key={link.name}>
-                <Link
-                  href={link.href}
-                  className="text-sm font-medium text-foreground hover:text-primary transition-all duration-300 px-2.5 py-1.5 rounded-md hover:bg-primary/5 whitespace-nowrap"
-                >
-                  {link.name}
-                </Link>
+              <li
+                key={link.name}
+                className="relative group"
+                onMouseEnter={() =>
+                  link.dropdown ? setOpenDropdown(link.name) : null
+                }
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
+                {!link.dropdown ? (
+                  <Link
+                    href={link.href}
+                    className="text-sm font-medium text-foreground hover:text-primary transition-all duration-300 px-2.5 py-1.5 rounded-md hover:bg-primary/5 whitespace-nowrap"
+                  >
+                    {link.name}
+                  </Link>
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-primary px-2.5 py-1.5 rounded-md hover:bg-primary/5 transition-all"
+                    >
+                      {link.name}
+                      <FaChevronDown className="text-xs transition-transform duration-200 group-hover:rotate-180" />
+                    </button>
+
+                    {/* Animated Dropdown */}
+                    <AnimatePresence>
+                      {openDropdown === link.name && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -8 }}
+                          transition={{ duration: 0.18, ease: "easeOut" }}
+                          className="absolute left-0 mt-2 bg-white border border-gray-100 rounded-lg shadow-lg w-40 py-2 z-50"
+                        >
+                          {link.dropdown.map((item) => (
+                            <Link
+                              key={item.name}
+                              href={item.href}
+                              className="block px-4 py-2 text-sm text-foreground hover:bg-primary/5 hover:text-primary transition-all"
+                            >
+                              {item.name}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </>
+                )}
               </li>
             ))}
           </ul>
@@ -152,7 +198,6 @@ export default function Navbar() {
         <div
           className="fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 lg:hidden"
           onClick={closeMenu}
-          aria-hidden="true"
         />
       )}
 
@@ -166,16 +211,46 @@ export default function Navbar() {
       >
         <div className="flex flex-col h-full overflow-y-auto">
           <nav className="flex-1 p-5 space-y-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                onClick={closeMenu}
-                className="block px-4 py-3 text-base font-medium text-foreground hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) =>
+              !link.dropdown ? (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={closeMenu}
+                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                >
+                  {link.name}
+                </Link>
+              ) : (
+                <div key={link.name} className="space-y-1">
+                  <button
+                    onClick={() => toggleDropdown(link.name)}
+                    className="flex justify-between items-center w-full px-4 py-3 text-base font-medium text-foreground hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                  >
+                    {link.name}
+                    <FaChevronDown
+                      className={`text-xs transition-transform duration-200 ${
+                        openDropdown === link.name ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {openDropdown === link.name && (
+                    <div className="pl-6">
+                      {link.dropdown.map((item) => (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          onClick={closeMenu}
+                          className="block px-4 py-2 text-sm text-foreground hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )
+            )}
           </nav>
 
           <div className="border-t border-gray-100 p-5 space-y-3">
