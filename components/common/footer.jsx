@@ -6,17 +6,15 @@ const Footer = () => {
   const companyLinks = [
     { name: "Home", href: "#" },
     { name: "Features", href: "#" },
-    { name: "Pricing", href: "#" },
+    { name: "Pricing", href: "/pricing" },
     { name: "Virtual STEM Labs", href: "#" },
-    { name: "About", href: "#" },
+    { name: "About", href: "/about" },
   ];
 
   const resourceLinks = [
-    { name: "Blog", href: "#" },
+    { name: "Blog", href: "/blog" },
     { name: "Newsletter", href: "#" },
-    { name: "Events", href: "#", badge: "Coming soon" },
-    { name: "Contact", href: "#" },
-    { name: "Career", href: "#", badge: "Coming soon" },
+    { name: "Contact", href: "/contact" },
   ];
 
   const socialLinks = [
@@ -28,11 +26,11 @@ const Footer = () => {
   ];
 
   const legalLinks = [
-    { name: "Terms", href: "#" },
-    { name: "Privacy", href: "#" },
-    { name: "Licenses", href: "#" },
-    { name: "Cookies", href: "#" },
-    { name: "Contact", href: "#" },
+    { name: "Terms", href: "/terms" },
+    { name: "Privacy", href: "/privacy" },
+    { name: "Licenses", href: "/licenses" },
+    { name: "Cookies", href: "/cookies" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
