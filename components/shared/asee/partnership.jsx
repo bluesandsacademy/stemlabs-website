@@ -35,7 +35,7 @@ export default function PartnershipDesk() {
         </h2>
 
         {/* Contact Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 mx-auto gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mx-auto place-items-center">
           {contacts.map((contact) => (
             <ContactCard key={contact.id} contact={contact} useImage={true} />
           ))}
