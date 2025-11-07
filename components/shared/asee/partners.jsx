@@ -1,8 +1,5 @@
 import Image from "next/image";
 
-/**
- * Partners Section
- */
 export default function PartnersSection() {
   const partners = [
     {
