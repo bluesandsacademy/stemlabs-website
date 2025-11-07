@@ -47,7 +47,7 @@ const TeamSection = () => {
         </div>
 
         {/* Team Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10">
           {team.map((member, index) => (
             <motion.div
               key={index}
@@ -57,13 +57,13 @@ const TeamSection = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="flex flex-col group"
             >
-              {/* Image Container */}
-              <div className="relative mb-5 overflow-hidden rounded-2xl aspect-[5/5] max-h-[300px] bg-gray-100">
+              {/* Image Container - Optimized for Headshots */}
+              <div className="relative mb-5 overflow-hidden rounded-2xl aspect-6/6 w-full bg-gray-100">
                 <Image
                   src={member.image}
                   alt={member.name}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
 
@@ -80,13 +80,6 @@ const TeamSection = () => {
                 style={{ fontFamily: "var(--font-jarkata)" }}
               >
                 {member.role}
-              </p>
-
-              <p
-                className="text-sm text-gray-600 mb-4 leading-relaxed"
-                style={{ fontFamily: "var(--font-jarkata)" }}
-              >
-                {member.bio}
               </p>
             </motion.div>
           ))}

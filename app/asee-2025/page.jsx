@@ -15,8 +15,9 @@ export default function ASEE2025Page() {
       <AseeSection />
       <WhoShouldAttend />
       <EventHighlight />
-      <PartnersSection />
       <BenefitsSection />
+
+      <PartnersSection />
       <EventDetails />
       <RegisterCTA />
       <PartnershipDesk />

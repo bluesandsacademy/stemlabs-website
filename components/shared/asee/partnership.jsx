@@ -35,7 +35,7 @@ export default function PartnershipDesk() {
         </h2>
 
         {/* Contact Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 mx-auto gap-8 md:gap-12">
           {contacts.map((contact) => (
             <ContactCard key={contact.id} contact={contact} useImage={true} />
           ))}
@@ -50,42 +50,8 @@ export default function PartnershipDesk() {
  */
 function ContactCard({ contact, useImage = false }) {
   return (
-    <article className="flex flex-col items-start space-y-4 px-4">
+    <article className="flex flex-col items-center space-y-4 px-4">
       {/* Image */}
-      <div className="w-full aspect-[3/3]  rounded-2xl overflow-hidden bg-gradient-to-br from-secondary/10 to-primary/10 relative">
-        {useImage ? (
-          <Image
-            src={contact.image}
-            alt={contact.name}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center space-y-2">
-              <div className="w-20 h-20 rounded-full bg-secondary/20 mx-auto flex items-center justify-center">
-                <svg
-                  className="w-10 h-10 text-secondary/40"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  />
-                </svg>
-              </div>
-              <span className="text-secondary/30 text-sm font-light block">
-                Team Photo
-              </span>
-            </div>
-          </div>
-        )}
-      </div>
 
       {/* Contact Info */}
       <div className="space-y-3 w-full">

@@ -142,7 +142,7 @@ export default function AseeHero() {
 
             <div className="relative w-full max-w-md mx-auto lg:max-w-none">
               <Image
-                src="/asee/hero.png"
+                src="/asee/hero.jpg"
                 alt="ASEE 2025 Event Mockup"
                 width={600}
                 height={600}

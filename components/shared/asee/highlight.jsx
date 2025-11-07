@@ -18,7 +18,7 @@ export default function EventHighlight() {
   const images = [
     {
       id: 1,
-      src: "/asee/4.jpg",
+      src: "/asee/1.jpg",
       alt: "Interactive lab demo with digital display",
       className: "row-span-2",
     },

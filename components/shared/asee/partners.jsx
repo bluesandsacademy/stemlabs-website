@@ -10,60 +10,6 @@ import Image from "next/image";
 export default function PartnersSection() {
   const partners = [
     {
-      id: 1,
-      name: "Canva",
-      domain: "canva.com",
-      logo: "https://logo.clearbit.com/canva.com",
-    },
-    {
-      id: 2,
-      name: "Descript",
-      domain: "descript.com",
-      logo: "https://logo.clearbit.com/descript.com",
-    },
-    {
-      id: 3,
-      name: "Apollo.io",
-      domain: "apollo.io",
-      logo: "https://logo.clearbit.com/apollo.io",
-    },
-    {
-      id: 4,
-      name: "Strava",
-      domain: "strava.com",
-      logo: "https://logo.clearbit.com/strava.com",
-    },
-    {
-      id: 5,
-      name: "Boll & Branch",
-      domain: "bollandbranch.com",
-      logo: "https://logo.clearbit.com/bollandbranch.com",
-    },
-    {
-      id: 6,
-      name: "Atlassian",
-      domain: "atlassian.com",
-      logo: "https://logo.clearbit.com/atlassian.com",
-    },
-    {
-      id: 7,
-      name: "ARC",
-      domain: "arc.net",
-      logo: "https://logo.clearbit.com/arc.net",
-    },
-    {
-      id: 8,
-      name: "Coda",
-      domain: "coda.io",
-      logo: "https://logo.clearbit.com/coda.io",
-    },
-    {
-      id: 9,
-      name: "Notion",
-      domain: "notion.so",
-      logo: "https://logo.clearbit.com/notion.so",
-    },
-    {
       id: 10,
       name: "Ironclad",
       domain: "ironcladapp.com",
