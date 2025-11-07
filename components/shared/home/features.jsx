@@ -54,6 +54,11 @@ const Collaborations = () => {
       logo: "https://logo.clearbit.com/ironclad.com",
       url: "https://www.ironclad.com",
     },
+    {
+      name: "24pages",
+      logo: "/home/team/24pages.png",
+      url: "https://www.24pagesafrica.com/",
+    },
   ];
 
   return (

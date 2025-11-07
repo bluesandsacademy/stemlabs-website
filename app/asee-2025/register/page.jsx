@@ -110,7 +110,7 @@ export default function RegistrationForm() {
             ASEE 2025 Registration Form
           </h1>
           <p className="text-gray-600 text-lg">
-            Africa STEM EdTech Expo | November 14, 2025
+            Africa STEM EdTech Expo | November 25, 2025
           </p>
           <p className="text-secondary font-medium mt-1">
             Hosted by <span className="font-bold">Blue Sands STEM Labs</span>
@@ -354,11 +354,10 @@ export default function RegistrationForm() {
                       disabled={loading}
                     >
                       <option value="">Type of School</option>
-                      <option value="primary">Primary School</option>
-                      <option value="secondary">Secondary School</option>
-                      <option value="tertiary">Tertiary Institution</option>
-                      <option value="private">Private School</option>
-                      <option value="public">Public School</option>
+                      <option value="primary">Public Secondary School</option>
+                      <option value="secondary">
+                        Private Secondary School
+                      </option>
                     </select>
                   </div>
 
@@ -569,10 +568,10 @@ export default function RegistrationForm() {
             <p className="text-center text-sm text-gray-600 mt-6">
               For enquiries:{" "}
               <a
-                href="mailto:event@bluesandstemlabs.com"
+                href="mailto:partnerships@bluesandstemlabs.org"
                 className="text-primary hover:underline font-medium"
               >
-                event@bluesandstemlabs.com
+                partnerships@bluesandstemlabs.org
               </a>{" "}
               |{" "}
               <a

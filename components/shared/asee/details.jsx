@@ -9,11 +9,7 @@ export default function EventDetails() {
     {
       id: 1,
       label: "VENUE",
-      content: [
-        "The Patron Hotel,",
-        "Km 20 Lekki - Epe Expy, Eti-Osa, Lekki 106104,",
-        "Lagos, Nigeria",
-      ],
+      content: ["Comfort Hall", "Okeir Bridge Bus Stop, off Addo Road", "Ajah"],
     },
     {
       id: 2,
