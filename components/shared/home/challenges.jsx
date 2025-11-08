@@ -43,16 +43,27 @@ const STEMChallengesSection = () => {
             transition={{ duration: 0.8 }}
             className="relative h-[350px] xs:h-[380px] sm:h-[450px] md:h-[500px] lg:h-[550px] xl:h-[600px] w-full flex items-center justify-center"
           >
-            <div className="relative w-[80%] sm:w-[70%] md:w-[60%] lg:w-[60%] xl:w-[80%] rounded-[20px] sm:rounded-[24px] md:rounded-[28px] lg:rounded-[32px] overflow-hidden shadow-xl sm:shadow-2xl hover:scale-[1.03] transition-transform duration-500">
+            <div className="relative w-[80%] sm:w-[70%] md:w-[60%] lg:w-[60%] xl:w-[80%] rounded-[20px] sm:rounded-[24px] md:rounded-[28px] lg:rounded-[32px] border-6 border-white overflow-hidden shadow-xl sm:shadow-2xl hover:scale-[1.03] transition-transform duration-500">
               <div className="aspect-[13/14] bg-gradient-to-br from-cyan-400 to-blue-600 relative">
-                <Image
-                  src="/home/challenges/4.jpg"
-                  alt="STEM student experiment"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 80vw, (max-width: 1024px) 60vw, 40vw"
-                  priority
-                />
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeChallenge}
+                    initial={{ opacity: 0, scale: 1.1 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={challenges[activeChallenge].image}
+                      alt={challenges[activeChallenge].title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 80vw, (max-width: 1024px) 60vw, 40vw"
+                      priority
+                    />
+                  </motion.div>
+                </AnimatePresence>
               </div>
             </div>
           </motion.div>
