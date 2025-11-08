@@ -128,7 +128,7 @@ const HeroSlider = () => {
     subtitle: "Powered by Blue Sands STEM Labs",
     description:
       "A convening for teachers, school leaders, students, EdTech founders, investors, NGOs, and government education stakeholders to experience immersive VR/AR education tools, digital STEM labs, classroom AI tools, and African-aligned digital content.",
-    image: "/asee/hero.png",
+    image: "/asee/hero.jpg",
     background: "secondary",
     location: "Comfort Hall Okeir Bridge Bus Stop, off Addo Road, Ajah",
     date: "25th November 2025",
