@@ -92,7 +92,7 @@ export default function AseeHero() {
                 transition={{ delay: 1.4, duration: 0.5 }}
                 className="text-white/90 text-lg sm:text-xl font-medium"
               >
-                Comfort Hall Okeir Bridge Bus Stop, off Addo Road, Ajah
+                Comfort Hall, Oke Ira Bridge Bus Stop, off Addo Road, Ajah, Lagos.
               </motion.p>
 
               <motion.p
