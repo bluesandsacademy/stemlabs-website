@@ -568,10 +568,10 @@ export default function RegistrationForm() {
             <p className="text-center text-sm text-gray-600 mt-6">
               For enquiries:{" "}
               <a
-                href="mailto:partnerships@bluesandstemlabs.org"
+                href="mailto:partnership@bluesandsacademy.org"
                 className="text-primary hover:underline font-medium"
               >
-                partnerships@bluesandstemlabs.org
+                partnership@bluesandsacademy.org
               </a>{" "}
               |{" "}
               <a

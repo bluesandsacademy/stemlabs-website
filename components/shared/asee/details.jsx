@@ -20,7 +20,7 @@ export default function EventDetails() {
     {
       id: 3,
       label: "TIME",
-      content: ["9:00AM-5:00PM WAT"],
+      content: ["8:00AM-5:00PM WAT"],
     },
   ];
 
