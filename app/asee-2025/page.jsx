@@ -7,6 +7,7 @@ import PartnersSection from "@/components/shared/asee/partners";
 import PartnershipDesk from "@/components/shared/asee/partnership";
 import AseeSection from "@/components/shared/asee/section";
 import WhoShouldAttend from "@/components/shared/asee/who";
+import MeetSpeakers from "../../components/shared/asee/speakers";
 
 export default function ASEE2025Page() {
   return (
@@ -18,6 +19,7 @@ export default function ASEE2025Page() {
       <BenefitsSection />
 
       <PartnersSection />
+      <MeetSpeakers />
       <EventDetails />
       <RegisterCTA />
       <PartnershipDesk />
