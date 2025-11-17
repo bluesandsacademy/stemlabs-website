@@ -15,7 +15,6 @@ const ContactPage = () => {
       <ContactHeroSection />
       <ThreeQuickPaths />
       <ContactOptionsForms />
-      <OfficeHours />
     </div>
   );
 };

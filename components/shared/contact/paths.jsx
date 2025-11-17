@@ -17,7 +17,7 @@ export default function ThreeQuickPaths() {
     {
       icon: HeadphonesIcon,
       title: "Get Support",
-      description: "Response targets: 24h (paid) • 3-5 business days (free)",
+      description: "Contact us at (+234) 8109622583",
     },
   ];
 

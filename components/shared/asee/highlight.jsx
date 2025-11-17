@@ -77,7 +77,7 @@ export default function EventHighlight() {
             <ul className="space-y-4">
               {highlights.map((highlight, index) => (
                 <li key={index} className="flex gap-3 items-start">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary/40 mt-2.5 flex-shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary/40 mt-2.5 shrink-0" />
                   <span className="text-foreground/60 text-base md:text-lg leading-relaxed font-light">
                     {highlight}
                   </span>
@@ -173,11 +173,11 @@ function AnimatedImageBox({ image, className, isTransitioning, delay = 0 }) {
       </div>
 
       {/* Overlay on hover */}
-      <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 via-secondary/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+      {/* <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 via-secondary/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
         <p className="text-white text-sm font-light p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
           {image.alt}
         </p>
-      </div>
+      </div> */}
     </div>
   );
 }

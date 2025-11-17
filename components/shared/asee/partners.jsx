@@ -6,7 +6,7 @@ export default function PartnersSection() {
       id: 10,
       name: "24pagesAfrica",
       domain: "https://www.24pagesafrica.com/",
-      logo: "/home/24pages.jpg",
+      logo: "/home/24pages.png",
     },
     {
       id: 11,
