@@ -48,8 +48,7 @@ const SubHero = () => {
           className="font-normal text-base md:text-lg text-gray-600 max-w-3xl"
           style={{ fontFamily: "var(--font-jarkata)" }}
         >
-          Addressing the unique challenges facing African universities and
-          students
+          Addressing the unique challenges facing African schools & students
         </p>
       </div>
 
@@ -91,7 +90,7 @@ const SubHero = () => {
         className="text-gray-600 text-lg text-center leading-relaxed font-normal"
         style={{ fontFamily: "var(--font-jarkata)" }}
       >
-        secondary schools lack adequate lab infrastructure
+        secondary schools lack adequate science laboratory infrastructure
       </p>
     </div>
   );

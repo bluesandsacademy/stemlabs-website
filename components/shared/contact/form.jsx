@@ -160,15 +160,6 @@ export default function ContactOptionsForms() {
             <h3 className="text-2xl font-bold text-secondary mb-2">
               Sale & Partnerships
             </h3>
-            <p className="text-primary mb-6">
-              Email:{" "}
-              <a
-                href="mailto:Sales@bluestemlabs.Com"
-                className="hover:underline"
-              >
-                Sales@bluestemlabs.Com
-              </a>
-            </p>
 
             {salesSuccess && (
               <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">
@@ -373,15 +364,6 @@ export default function ContactOptionsForms() {
           {/* Support Form */}
           <div className="bg-gray-50 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-secondary mb-2">Support</h3>
-            <p className="text-primary mb-6">
-              Email:{" "}
-              <a
-                href="mailto:Support@bluestemlabs.Com"
-                className="hover:underline"
-              >
-                Support@bluestemlabs.Com
-              </a>
-            </p>
 
             {supportSuccess && (
               <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">
@@ -562,10 +544,10 @@ export default function ContactOptionsForms() {
             <p className="text-lg">
               Email:&nbsp;
               <a
-                href="mailto:media@bluestemlabs.com"
+                href="mailto:info@bluesandacademy.org"
                 className="text-primary hover:underline"
               >
-                media@bluestemlabs.com
+                info@bluesandacademy.org
               </a>
             </p>
             <p className="text-base text-gray-700">
@@ -584,10 +566,10 @@ export default function ContactOptionsForms() {
             <p className="text-lg">
               Email:&nbsp;
               <a
-                href="mailto:partnerships@bluestemlabs.com"
+                href="mailto:partnership@bluesandacademy.org"
                 className="text-primary hover:underline"
               >
-                partnerships@bluestemlabs.com
+                partnership@bluesandacademy.org
               </a>
             </p>
             <p className="text-base text-gray-700">

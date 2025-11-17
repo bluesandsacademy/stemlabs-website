@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { tabContent } from "@/lib/data";
+import Link from "next/link";
 
 export default function EmpoweringLearningSection() {
   const [activeTab, setActiveTab] = useState("students");
@@ -59,7 +60,7 @@ export default function EmpoweringLearningSection() {
         {/* Header */}
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
-            Blue Sands STEM Labs —
+            Blue Sands STEM Labs
           </h2>
           <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
             Empowering the Future of Learning
@@ -165,9 +166,27 @@ export default function EmpoweringLearningSection() {
                   <h6 className="text-white font-bold text-lg mb-2">
                     {currentContent.cardTitle}
                   </h6>
-                  <p className="text-white/80 text-sm leading-relaxed">
+                  <p className="text-white/80 text-sm leading-relaxed mb-4">
                     {currentContent.cardDescription}
                   </p>
+                  <Link href={currentContent.blogLink}>
+                    <button className="inline-flex items-center gap-2 px-5 py-2.5 bg-white rounded-lg text-[#0483e2] font-semibold text-sm hover:bg-white/90 hover:shadow-lg transition-all duration-300 group">
+                      Read More
+                      <svg
+                        className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>

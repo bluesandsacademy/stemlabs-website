@@ -10,7 +10,12 @@ export default function MilestonesSection() {
     {
       icon: School,
       stat: "100+ Schools",
-      description: "Partnered institutions using Blue Sands Labs",
+      description: "Partnered institutions using Blue Sands STEM Labs",
+    },
+    {
+      icon: School,
+      stat: "150+ Simulations",
+      description: "Across Physics, Chemistry & Biology",
     },
     {
       icon: Globe,
@@ -28,7 +33,7 @@ export default function MilestonesSection() {
         </h2>
 
         {/* Milestones Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-4 gap-8">
           {milestones.map((milestone, index) => {
             const Icon = milestone.icon;
             return (

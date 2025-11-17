@@ -5,72 +5,27 @@ import Image from "next/image";
 const Collaborations = () => {
   const partners = [
     {
-      name: "Canva",
-      logo: "https://cdn.simpleicons.org/canva/00C4CC",
-      url: "https://www.canva.com",
-    },
-    {
-      name: "Descript",
-      logo: "https://logo.clearbit.com/descript.com",
-      url: "https://www.descript.com",
-    },
-    {
-      name: "Apollo.io",
-      logo: "https://logo.clearbit.com/apollo.io",
-      url: "https://www.apollo.io",
-    },
-    {
-      name: "Strava",
-      logo: "https://cdn.simpleicons.org/strava/FC4C02",
-      url: "https://www.strava.com",
-    },
-    {
-      name: "Bolt & Branch",
-      logo: "https://logo.clearbit.com/bollandbranch.com",
-      url: "https://www.bollandbranch.com",
-    },
-    {
-      name: "Atlassian",
-      logo: "https://cdn.simpleicons.org/atlassian/0052CC",
-      url: "https://www.atlassian.com",
-    },
-    {
-      name: "ARC",
-      logo: "https://logo.clearbit.com/arc.net",
-      url: "https://arc.net",
-    },
-    {
-      name: "Coda",
-      logo: "https://logo.clearbit.com/coda.io",
-      url: "https://coda.io",
-    },
-    {
-      name: "Notion",
-      logo: "https://cdn.simpleicons.org/notion/000000",
-      url: "https://www.notion.so",
-    },
-    {
-      name: "Ironclad",
-      logo: "https://logo.clearbit.com/ironclad.com",
-      url: "https://www.ironclad.com",
-    },
-    {
       name: "24pages",
-      logo: "/home/team/24pages.png",
+      logo: "/home/24pages.png",
+      url: "https://www.24pagesafrica.com/",
+    },
+    {
+      name: "AITeacha",
+      logo: "/home/team/aiteacha.png",
       url: "https://www.24pagesafrica.com/",
     },
   ];
 
   return (
-    <div className="bg-white px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+    <div className="bg-white px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-14">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-8 sm:mb-10">
           <p
-            className="text-gray-500 text-sm sm:text-base mb-8 tracking-wide"
+            className="text-gray-500 font-bold text-3xl sm:text-4xl md:text-4xl lg:text-5xl leading-tight py-12"
             style={{ fontFamily: "var(--font-jarkata)" }}
           >
-            Our Current & Past Collaborations
+            Our Partners
           </p>
 
           {/* Logos Grid */}
@@ -88,8 +43,8 @@ const Collaborations = () => {
                   src={partner.logo}
                   alt={`${partner.name} logo`}
                   width={140}
-                  height={50}
-                  className="object-contain h-10 sm:h-12 w-auto max-w-[140px]"
+                  height={140}
+                  className="object-contain h-20 sm:h-40 w-auto max-w-[240px]"
                   unoptimized
                   onError={(e) => {
                     e.currentTarget.style.display = "none";

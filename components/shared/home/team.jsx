@@ -41,7 +41,7 @@ const TeamSection = () => {
             className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed"
             style={{ fontFamily: "var(--font-jarkata)" }}
           >
-            Our philosophy is simple — hire a team of diverse, passionate people
+            Our philosophy is simple, hire a team of diverse, passionate people
             and foster a culture that empowers you to do you best work.
           </motion.p>
         </div>

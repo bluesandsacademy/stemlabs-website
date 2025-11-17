@@ -4,18 +4,16 @@ export default function VirtualLabsSection() {
       <div className="max-w-8xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <p className="text-primary text-sm font-medium mb-3 tracking-wide">
-            About Blue STEM5 Stem Labs
+          <p className="text-primary text-lg font-bold mb-3 tracking-wide">
+            About Blue SANDS Stem Labs
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
             Virtual Science Labs Built for African Classrooms
           </h1>
           <p className="text-foreground/70 max-w-4xl mx-auto text-base leading-relaxed">
             Blue Sands STEM Labs, developed by Blue Sands Academy Limited,
-            delivers Curriculum-aligned Physics, Chemistry, and Biology
-            experiments to students and teachers across Africa. IP-Lightmight
-            works offline with zero- and limited internet/age-loads no PDRA and
-            works confidently.
+            delivers curriculum-aligned Physics, Chemistry, and Biology
+            experiments to students and teachers across Africa.
           </p>
         </div>
 
