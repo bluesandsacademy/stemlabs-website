@@ -15,7 +15,7 @@ export default function EventDetails() {
     {
       id: 2,
       label: "DATE",
-      content: ["Friday, 25th November 2025"],
+      content: ["Tuesday, 25th November 2025"],
     },
     {
       id: 3,

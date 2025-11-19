@@ -9,36 +9,39 @@ const FAQSection = () => {
 
   const faqs = [
     {
-      question: "What is Blue Sands Virtual STEM Labs?",
+      question: "Can I use Blue Sands STEM Labs without internet?",
       answer:
-        "Blue Sands Virtual STEM Labs is an online platform that provides interactive, engaging, and educational STEM experiences for students of all ages using VR Headset.",
+        "Yes! Our offline mode allows students to access the labs and complete experiments offline. Results sync automatically once back online.",
     },
     {
-      question: "How does Blue Sands Virtual STEM Labs work?",
+      question: "How many users can access the School Plan?",
       answer:
-        "Our platform uses cutting-edge virtual reality and simulation technology to create immersive laboratory experiences. Students can conduct experiments, explore scientific concepts, and interact with 3D models in a safe, virtual environment accessible from any device with internet connectivity.",
+        "Each School Plan covers multiple users, including administrators, teachers, and students; depending on your license size.",
     },
     {
-      question: "Is Blue Sands Virtual STEM Labs suitable for all age groups?",
+      question: "Do teachers get training or support?",
       answer:
-        "Yes! Our platform offers content tailored for different educational levels, from primary school through university. Each lab experience is designed to match the curriculum standards and learning objectives appropriate for specific age groups and educational stages.",
+        "Absolutely! We offer onboarding sessions, digital handbooks, and continuous technical support for teachers and administrators.",
     },
     {
-      question:
-        "Do I need any special equipment to use Blue Sands Virtual STEM Labs?",
+      question: " Can I upgrade or downgrade my plan anytime?",
       answer:
-        "No special equipment is required. Our platform works on standard computers, tablets, and smartphones with a modern web browser. For an enhanced experience, VR headsets are supported but optional. We've optimized our labs to work even with low-bandwidth internet connections common across Africa.",
+        "Yes. You can change your plan or add users directly from your dashboard at any time.",
     },
     {
-      question:
-        "What STEM subjects are covered in Blue Sands Virtual STEM Labs?",
+      question: "Is Blue Sands STEM Labs available outside Nigeria?",
       answer:
-        "We cover a comprehensive range of STEM subjects including Physics, Chemistry, Biology, Mathematics, Engineering, and Computer Science. Each subject includes multiple virtual labs aligned with African curriculum standards, with new experiments and simulations added regularly.",
+        "Yes! Our solution supports schools and learners across Africa with localized curriculum mapping.",
     },
     {
-      question: "Are the virtual labs aligned with educational standards?",
+      question: "What devices does it support?",
       answer:
-        "Absolutely. All our virtual labs are carefully designed to align with major African educational curriculum standards including WAEC, NECO, and university-level requirements. We work closely with educators across the continent to ensure our content meets local educational needs and standards.",
+        "You can use Blue Sands STEM Labs on any PC, tablet, or Android device.",
+    },
+    {
+      question: "What happens if my subscription expires?",
+      answer:
+        "Your access will pause, but all your data, progress, and experiments will be saved. Reactivate anytime to continue.",
     },
   ];
 

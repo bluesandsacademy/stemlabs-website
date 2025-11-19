@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
  * Event Highlight Section
  *
  * Displays event highlights with a text list and animated image gallery
+ * Uses dedicated image sets for each slide for better control
  */
 
 export default function EventHighlight() {
@@ -18,51 +19,64 @@ export default function EventHighlight() {
     "Partner alley for demos, collaborations, and pilots.",
   ];
 
-  // Expanded image collection - add more images as needed
-  const allImages = [
+  // Define dedicated image sets for each slide
+  // Each slide shows exactly 3 images: one large (left) and two small (right)
+  const imageSlides = [
     {
-      id: 1,
-      src: "/asee/1.jpg",
-      alt: "Interactive lab demo with digital display",
+      // Slide 1
+      large: {
+        src: "/asee/slide11.jpg",
+        alt: "Interactive lab demo with digital display",
+      },
+      topRight: {
+        src: "/asee/slide12.jpg",
+        alt: "Students engaging with technology",
+      },
+      bottomRight: {
+        src: "/asee/slide13.jpg",
+        alt: "AI Teacher demonstration",
+      },
     },
-    { id: 2, src: "/asee/5.jpg", alt: "Team photo at event" },
-    { id: 3, src: "/asee/6.jpg", alt: "Hands-on VR demonstration" },
-    { id: 4, src: "/asee/2.jpg", alt: "Students engaging with technology" },
-    { id: 5, src: "/asee/3.jpg", alt: "AI Teacher demonstration" },
-    { id: 6, src: "/asee/4.jpg", alt: "Panel discussion session" },
-    { id: 7, src: "/asee/7.JPG", alt: "Partner collaboration space" },
-    { id: 8, src: "/asee/8.JPG", alt: "Student tech challenge" },
-    { id: 9, src: "/asee/9.JPG", alt: "VR experience showcase" },
-    { id: 9, src: "/asee/10.JPG", alt: "VR experience showcase" },
+    {
+      // Slide 2
+      large: { src: "/asee/slide21.jpg", alt: "Panel discussion session" },
+      topRight: { src: "/asee/slide22.jpg", alt: "Team photo at event" },
+      bottomRight: {
+        src: "/asee/slide23.jpg",
+        alt: "Hands-on VR demonstration",
+      },
+    },
+    {
+      // Slide 3
+      large: { src: "/asee/slide31.jpg", alt: "Partner collaboration space" },
+      topRight: { src: "/asee/slide32.jpg", alt: "Student tech challenge" },
+      bottomRight: { src: "/asee/slide33.jpg", alt: "VR experience showcase" },
+    },
+    {
+      // Slide 4
+      large: { src: "/asee/slide41.jpg", alt: "Networking session" },
+      topRight: { src: "/asee/slide42.jpg", alt: "Technology exhibition" },
+      bottomRight: { src: "/asee/slide43.jpg", alt: "Interactive workshop" },
+    },
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Auto-rotate images every 4 seconds
+  // Auto-rotate slides every 4 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setIsTransitioning(true);
       setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 3) % allImages.length);
+        setCurrentSlide((prevSlide) => (prevSlide + 1) % imageSlides.length);
         setIsTransitioning(false);
       }, 500); // Half of transition duration
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [allImages.length]);
+  }, [imageSlides.length]);
 
-  // Get current set of 3 images to display
-  const getCurrentImages = () => {
-    const images = [];
-    for (let i = 0; i < 3; i++) {
-      const index = (currentIndex + i) % allImages.length;
-      images.push(allImages[index]);
-    }
-    return images;
-  };
-
-  const currentImages = getCurrentImages();
+  const currentImages = imageSlides[currentSlide];
 
   return (
     <section className="w-full bg-white py-16 md:py-24">
@@ -87,33 +101,39 @@ export default function EventHighlight() {
 
             {/* Progress Indicator */}
             <div className="flex gap-2 pt-4">
-              {Array.from({ length: Math.ceil(allImages.length / 3) }).map(
-                (_, idx) => (
-                  <div
-                    key={idx}
-                    className={`h-1 rounded-full transition-all duration-500 ${
-                      Math.floor(currentIndex / 3) === idx
-                        ? "w-8 bg-primary"
-                        : "w-6 bg-primary/20"
-                    }`}
-                  />
-                )
-              )}
+              {imageSlides.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    setIsTransitioning(true);
+                    setTimeout(() => {
+                      setCurrentSlide(idx);
+                      setIsTransitioning(false);
+                    }, 500);
+                  }}
+                  className={`h-1 rounded-full transition-all duration-500 ${
+                    currentSlide === idx
+                      ? "w-8 bg-primary"
+                      : "w-6 bg-primary/20 hover:bg-primary/40"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
             </div>
           </div>
 
           {/* Right Column - Animated Image Grid */}
           <div className="grid grid-cols-2 gap-4 auto-rows-[200px] relative">
-            {/* Large Image - Spans 2 rows */}
+            {/* Large Image - Spans 2 rows (Left side) */}
             <AnimatedImageBox
-              image={currentImages[0]}
+              image={currentImages.large}
               className="row-span-2"
               isTransitioning={isTransitioning}
             />
 
             {/* Top Right Image */}
             <AnimatedImageBox
-              image={currentImages[1]}
+              image={currentImages.topRight}
               className=""
               isTransitioning={isTransitioning}
               delay={100}
@@ -121,7 +141,7 @@ export default function EventHighlight() {
 
             {/* Bottom Right Image */}
             <AnimatedImageBox
-              image={currentImages[2]}
+              image={currentImages.bottomRight}
               className=""
               isTransitioning={isTransitioning}
               delay={200}
@@ -168,16 +188,9 @@ function AnimatedImageBox({ image, className, isTransitioning, delay = 0 }) {
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-105"
           sizes="(max-width: 768px) 50vw, 25vw"
-          priority={image.id <= 3}
+          priority={delay === 0} // Prioritize the large image
         />
       </div>
-
-      {/* Overlay on hover */}
-      {/* <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 via-secondary/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-        <p className="text-white text-sm font-light p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-          {image.alt}
-        </p>
-      </div> */}
     </div>
   );
 }

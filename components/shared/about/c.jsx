@@ -17,16 +17,6 @@ const CTA = () => {
       imageAlt: "Team collaboration and partnership meeting",
       imagePosition: "left",
     },
-    {
-      title: "Join the Team",
-      description:
-        "Are you passionate about technology, innovation, and education? Blue Sands Academy is always looking for creative thinkers, problem solvers, and tech enthusiasts who want to make a real impact.",
-      buttonText: "View Open Roles",
-      buttonLink: "/careers",
-      image: "/about/4.jpg",
-      imageAlt: "Team members working together at presentation",
-      imagePosition: "right",
-    },
   ];
 
   return (
