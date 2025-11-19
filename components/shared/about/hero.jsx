@@ -66,7 +66,7 @@ const AboutHero = () => {
                 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-primary mb-2"
                 style={{ fontFamily: "var(--font-jarkata)" }}
               >
-                2020
+                2022
               </h2>
 
               {/* Label */}

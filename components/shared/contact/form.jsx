@@ -547,7 +547,7 @@ export default function ContactOptionsForms() {
                 href="mailto:info@bluesandacademy.org"
                 className="text-primary hover:underline"
               >
-                info@bluesandacademy.org
+                info@bluesandsacademy.org
               </a>
             </p>
             <p className="text-base text-gray-700">
@@ -569,7 +569,7 @@ export default function ContactOptionsForms() {
                 href="mailto:partnership@bluesandacademy.org"
                 className="text-primary hover:underline"
               >
-                partnership@bluesandacademy.org
+                partnership@bluesandsacademy.org
               </a>
             </p>
             <p className="text-base text-gray-700">

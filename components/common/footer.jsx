@@ -4,16 +4,16 @@ import { FaTwitter, FaLinkedinIn, FaFacebookF } from "react-icons/fa";
 
 const Footer = () => {
   const companyLinks = [
-    { name: "Home", href: "#" },
-    { name: "Features", href: "#" },
-    { name: "Pricing", href: "/pricing" },
-    { name: "Virtual STEM Labs", href: "#" },
+    { name: "Home", href: "/" },
     { name: "About", href: "/about" },
+    { name: "How it Works", href: "/how-it-works" },
+    { name: "Pricing", href: "/pricing" },
+    { name: "Partnership", href: "/partnership" },
   ];
 
   const resourceLinks = [
     { name: "Blog", href: "/blog" },
-    { name: "Newsletter", href: "#" },
+
     { name: "Contact", href: "/contact" },
   ];
 
@@ -29,8 +29,8 @@ const Footer = () => {
     { name: "Terms", href: "/terms" },
     { name: "Privacy", href: "/privacy" },
     { name: "Licenses", href: "/licenses" },
-    { name: "Cookies", href: "/cookies" },
-    { name: "Contact", href: "/contact" },
+    { name: "Cookies Policy", href: "/cookies" },
+    { name: "Security Policy", href: "#" },
   ];
 
   return (
@@ -40,7 +40,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-12">
           <div className="lg:col-span-1">
             <Image
-              src="/logo.png"
+              src="/logo-white.png"
               width={140}
               height={50}
               alt="Blue Sands STEM Labs Logo"

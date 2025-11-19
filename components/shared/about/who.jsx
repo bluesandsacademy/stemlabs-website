@@ -8,43 +8,15 @@ const WhoWeAre = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Side - Image with Decorative Blob */}
           <div className="relative flex justify-center lg:justify-start">
-            {/* Decorative Blob Background */}
-            <div className="relative">
-              {/* Blue Blob Shape */}
-              <svg
-                className="absolute -left-8 -top-8 w-[120%] h-[120%] -z-0"
-                viewBox="0 0 400 400"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs>
-                  <linearGradient
-                    id="blobGradient"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="100%"
-                  >
-                    <stop offset="0%" stopColor="#0483e2" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="#0483e2" stopOpacity="0.6" />
-                  </linearGradient>
-                </defs>
-                <path
-                  fill="url(#blobGradient)"
-                  d="M56.9,-61.8C72.3,-49.7,82.3,-31.1,85.7,-11.3C89.1,8.5,85.9,29.5,74.5,45.8C63.1,62.1,43.5,73.7,23.3,78.8C3.1,83.9,-17.7,82.5,-35.8,75.3C-53.9,68.1,-69.3,55.1,-77.5,38.5C-85.7,21.9,-86.7,1.7,-82.3,-16.2C-77.9,-34.1,-68.1,-49.7,-54.3,-62C-40.5,-74.3,-23.7,-83.3,-4.9,-77.6C13.9,-71.9,41.5,-73.9,56.9,-61.8Z"
-                  transform="translate(200 200)"
-                />
-              </svg>
-
-              {/* Image Container */}
-              <div className="relative z-10 w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-2xl">
-                <Image
-                  src="/about/2.jpg"
-                  alt="Student using VR headset for virtual science lab"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 288px, (max-width: 1024px) 320px, 384px"
-                />
-              </div>
+            <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-[450px] lg:h-[450px]">
+              <Image
+                src="/about/blob.svg"
+                alt="Student using VR headset for virtual science lab"
+                fill
+                className="object-contain"
+                sizes="(max-width: 640px) 288px, (max-width: 1024px) 320px, 450px"
+                priority
+              />
             </div>
           </div>
 

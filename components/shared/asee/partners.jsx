@@ -1,26 +1,12 @@
+import { partners } from "@/lib/data";
 import Image from "next/image";
 
 export default function PartnersSection() {
-  const partners = [
-    {
-      id: 10,
-      name: "24pagesAfrica",
-      domain: "https://www.24pagesafrica.com/",
-      logo: "/home/24pages.png",
-    },
-    {
-      id: 11,
-      name: "AiTeacha",
-      domain: "https://aiteacha.com/",
-      logo: "/home/team/aiteacha.png",
-    },
-  ];
-
   return (
     <section className="w-full bg-white py-10 md:py-4">
       <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-6xl">
         {/* Section Header */}
-        <div className="text-center mb-12 md:mb-16">
+        <div className="text-center mb-6 md:mb-2">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-secondary tracking-tight mb-4">
             Our Partners
           </h2>
@@ -30,7 +16,7 @@ export default function PartnersSection() {
         </div>
 
         {/* Partners Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12 items-center justify-items-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-0 items-center justify-center">
           {partners.map((partner, index) => (
             <PartnerLogo
               key={partner.id}
