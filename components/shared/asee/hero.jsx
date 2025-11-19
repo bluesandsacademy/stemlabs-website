@@ -73,16 +73,6 @@ export default function AseeHero() {
                     </motion.span>
                   ))}
                   {/* Blinking Cursor */}
-                  <motion.span
-                    animate={{ opacity: [1, 1, 0, 0] }}
-                    transition={{
-                      duration: 1.2,
-                      repeat: Infinity,
-                      ease: "steps",
-                      times: [0, 0.5, 0.51, 1],
-                    }}
-                    className="inline-block w-0.5 h-10 bg-white ml-1 align-middle"
-                  />
                 </span>
               </h2>
 
