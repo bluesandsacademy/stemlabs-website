@@ -13,6 +13,7 @@ const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "How it works", href: "/how-it-works" },
+  { name: "Simulations", href: "/simulations" },
   { name: "Pricing", href: "/pricing" },
   { name: "Partnership", href: "/partnerships" },
   { name: "ASEE 2025", href: "/asee-2025" },
@@ -172,7 +173,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-2 xl:gap-3">
             <Link
               href="https://app.bluesandstemlabs.com/auth/login"
-              className="px-5 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary/90 transition-all shadow-md hover:shadow-lg"
+              className="px-5 py-2 border-primary text-primary text-sm font-medium rounded-lg  transition-all  hover:shadow-lg"
             >
               Sign in
             </Link>
