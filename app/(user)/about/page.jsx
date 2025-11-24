@@ -1,9 +1,9 @@
 import CTA from "@/components/shared/about/c";
 import AboutHero from "@/components/shared/about/hero";
 
-import CoreValuesSection from "@/components/shared/about/values";
 import VisionMissionPurpose from "@/components/shared/about/vision";
 import WhoWeAre from "@/components/shared/about/who";
+import OurWhySection from "@/components/shared/about/why";
 
 import TeamSection from "@/components/shared/home/team";
 import React from "react";
@@ -20,7 +20,7 @@ export default function Aboutpage() {
       <AboutHero />
       <WhoWeAre />
       <VisionMissionPurpose />
-      <CoreValuesSection />
+      <OurWhySection />
       <TeamSection />
       <CTA />
     </div>

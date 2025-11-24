@@ -12,7 +12,7 @@ const CTA = () => {
       description:
         "We believe that collaboration drives transformation. Join us as we create sustainable change in education across Africa. Whether you're an investor, development agency, corporate organization, or educational institution, your partnership can help shape the future of learning.",
       buttonText: "Partner With Us",
-      buttonLink: "/partner",
+      buttonLink: "/contact",
       image: "/about/3.jpg",
       imageAlt: "Team collaboration and partnership meeting",
       imagePosition: "left",

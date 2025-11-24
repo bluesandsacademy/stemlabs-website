@@ -133,9 +133,9 @@ export default function EmpoweringLearningSection() {
                 {currentContent.buttons.map((button, index) => (
                   <button
                     key={index}
-                    className={`px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-300 ${
+                    className={`px-6 py-3 rounded-lg font-medium cursor-pointer text-sm transition-all duration-300 ${
                       button.primary
-                        ? "bg-white text-primary hover:bg-white/90 shadow-lg"
+                        ? "bg-white text-black hover:bg-white/90 shadow-lg"
                         : "bg-transparent border-2 border-white text-white hover:bg-white/10"
                     }`}
                   >

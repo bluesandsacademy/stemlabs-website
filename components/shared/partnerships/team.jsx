@@ -48,7 +48,7 @@ export default function PartnershipTeam() {
               transition={{ duration: 0.6, delay: index * 0.15 }}
               className="group"
             >
-              <div className=" overflow-hidden ">
+              <div className=" overflow-hidden rounded-lg">
                 {/* Image Container */}
                 <div className="relative w-full aspect-4/5 max-h-[350px] overflow-hidden bg-linear-to-br from-gray-100 to-gray-200">
                   <Image

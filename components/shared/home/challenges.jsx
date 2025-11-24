@@ -43,15 +43,15 @@ const STEMChallengesSection = () => {
             transition={{ duration: 0.8 }}
             className="relative h-[350px] xs:h-[380px] sm:h-[450px] md:h-[500px] lg:h-[550px] xl:h-[600px] w-full flex items-center justify-center"
           >
-            <div className="relative w-[80%] sm:w-[70%] md:w-[60%] lg:w-[60%] xl:w-[80%] rounded-[20px] sm:rounded-[24px] md:rounded-[28px] lg:rounded-[32px] border-6 border-white overflow-hidden shadow-xl sm:shadow-2xl hover:scale-[1.03] transition-transform duration-500">
-              <div className="aspect-[13/14] bg-gradient-to-br from-cyan-400 to-blue-600 relative">
+            <div className="relative w-[80%] sm:w-[70%] md:w-[60%] lg:w-[60%] xl:w-[80%] rounded-[20px] sm:rounded-3xl md:rounded-[28px] lg:rounded-4xl border-6 border-white overflow-hidden shadow-xl sm:shadow-2xl hover:scale-[1.03] transition-transform duration-500">
+              <div className="aspect-13/14 relative">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeChallenge}
                     initial={{ opacity: 0, scale: 1.1 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    transition={{ duration: 0.2, ease: "easeInOut" }}
                     className="absolute inset-0"
                   >
                     <Image
@@ -101,7 +101,7 @@ const STEMChallengesSection = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className={`w-full text-left relative sm:pl-8 transition-all duration-300 ${
                     activeChallenge === index
-                      ? "bg-primary/90 backdrop-blur-sm rounded-xl sm:rounded-2xl py-4 px-4 sm:py-6 sm:pr-6 md:py-7 md:pr-7 lg:py-8 lg:pr-8"
+                      ? "bg-primary/90 backdrop-blur-sm rounded-xl sm:rounded-lg py-4 px-4 sm:py-6 sm:pr-6 md:py-7 md:pr-7 lg:py-8 lg:pr-8"
                       : "py-3 px-4 sm:py-4 sm:pr-4 md:py-5 md:pr-4 hover:bg-white/5 rounded-lg"
                   }`}
                 >

@@ -58,7 +58,7 @@ const TeamSection = () => {
               className="flex flex-col group"
             >
               {/* Image Container - Optimized for Headshots */}
-              <div className="relative mb-5 overflow-hidden rounded-2xl aspect-6/6 w-full bg-gray-100">
+              <div className="relative mb-5 overflow-hidden rounded-xl aspect-6/6 w-full bg-gray-100">
                 <Image
                   src={member.image}
                   alt={member.name}

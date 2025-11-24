@@ -1,4 +1,4 @@
-import { Users, School, Globe } from "lucide-react";
+import { Users, School, Globe, FlaskConical } from "lucide-react";
 
 export default function MilestonesSection() {
   const milestones = [
@@ -13,7 +13,7 @@ export default function MilestonesSection() {
       description: "Partnered institutions using Blue Sands STEM Labs",
     },
     {
-      icon: School,
+      icon: FlaskConical,
       stat: "150+ Simulations",
       description: "Across Physics, Chemistry & Biology",
     },

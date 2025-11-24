@@ -1,12 +1,12 @@
 import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
 import Hero from "@/components/shared/home/hero";
-import SubHero from "@/components/shared/home/sub-hero";
 import VirtualLabsSection from "@/components/shared/home/about";
 import MilestonesSection from "@/components/shared/home/milestones";
 import EmpoweringLearningSection from "@/components/shared/home/learn";
 import Features from "@/components/shared/home/africaStats";
 import PartnersSection from "@/components/shared/home/features";
+import AfricanSTEMSection from "@/components/shared/home/sub-hero";
 
 // Lazy load components with SSR enabled
 
@@ -61,7 +61,7 @@ export default function Homepage() {
       <VirtualLabsSection />
       <MilestonesSection />
       <EmpoweringLearningSection />
-      <SubHero />
+      <AfricanSTEMSection />
       <Features />
 
       {/* Below-the-fold content with streaming */}
