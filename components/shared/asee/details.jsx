@@ -9,7 +9,8 @@ export default function EventDetails() {
     {
       id: 1,
       label: "VENUE",
-      content: ["Comfort Hall", "Okeir Bridge Bus Stop, off Addo Road", "Ajah"],
+      content: ["Comfort Hall", "Oke ira Bridge Bus Stop, off Addo Road", "Ajah, Lagos"],
+
     },
     {
       id: 2,
