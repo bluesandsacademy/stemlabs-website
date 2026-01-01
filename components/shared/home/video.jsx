@@ -30,7 +30,7 @@ const VideoSection = () => {
                 <div className="relative aspect-video rounded-[1.25rem] sm:rounded-[1.5rem] lg:rounded-[2rem] overflow-hidden bg-black">
                   {/* Thumbnail */}
                   <Image
-                    src="/hero/video.jpg"
+                    src="/hero/videothumbnail.jpg"
                     alt="Blue Sands STEM Labs"
                     fill
                     className="object-cover"
@@ -102,7 +102,7 @@ const VideoSection = () => {
             {/* YouTube/Vimeo Embed */}
             <iframe
               className="w-full h-full rounded-lg"
-              src="https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1"
+              src="https://www.youtube.com/embed/BpGHZHcIG7Q?si=8c3ThfaaVYaLT0Mn"
               title="Blue Sands STEM Labs Video"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

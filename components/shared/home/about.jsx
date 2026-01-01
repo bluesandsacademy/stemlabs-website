@@ -7,7 +7,7 @@ export default function VirtualLabsSection() {
         {/* Header */}
         <div className="text-center mb-12">
           <p className="text-primary text-lg font-bold mb-3 tracking-wide">
-            About Blue SANDS Stem Labs
+            About Blue Sands STEM Labs
           </p>
           <h1 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
             Virtual Science Labs Built for African Classrooms
