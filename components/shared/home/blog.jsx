@@ -19,17 +19,6 @@ const BlogSection = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-sm sm:text-base font-semibold text-primary uppercase tracking-wider mb-3"
-            style={{ fontFamily: "var(--font-jarkata)" }}
-          >
-            Our blog
-          </motion.p>
-
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

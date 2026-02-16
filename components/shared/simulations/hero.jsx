@@ -1,5 +1,6 @@
 "use client";
 
+import CalendlyButton from "@/components/common/calendly-popup";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import Image from "next/image";
@@ -44,14 +45,7 @@ export default function HeroSection() {
 
             {/* CTA Button */}
             <div>
-              <Link href="/request-demo">
-                <button
-                  className="bg-white text-primary px-10 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
-                  style={{ fontFamily: "var(--font-jarkata)" }}
-                >
-                  Book a Demo
-                </button>
-              </Link>
+              <CalendlyButton />
             </div>
 
             {/* Features List with Checkmarks */}

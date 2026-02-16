@@ -35,7 +35,7 @@ export default function TeachersSection() {
   ];
 
   return (
-    <section className="relative py-20 lg:py-20 bg-white overflow-hidden">
+    <section className="relative py-20 lg:py-20 bg-white overflow-hidden font-sans">
       {/* Background Decorative Elements */}
       <div className="absolute top-20 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-40 right-0 w-80 h-80 bg-secondary/5 rounded-full blur-3xl"></div>
@@ -49,10 +49,10 @@ export default function TeachersSection() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-4xl mx-auto mb-20"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-6">
             Teachers
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+          <p className="text-xl text-gray-600 leading-relaxed">
             Teachers use Blue Sands STEM Labs to enhance lessons, simplify
             complex topics, and create an engaging classroom experience.
           </p>
@@ -84,7 +84,7 @@ export default function TeachersSection() {
                     className="flex items-start gap-4"
                   >
                     {/* Checkmark */}
-                    <div className="flex-shrink-0 w-6 h-6 mt-1">
+                    <div className="shrink-0 w-6 h-6 mt-1">
                       <svg
                         className="w-6 h-6 text-primary"
                         fill="none"
@@ -115,8 +115,8 @@ export default function TeachersSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative"
             >
-              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl bg-gradient-to-br from-orange-100 via-orange-50 to-yellow-50 p-3">
-                <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden">
+              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl bg-linear-to-br from-orange-100 via-orange-50 to-yellow-50 p-3">
+                <div className="relative aspect-4/3 rounded-4xl overflow-hidden">
                   <Image
                     src="/features/teacher1.jpg"
                     alt="Teacher in classroom with tablet"
@@ -143,8 +143,8 @@ export default function TeachersSection() {
               transition={{ duration: 0.6 }}
               className="relative lg:order-1"
             >
-              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl bg-gradient-to-br from-orange-100 via-orange-50 to-yellow-50 p-3">
-                <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden">
+              <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl bg-linear-to-br from-orange-100 via-orange-50 to-yellow-50 p-3">
+                <div className="relative aspect-4/3 rounded-4xl overflow-hidden">
                   <Image
                     src="/features/teacher2.jpg"
                     alt="Teacher helping student"
@@ -181,7 +181,7 @@ export default function TeachersSection() {
                     className="flex items-start gap-4"
                   >
                     {/* Checkmark */}
-                    <div className="flex-shrink-0 w-6 h-6 mt-1">
+                    <div className="shrink-0 w-6 h-6 mt-1">
                       <svg
                         className="w-6 h-6 text-primary"
                         fill="none"

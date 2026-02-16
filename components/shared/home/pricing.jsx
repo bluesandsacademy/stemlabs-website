@@ -11,7 +11,7 @@ const PricingSection = () => {
     const fetchExchangeRate = async () => {
       try {
         const response = await fetch(
-          "https://v6.exchangerate-api.com/v6/892a9ad526f14e1e8f7652e0/latest/USD"
+          "https://v6.exchangerate-api.com/v6/892a9ad526f14e1e8f7652e0/latest/USD",
         );
         const data = await response.json();
         if (data.conversion_rates?.NGN)
@@ -99,7 +99,7 @@ const PricingSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-sm sm:text-base font-semibold text-primary uppercase tracking-wider mb-3"
+            className="text-2xl font-semibold text-primary uppercase tracking-wider mb-3"
           >
             Pricing
           </motion.p>
@@ -109,7 +109,7 @@ const PricingSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary mb-4"
+            className="text-4xl md:text-5xl font-bold text-secondary mb-4"
           >
             Choose Your Plan
           </motion.h2>
@@ -119,7 +119,7 @@ const PricingSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto"
+            className="text-xl text-gray-600 max-w-2xl mx-auto"
           >
             Flexible pricing designed for African educational budgets
           </motion.p>
@@ -255,8 +255,8 @@ const PricingSection = () => {
                     plan.buttonStyle === "white"
                       ? "bg-white text-primary hover:bg-secondary hover:text-white"
                       : plan.popular
-                      ? "bg-white text-primary hover:bg-gray-50"
-                      : "bg-primary text-white hover:bg-secondary"
+                        ? "bg-white text-primary hover:bg-gray-50"
+                        : "bg-primary text-white hover:bg-secondary"
                   }`}
                 >
                   {plan.buttonText}

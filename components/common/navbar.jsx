@@ -12,15 +12,23 @@ import { FaChevronDown } from "react-icons/fa";
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "How it works", href: "/how-it-works" },
-  { name: "Simulations", href: "/simulations" },
+
+  {
+    name: "Simulations",
+
+    dropdown: [
+      { name: "Simulations", href: "/simulations" },
+      { name: "How it works", href: "/how-it-works" },
+    ],
+  },
   { name: "Pricing", href: "/pricing" },
   { name: "Partnership", href: "/partnerships" },
-  { name: "ASEE 2025", href: "/asee-2025" },
   {
     name: "Insights",
     dropdown: [
       { name: "Blog", href: "/blog" },
+      { name: "ASEE 2025", href: "/asee-2025" },
+
       // Future: { name: "Case Studies", href: "/case-studies" },
     ],
   },
@@ -106,9 +114,9 @@ export default function Navbar() {
             <Image
               src="/logo.png"
               width={140}
-              height={48}
+              height={50}
               alt="Blue Sands STEM Labs Logo"
-              className="h-7 sm:h-9 w-auto"
+              className="h-7 sm:h-12 w-auto"
               priority
             />
           </Link>
@@ -256,7 +264,7 @@ export default function Navbar() {
                     </div>
                   )}
                 </div>
-              )
+              ),
             )}
           </nav>
 

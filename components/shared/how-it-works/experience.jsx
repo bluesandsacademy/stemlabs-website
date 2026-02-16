@@ -17,20 +17,20 @@ export default function ExperienceSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-4xl mx-auto mb-16"
+          className="text-center max-w-6xl mx-auto mb-16 "
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-6">
             Experience Science. Anytime. Anywhere.
           </h2>
 
-          <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-4">
+          <p className="text-xl text-gray-600 leading-relaxed mb-2 max-w-4xl mx-auto">
             Blue Sands STEM Labs makes practical science learning possible for
             every student in Africa whether in the classroom, at home, or in
             underserved African communities with limited access to physical
             laboratories.
           </p>
 
-          <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+          <p className="text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto">
             Our virtual lab provides an immersive, interactive, and realistic
             environment where students can perform experiments, visualize
             abstract concepts, and build confidence in STEM subjects, all from

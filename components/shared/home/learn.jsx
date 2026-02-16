@@ -9,9 +9,10 @@ export default function EmpoweringLearningSection() {
   const [activeTab, setActiveTab] = useState("students");
 
   const currentContent = tabContent[activeTab];
+  const REGISTER_URL = "http://app.bluesandstemlabs.com/auth/register";
 
   return (
-    <section className="relative bg-secondary py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative bg-secondary py-16 px-4 sm:px-6 lg:px-8 overflow-hidden font-sans">
       {/* 3D Grid Background */}
       <div className="absolute inset-0 opacity-30">
         <svg
@@ -59,13 +60,11 @@ export default function EmpoweringLearningSection() {
       <div className="relative max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
-            Blue Sands STEM Labs
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-3 leading-14">
+            Blue Sands STEM Labs <br /> Empowering the Future of Learning
           </h2>
-          <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
-            Empowering the Future of Learning
-          </h3>
-          <p className="text-white/80 text-sm max-w-2xl mx-auto">
+
+          <p className="text-white/80 text-xl max-w-3xl mx-auto">
             Built by Blue Sands Academy Limited for African next-generation of
             innovators
           </p>
@@ -131,16 +130,19 @@ export default function EmpoweringLearningSection() {
               {/* Buttons */}
               <div className="flex flex-wrap gap-4 mb-6">
                 {currentContent.buttons.map((button, index) => (
-                  <button
+                  <Link
                     key={index}
-                    className={`px-6 py-3 rounded-lg font-medium cursor-pointer text-sm transition-all duration-300 ${
+                    href={REGISTER_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`px-6 py-3 rounded-lg font-medium text-sm transition-all duration-300 inline-block ${
                       button.primary
                         ? "bg-white text-black hover:bg-white/90 shadow-lg"
                         : "bg-transparent border-2 border-white text-white hover:bg-white/10"
                     }`}
                   >
                     {button.text}
-                  </button>
+                  </Link>
                 ))}
               </div>
 

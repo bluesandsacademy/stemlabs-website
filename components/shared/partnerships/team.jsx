@@ -9,14 +9,14 @@ export default function PartnershipTeam() {
       id: 1,
       name: "Alero Thompson",
       title: "Founder & CEO",
-      image: "/home/team/alero.png", // Replace with actual path
+      image: "/home/team/alero.png",
       titleColor: "#0483e2",
     },
     {
       id: 2,
       name: "Kingsley Okechukwu",
       title: "Chief Technology Officer",
-      image: "/home/team/kingsley.jpg", // Replace with actual path
+      image: "/home/team/kingsley.jpg",
       titleColor: "#0483e2",
     },
   ];
@@ -58,6 +58,8 @@ export default function PartnershipTeam() {
                     className="object-cover object-top"
                     sizes="(max-width: 768px) 100vw, 50vw"
                     quality={95}
+                    priority
+                    loading="eager"
                   />
                 </div>
 

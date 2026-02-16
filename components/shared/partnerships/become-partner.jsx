@@ -10,15 +10,15 @@ export default function BecomePartnerCTA() {
       id: 1,
       icon: Mail,
       label: "Email",
-      value: "partnerships@bluesandstemlabs.org",
-      href: "mailto:partnerships@bluesandstemlabs.org",
+      value: "partnerships@bluesandstemlabs.com",
+      href: "mailto:partnerships@bluesandstemlabs.com",
     },
     {
       id: 2,
       icon: Phone,
-      label: "Call",
+      label: "WhatsApp",
       value: "+234 (0) 813-962-2583",
-      href: "tel:+2348139622583",
+      href: "https://wa.me/2348139622583?text=Hi,%20I'm%20interested%20in%20partnering%20with%20Blue%20Sands%20STEM%20Labs",
     },
     {
       id: 3,
@@ -74,6 +74,8 @@ export default function BecomePartnerCTA() {
             <motion.a
               key={method.id}
               href={method.href}
+              target={method.id === 3 ? "_blank" : undefined}
+              rel={method.id === 3 ? "noopener noreferrer" : undefined}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

@@ -3,10 +3,23 @@
 import { studentFeatures } from "@/lib/data";
 import { FeatureCard } from "./card";
 import Image from "next/image";
+import { useEffect } from "react";
 
 export default function ForStudentsSection() {
+  // Preload critical images on component mount
+  useEffect(() => {
+    // Preload first 2 student feature images
+    studentFeatures.slice(0, 2).forEach((feature) => {
+      const link = document.createElement("link");
+      link.rel = "preload";
+      link.as = "image";
+      link.href = feature.image;
+      document.head.appendChild(link);
+    });
+  }, []);
+
   return (
-    <section className="relative py-20 bg-primary overflow-hidden">
+    <section className="relative py-0 bg-primary overflow-hidden font-sans">
       {/* Grid Background Pattern */}
       <div className="absolute inset-0 opacity-40">
         <Image src="/grid.png" alt="" fill className="object-cover" priority />
@@ -14,13 +27,6 @@ export default function ForStudentsSection() {
 
       {/* Content */}
       <div className="relative z-10">
-        {/* Section Header */}
-        <div className="max-w-4xl mx-auto text-center px-6 mb-16">
-          <h2 className="text-2xl lg:text-4xl font-bold text-white mb-4 relative inline-block">
-            For Individual Students
-          </h2>
-        </div>
-
         {/* Feature Cards */}
         <div className="space-y-24 pb-32">
           {studentFeatures.map((feature, index) => (
