@@ -4,15 +4,6 @@ import Navbar from "@/components/common/navbar";
 import Footer from "@/components/common/footer";
 import { Toaster } from "react-hot-toast";
 
-const jarkataSans = Plus_Jakarta_Sans({
-  variable: "--font-jarkata",
-  subsets: ["latin"],
-});
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
 export const metadata = {
   title: "BLUESANDS STEM LABS | Africa STEM EdTech Expo",
   description:
