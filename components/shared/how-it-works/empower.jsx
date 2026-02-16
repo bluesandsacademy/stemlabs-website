@@ -23,7 +23,7 @@ export default function EmpoweringFutureSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-3xl lg:text-4xl font-bold text-white mb-6 leading-tight"
+          className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"
         >
           Empowering the Future of Learning
         </motion.h2>
@@ -34,7 +34,7 @@ export default function EmpoweringFutureSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-base md:text-lg text-white/95 leading-relaxed mb-10 max-w-4xl mx-auto"
+          className="text-xl text-white/95 leading-relaxed mb-10 max-w-4xl mx-auto"
         >
           Whether you are a student eager to explore science, a teacher looking
           to transform classroom engagement, or a school striving to deliver
@@ -50,7 +50,7 @@ export default function EmpoweringFutureSection() {
         >
           <Link
             href="/https://app.bluesandstemlabs.com/auth/register"
-            className="inline-block bg-white text-secondary px-10 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
+            className="inline-block bg-white text-secondary px-5 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl "
           >
             Join the future of learning
           </Link>

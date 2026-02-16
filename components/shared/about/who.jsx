@@ -30,7 +30,7 @@ const WhoWeAre = () => {
             </h2>
 
             <p
-              className="text-base sm:text-base leading-relaxed text-white/90"
+              className="text-base sm:text-lg leading-relaxed text-white/90"
               style={{ fontFamily: "var(--font-jarkata)" }}
             >
               Blue Sands Academy is a forward-thinking EdTech and STEM
@@ -43,7 +43,7 @@ const WhoWeAre = () => {
             </p>
 
             <p
-              className="text-base sm:text-base leading-relaxed text-white/90"
+              className="text-base sm:text-lg leading-relaxed text-white/90"
               style={{ fontFamily: "var(--font-jarkata)" }}
             >
               Our flagship product, Blue Sands STEM Labs, is a virtual science

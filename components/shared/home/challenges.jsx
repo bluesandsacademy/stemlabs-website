@@ -1,12 +1,34 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { challenges } from "@/lib/data";
 
 const STEMChallengesSection = () => {
   const [activeChallenge, setActiveChallenge] = useState(0);
+  const [loadedImages, setLoadedImages] = useState(new Set());
+  const preloadedRef = useRef(false);
+
+  // Eagerly preload all challenge images into browser cache before user reaches section
+  useEffect(() => {
+    if (preloadedRef.current) return;
+    preloadedRef.current = true;
+
+    challenges.forEach((challenge, index) => {
+      const img = new window.Image();
+      img.src = challenge.image;
+      img.onload = () => {
+        setLoadedImages((prev) => new Set(prev).add(index));
+      };
+      // Mark as loaded even on error to avoid stuck skeletons
+      img.onerror = () => {
+        setLoadedImages((prev) => new Set(prev).add(index));
+      };
+    });
+  }, []);
+
+  const isImageLoaded = (index) => loadedImages.has(index);
 
   return (
     <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-secondary via-[#024570] to-secondary relative overflow-hidden">
@@ -45,25 +67,56 @@ const STEMChallengesSection = () => {
           >
             <div className="relative w-[80%] sm:w-[70%] md:w-[60%] lg:w-[60%] xl:w-[80%] rounded-[20px] sm:rounded-3xl md:rounded-[28px] lg:rounded-4xl border-6 border-white overflow-hidden shadow-xl sm:shadow-2xl hover:scale-[1.03] transition-transform duration-500">
               <div className="aspect-13/14 relative">
-                <AnimatePresence mode="wait">
+                {/* Skeleton shimmer — shown until the active image is loaded */}
+                <AnimatePresence>
+                  {!isImageLoaded(activeChallenge) && (
+                    <motion.div
+                      key="skeleton"
+                      initial={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute inset-0 z-10"
+                    >
+                      <div className="w-full h-full bg-gradient-to-r from-white/10 via-white/20 to-white/10 animate-[shimmer_1.5s_infinite]" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/*
+                  Render ALL images stacked, only the active one is visible.
+                  This keeps every image in the DOM once loaded — no re-fetch on switch.
+                */}
+                {challenges.map((challenge, index) => (
                   <motion.div
-                    key={activeChallenge}
-                    initial={{ opacity: 0, scale: 1.1 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.2, ease: "easeInOut" }}
+                    key={challenge.image}
                     className="absolute inset-0"
+                    animate={{
+                      opacity: index === activeChallenge ? 1 : 0,
+                      scale: index === activeChallenge ? 1 : 1.05,
+                    }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                    // Keep non-active images non-interactive
+                    style={{
+                      pointerEvents:
+                        index === activeChallenge ? "auto" : "none",
+                    }}
                   >
                     <Image
-                      src={challenges[activeChallenge].image}
-                      alt={challenges[activeChallenge].title}
+                      src={challenge.image}
+                      alt={challenge.title}
                       fill
                       className="object-cover"
+                      // priority on first image; others eager via preload
+                      priority={index === 0}
+                      // Never lazy-load — we want all in cache immediately
+                      loading={index === 0 ? "eager" : "eager"}
                       sizes="(max-width: 640px) 80vw, (max-width: 1024px) 60vw, 40vw"
-                      priority
+                      onLoad={() =>
+                        setLoadedImages((prev) => new Set(prev).add(index))
+                      }
                     />
                   </motion.div>
-                </AnimatePresence>
+                ))}
               </div>
             </div>
           </motion.div>
@@ -105,7 +158,7 @@ const STEMChallengesSection = () => {
                       : "py-3 px-4 sm:py-4 sm:pr-4 md:py-5 md:pr-4 hover:bg-white/5 rounded-lg"
                   }`}
                 >
-                  {/* Dot on the line - Hidden on mobile */}
+                  {/* Dot on the line */}
                   <div
                     className={`absolute left-[-4px] top-1/2 -translate-y-1/2 w-2 h-2 rounded-full transition-all duration-300 hidden sm:block ${
                       activeChallenge === index
@@ -124,7 +177,6 @@ const STEMChallengesSection = () => {
                       {challenge.title}
                     </h3>
 
-                    {/* Animated Description */}
                     <AnimatePresence>
                       {activeChallenge === index && (
                         <motion.div

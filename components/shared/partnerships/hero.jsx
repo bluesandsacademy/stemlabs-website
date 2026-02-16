@@ -1,7 +1,9 @@
 "use client";
 
+import CalendlyButton from "@/components/common/calendly-popup";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function PartnershipsHeroSection() {
   return (
@@ -36,7 +38,7 @@ export default function PartnershipsHeroSection() {
                 r="3"
                 fill="white"
               />
-            ))
+            )),
           )}
         </svg>
       </div>
@@ -60,7 +62,7 @@ export default function PartnershipsHeroSection() {
                 r="3"
                 fill="white"
               />
-            ))
+            )),
           )}
         </svg>
       </div>
@@ -77,7 +79,7 @@ export default function PartnershipsHeroSection() {
           >
             {/* Heading */}
             <h2
-              className="font-bold text-4xl lg:text-4xl xl:text-5xl leading-tight"
+              className="font-bold text-4xl md:text-5xl leading-tight"
               style={{ fontFamily: "var(--font-jarkata)" }}
             >
               Partnerships that Power Innovation in Education
@@ -85,7 +87,7 @@ export default function PartnershipsHeroSection() {
 
             {/* Description */}
             <p
-              className="text-base lg:text-lg leading-relaxed text-white/90 max-w-xl"
+              className="text-xl leading-relaxed text-white/90 max-w-xl"
               style={{ fontFamily: "var(--font-jarkata)" }}
             >
               We work with schools, governments, organizations, and investors to
@@ -95,14 +97,7 @@ export default function PartnershipsHeroSection() {
             </p>
 
             {/* CTA Button */}
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-black font-semibold text-base lg:text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-              style={{ fontFamily: "var(--font-jarkata)" }}
-            >
-              Apply to Partner
-            </motion.button>
+            <CalendlyButton buttonText="Apply to Partner" />
           </motion.div>
 
           {/* Right Content - Image with Blob Background */}

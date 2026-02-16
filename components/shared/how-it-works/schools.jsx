@@ -35,7 +35,7 @@ export default function ForSchoolsSection() {
   ];
 
   return (
-    <section className="relative py-20 lg:py-32 bg-secondary overflow-hidden">
+    <section className="relative py-20 lg:py-32 bg-secondary overflow-hidden font-sans">
       {/* Grid Background Pattern */}
       <div className="absolute inset-0 opacity-40">
         <Image src="/grid.png" alt="" fill className="object-cover" priority />
@@ -54,10 +54,10 @@ export default function ForSchoolsSection() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-4xl mx-auto mb-20"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             For Schools
           </h2>
-          <p className="text-lg md:text-xl text-white/90 leading-relaxed">
+          <p className="text-xl text-white/90 leading-relaxed">
             Teachers use Blue Sands STEM Labs to enhance lessons, simplify
             complex topics, and create an engaging classroom experience.
           </p>

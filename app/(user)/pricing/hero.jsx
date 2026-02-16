@@ -14,7 +14,7 @@ const PricingHeader = () => {
           {/* Left Column - Text Content */}
           <div className="max-w-2xl">
             <h1
-              className="text-white text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6"
+              className="text-white text-4xl md:text-5xl  font-bold leading-tight mb-6"
               style={{ fontFamily: "var(--font-jarkata)" }}
             >
               Simple, Scalable, and Affordable Plans for Every School and
@@ -22,7 +22,7 @@ const PricingHeader = () => {
             </h1>
 
             <p
-              className="text-white/90 text-lg sm:text-xl leading-relaxed"
+              className="text-white/90 text-xl leading-relaxed"
               style={{ fontFamily: "var(--font-jarkata)" }}
             >
               Choose a plan that fits your learning needs: from individual

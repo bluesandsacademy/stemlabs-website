@@ -4,7 +4,7 @@ export default function MilestonesSection() {
   const milestones = [
     {
       icon: Users,
-      stat: "7,000+ Users",
+      stat: "20,000+ Users",
       description: "Students learning virtually across Nigeria",
     },
     {
@@ -19,7 +19,7 @@ export default function MilestonesSection() {
     },
     {
       icon: Globe,
-      stat: "3 Countries",
+      stat: "6 Countries",
       description: "Expanding impact in Africa",
     },
   ];
@@ -28,7 +28,7 @@ export default function MilestonesSection() {
     <section className="bg-background py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <h2 className="text-3xl md:text-4xl font-bold text-secondary text-center mb-6">
+        <h2 className="text-4xl md:text-5xl font-bold text-secondary text-center mb-6">
           Our Milestones
         </h2>
 

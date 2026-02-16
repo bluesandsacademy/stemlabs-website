@@ -12,12 +12,12 @@ import AfricanSTEMSection from "@/components/shared/home/sub-hero";
 
 const STEMChallengesSection = dynamic(
   () => import("@/components/shared/home/challenges"),
-  { ssr: true }
+  { ssr: true },
 );
 
 const PricingSection = dynamic(
   () => import("@/components/shared/home/pricing"),
-  { ssr: true }
+  { ssr: true },
 );
 
 const TeamSection = dynamic(() => import("@/components/shared/home/team"), {
@@ -30,7 +30,7 @@ const BlogSection = dynamic(() => import("@/components/shared/home/blog"), {
 
 const TestimonialsSection = dynamic(
   () => import("@/components/shared/home/testimonial"),
-  { ssr: true }
+  { ssr: true },
 );
 
 const FAQSection = dynamic(() => import("@/components/shared/home/faq"), {
@@ -55,7 +55,7 @@ export const metadata = {
 // This is now a server component - no "use client" directive
 export default function Homepage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen font-sans">
       {/* Critical above-the-fold content - rendered immediately */}
       <Hero />
       <VirtualLabsSection />

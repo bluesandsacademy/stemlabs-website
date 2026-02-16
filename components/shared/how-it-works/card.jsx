@@ -14,25 +14,25 @@ export const FeatureCard = ({ feature, index }) => {
   const scale = useTransform(
     scrollYProgress,
     [0, 0.25, 0.65, 0.85, 1],
-    [0.88, 1, 1, 0.96, 0.92]
+    [0.88, 1, 1, 0.96, 0.92],
   );
 
   const y = useTransform(
     scrollYProgress,
     [0, 0.25, 0.65, 0.85, 1],
-    [120, 0, 0, -15, -30]
+    [120, 0, 0, -15, -30],
   );
 
   const opacity = useTransform(
     scrollYProgress,
     [0, 0.15, 0.25, 0.65, 0.85, 1],
-    [0, 0.5, 1, 1, 0.8, 0.5]
+    [0, 0.5, 1, 1, 0.8, 0.5],
   );
 
   const rotateX = useTransform(
     scrollYProgress,
     [0, 0.25, 0.65, 1],
-    [5, 0, 0, -3]
+    [5, 0, 0, -3],
   );
 
   const blur = useTransform(scrollYProgress, [0.65, 0.85, 1], [0, 1, 3]);
@@ -40,19 +40,19 @@ export const FeatureCard = ({ feature, index }) => {
   const x = useTransform(
     scrollYProgress,
     [0, 0.25, 0.65, 1],
-    [isEven ? -20 : 20, 0, 0, isEven ? 5 : -5]
+    [isEven ? -20 : 20, 0, 0, isEven ? 5 : -5],
   );
 
   const shadowOpacity = useTransform(
     scrollYProgress,
     [0, 0.25, 0.65, 1],
-    [0.1, 0.2, 0.2, 0.05]
+    [0.1, 0.2, 0.2, 0.05],
   );
 
   const brightness = useTransform(
     scrollYProgress,
     [0, 0.25, 0.65, 0.85, 1],
-    [0.95, 1, 1, 0.98, 0.95]
+    [0.95, 1, 1, 0.98, 0.95],
   );
 
   const topPosition = 90 + index * 25;
@@ -67,7 +67,7 @@ export const FeatureCard = ({ feature, index }) => {
       }}
     >
       <motion.div
-        className="bg-primary rounded-[2.5rem] overflow-hidden mx-auto max-w-7xl shadow-2xl"
+        className="bg-primary rounded-[2.5rem] overflow-hidden mx-auto max-w-7xl shadow-2xl font-sans"
         style={{
           scale,
           opacity,
@@ -77,7 +77,7 @@ export const FeatureCard = ({ feature, index }) => {
           filter: useTransform(
             [blur, brightness],
             ([blurValue, brightnessValue]) =>
-              `blur(${blurValue}px) brightness(${brightnessValue})`
+              `blur(${blurValue}px) brightness(${brightnessValue})`,
           ),
           transformPerspective: 1500,
           boxShadow: useTransform(
@@ -85,11 +85,11 @@ export const FeatureCard = ({ feature, index }) => {
             (value) =>
               `0 30px 90px rgba(4, 131, 226, ${
                 value * 0.2
-              }), 0 10px 40px rgba(0, 0, 0, ${value * 0.15})`
+              }), 0 10px 40px rgba(0, 0, 0, ${value * 0.15})`,
           ),
         }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 p-6 lg:p-12 items-center min-h-[200px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 p-6 lg:p-12 items-center min-h-[200px] font-sans">
           {/* Image Section */}
           <motion.div
             className={`${
@@ -104,7 +104,7 @@ export const FeatureCard = ({ feature, index }) => {
                 scale: useTransform(
                   scrollYProgress,
                   [0, 0.5, 1],
-                  [1.1, 1, 1.05]
+                  [1.1, 1, 1.05],
                 ),
               }}
               className="w-full aspect-5/5 relative"
@@ -135,7 +135,7 @@ export const FeatureCard = ({ feature, index }) => {
                 opacity: useTransform(
                   scrollYProgress,
                   [0, 0.2, 0.7, 1],
-                  [0, 1, 1, 0.8]
+                  [0, 1, 1, 0.8],
                 ),
               }}
             >
@@ -148,7 +148,7 @@ export const FeatureCard = ({ feature, index }) => {
                 opacity: useTransform(
                   scrollYProgress,
                   [0, 0.25, 0.7, 1],
-                  [0, 1, 1, 0.7]
+                  [0, 1, 1, 0.7],
                 ),
               }}
             >
@@ -163,7 +163,7 @@ export const FeatureCard = ({ feature, index }) => {
                   opacity: useTransform(
                     scrollYProgress,
                     [0, 0.3, 0.7, 1],
-                    [0, 1, 1, 0.7]
+                    [0, 1, 1, 0.7],
                   ),
                 }}
               >
@@ -180,7 +180,7 @@ export const FeatureCard = ({ feature, index }) => {
                   opacity: useTransform(
                     scrollYProgress,
                     [0, 0.3, 0.7, 1],
-                    [0, 1, 1, 0.7]
+                    [0, 1, 1, 0.7],
                   ),
                 }}
               >

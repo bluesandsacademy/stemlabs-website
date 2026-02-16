@@ -61,7 +61,7 @@ export default function TechnicalHighlightsSection() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-4xl mx-auto mb-20"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-6">
             Technical Highlights
           </h2>
         </motion.div>
@@ -160,7 +160,7 @@ export default function TechnicalHighlightsSection() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary">
+            <h3 className=" md:text-4xl lg:text-5xl font-bold text-secondary">
               Offline Access — Learning Without Limits
             </h3>
           </motion.div>

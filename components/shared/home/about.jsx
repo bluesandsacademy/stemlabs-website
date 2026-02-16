@@ -6,13 +6,13 @@ export default function VirtualLabsSection() {
       <div className="max-w-8xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <p className="text-primary text-lg font-bold mb-3 tracking-wide">
+          <p className="text-primary text-2xl font-semibold mb-3 tracking-wide font-sans">
             About Blue Sands STEM Labs
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold text-secondary mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-text-black mb-4 font-sans">
             Virtual Science Labs Built for African Classrooms
           </h1>
-          <p className="text-foreground/70 max-w-4xl mx-auto text-base leading-relaxed">
+          <p className="text-foreground/60 max-w-4xl mx-auto text-xl leading-relaxed font-inter">
             Blue Sands STEM Labs, developed by Blue Sands Academy Limited,
             delivers curriculum-aligned Physics, Chemistry, and Biology
             experiments to students and teachers across Africa.

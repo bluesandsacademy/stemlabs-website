@@ -60,7 +60,7 @@ export default function RegistrationForm() {
           "Thank you! Your registration has been successfully submitted.",
           {
             id: toastId,
-          }
+          },
         );
 
         // Reset form
@@ -94,7 +94,7 @@ export default function RegistrationForm() {
         "Network error. Please check your connection and try again.",
         {
           id: toastId,
-        }
+        },
       );
     } finally {
       setLoading(false);
@@ -571,7 +571,7 @@ export default function RegistrationForm() {
                 href="mailto:partnership@bluesandsacademy.org"
                 className="text-primary hover:underline font-medium"
               >
-                partnership@bluesandsacademy.org
+                partnership@bluesandstemlabs.com
               </a>{" "}
               |{" "}
               <a

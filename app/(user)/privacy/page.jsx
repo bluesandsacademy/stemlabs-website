@@ -177,40 +177,6 @@ export default function PrivacyPolicy() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-secondary tracking-tight">
               Privacy Policy (NDPR/NDPA-Aligned)
             </h1>
-            <div className="space-y-2 text-foreground/60">
-              <p className="text-base md:text-lg font-light">
-                <span className="font-normal text-foreground/80">
-                  Effective Date:
-                </span>{" "}
-                {effectiveDate}
-              </p>
-              <p className="text-base md:text-lg font-light">
-                <span className="font-normal text-foreground/80">
-                  Controller (Company):
-                </span>{" "}
-                {controller}
-              </p>
-              <p className="text-base md:text-lg font-light">
-                <span className="font-normal text-foreground/80">Contact:</span>{" "}
-                <a
-                  href={`mailto:${email}`}
-                  className="text-primary hover:text-primary/80 transition-colors"
-                >
-                  {email}
-                </a>
-              </p>
-              <p className="text-base md:text-lg font-light">
-                <span className="font-normal text-foreground/80">
-                  Data Protection Officer (DPO) [Nigeria]:
-                </span>{" "}
-                <a
-                  href={`mailto:${dpoEmail}`}
-                  className="text-primary hover:text-primary/80 transition-colors"
-                >
-                  {dpoEmail}
-                </a>
-              </p>
-            </div>
           </div>
         </div>
       </section>

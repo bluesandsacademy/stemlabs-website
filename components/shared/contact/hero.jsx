@@ -1,3 +1,5 @@
+import CalendlyButton from "@/components/common/calendly-popup";
+
 export default function ContactHero() {
   return (
     <section className="relative bg-primary overflow-hidden">
@@ -78,21 +80,19 @@ export default function ContactHero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="relative z-10">
-            <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
               Talk to a real person about bringing practical science to your
               school
             </h1>
-            <p className="text-lg text-white/90 mb-8 max-w-xl">
+            <p className="text-xl text-white/90 mb-8 max-w-xl">
               Book a live demo, request a quote, or get help with setup and
               offline content packs.
             </p>
             <div className="flex flex-wrap gap-4">
-              <button className="px-8 py-4 bg-white text-primary font-semibold rounded-lg hover:bg-gray-50 transition-colors shadow-lg">
-                Book a Demo
-              </button>
-              <button className="px-8 py-4 bg-primary border-2 border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors backdrop-blur-sm">
+              <CalendlyButton />
+              {/* <button className="px-8 py-4 bg-primary border-2 border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors backdrop-blur-sm">
                 Request a Quote
-              </button>
+              </button> */}
             </div>
           </div>
 

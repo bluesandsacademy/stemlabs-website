@@ -12,15 +12,23 @@ import { FaChevronDown } from "react-icons/fa";
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "How it works", href: "/how-it-works" },
-  { name: "Simulations", href: "/simulations" },
+
+  {
+    name: "Simulations",
+
+    dropdown: [
+      { name: "Simulations", href: "/simulations" },
+      { name: "How it works", href: "/how-it-works" },
+    ],
+  },
   { name: "Pricing", href: "/pricing" },
   { name: "Partnership", href: "/partnerships" },
-  { name: "ASEE 2025", href: "/asee-2025" },
   {
     name: "Insights",
     dropdown: [
       { name: "Blog", href: "/blog" },
+      { name: "ASEE 2025", href: "/asee-2025" },
+
       // Future: { name: "Case Studies", href: "/case-studies" },
     ],
   },
@@ -89,7 +97,7 @@ export default function Navbar() {
         className="fixed inset-x-0 top-0 z-50 flex flex-col bg-white"
       >
         {/* --- Top Banner --- */}
-        <div className="bg-secondary flex items-center justify-center gap-1.5 py-2 px-3 text-center text-xs sm:text-sm">
+        {/* <div className="bg-secondary flex items-center justify-center gap-1.5 py-2 px-3 text-center text-xs sm:text-sm">
           <Link
             href="https://app.bluesandstemlabs.com/auth/login"
             className="flex items-center gap-1"
@@ -97,7 +105,7 @@ export default function Navbar() {
             <p className="text-white font-medium">Sign up to get started now</p>
             <GoArrowRight className="text-white text-sm sm:text-base" />
           </Link>
-        </div>
+        </div> */}
 
         {/* --- Main Navigation --- */}
         <nav className="flex items-center justify-between px-4 sm:px-6 lg:px-12 py-3 sm:py-4 shadow-sm">
@@ -106,9 +114,9 @@ export default function Navbar() {
             <Image
               src="/logo.png"
               width={140}
-              height={48}
+              height={50}
               alt="Blue Sands STEM Labs Logo"
-              className="h-7 sm:h-9 w-auto"
+              className="h-7 sm:h-12 w-auto"
               priority
             />
           </Link>
@@ -256,7 +264,7 @@ export default function Navbar() {
                     </div>
                   )}
                 </div>
-              )
+              ),
             )}
           </nav>
 

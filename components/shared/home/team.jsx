@@ -16,7 +16,7 @@ const TeamSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-sm sm:text-base font-semibold text-primary uppercase tracking-wide mb-4"
+            className="text-2xl font-semibold text-primary uppercase tracking-wide mb-4"
             style={{ fontFamily: "var(--font-jarkata)" }}
           >
             Meet Our Team
@@ -27,7 +27,7 @@ const TeamSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary mb-4 leading-tight"
+            className="text-4xl md:text-5xl font-bold text-secondary mb-4 leading-tight"
             style={{ fontFamily: "var(--font-jarkata)" }}
           >
             We work together, as a seamless remote team

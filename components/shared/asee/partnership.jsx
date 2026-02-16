@@ -21,7 +21,7 @@ export default function PartnershipDesk() {
       name: "Cliff Kingsley",
       role: "Events & School Relations",
       phone: "+234 916 431 0578",
-      email: "info@bluesandsacademy.org",
+      email: "info@bluesandstemlabs.com",
       image: "/home/team/1.png",
     },
   ];
