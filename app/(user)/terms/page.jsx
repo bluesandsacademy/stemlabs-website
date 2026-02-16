@@ -134,28 +134,7 @@ export default function TermsAndConditions() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-secondary tracking-tight">
               Website Terms & Conditions
             </h1>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-foreground/60">
-              <p className="text-base md:text-lg font-light">
-                <span className="font-normal text-foreground/80">
-                  Effective Date:
-                </span>{" "}
-                {effectiveDate}
-              </p>
-              <span className="hidden sm:block w-1 h-1 rounded-full bg-primary/40" />
-              <p className="text-base md:text-lg font-light">
-                <span className="font-normal text-foreground/80">
-                  Operator:
-                </span>{" "}
-                Blue Stem Labs (
-                <a
-                  href="https://bluestemlabs.org"
-                  className="text-primary hover:text-primary/80 transition-colors"
-                >
-                  https://bluestemlabs.org
-                </a>
-                , 'we', 'our', 'us')
-              </p>
-            </div>
+
             <p className="text-base md:text-lg font-light text-foreground/60 pt-2">
               <span className="font-normal text-foreground/80">Contact:</span>{" "}
               <a

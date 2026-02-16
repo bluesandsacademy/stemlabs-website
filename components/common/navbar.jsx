@@ -97,7 +97,7 @@ export default function Navbar() {
         className="fixed inset-x-0 top-0 z-50 flex flex-col bg-white"
       >
         {/* --- Top Banner --- */}
-        <div className="bg-secondary flex items-center justify-center gap-1.5 py-2 px-3 text-center text-xs sm:text-sm">
+        {/* <div className="bg-secondary flex items-center justify-center gap-1.5 py-2 px-3 text-center text-xs sm:text-sm">
           <Link
             href="https://app.bluesandstemlabs.com/auth/login"
             className="flex items-center gap-1"
@@ -105,7 +105,7 @@ export default function Navbar() {
             <p className="text-white font-medium">Sign up to get started now</p>
             <GoArrowRight className="text-white text-sm sm:text-base" />
           </Link>
-        </div>
+        </div> */}
 
         {/* --- Main Navigation --- */}
         <nav className="flex items-center justify-between px-4 sm:px-6 lg:px-12 py-3 sm:py-4 shadow-sm">
