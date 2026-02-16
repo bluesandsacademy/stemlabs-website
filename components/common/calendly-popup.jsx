@@ -8,8 +8,10 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function CalendlyButton({ buttonText = "Book a Demo" }) {
   const [rootElement, setRootElement] = useState(null);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     const root = document.getElementById("__next") || document.body;
     setRootElement(root);
   }, []);
@@ -27,11 +29,24 @@ export default function CalendlyButton({ buttonText = "Book a Demo" }) {
     setShowSuccess(true);
   };
 
+  // Don't render until mounted on client
+  if (!isMounted || !rootElement) {
+    return (
+      <button
+        disabled
+        className="bg-white text-primary px-10 py-4 rounded-xl font-semibold text-lg shadow-xl opacity-50 cursor-not-allowed"
+        style={{ fontFamily: "var(--font-jarkata)" }}
+      >
+        {buttonText}
+      </button>
+    );
+  }
+
   return (
     <>
       <PopupButton
         url="https://calendly.com/admin-bluesandstemlabs/30min"
-        rootElement={rootElement || document.body}
+        rootElement={rootElement}
         text={buttonText}
         className="bg-white text-primary px-10 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
         styles={{
