@@ -25,7 +25,7 @@ export default function UserLayout({ children }) {
       {" "}
       <div className="flex flex-col min-h-screen">
         <Navbar />
-        <main className="flex-1 pt-[88px]">{children}</main>
+        <main className="flex-1 pt-20">{children}</main>
         <Footer />
       </div>
       <Toaster position="top-center" />
