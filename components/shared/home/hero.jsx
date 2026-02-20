@@ -123,49 +123,19 @@ const AseeSlide = ({ isActive }) => {
   return (
     <>
       {/* Text Section */}
-      <div className="space-y-6 md:space-y-6 text-center lg:text-left max-h-max">
+      <div className="space-y-6 md:space-y-6 text-center lg:text-left max-h-[90%] pt-20 md:pt-0">
         <AnimatePresence mode="wait">
           {isActive && (
-            <motion.div
-              key="asee-content"
+            <motion.h1
+              key="asee-title"
+              className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.6 }}
-              className="space-y-2"
+              transition={{ duration: shouldReduceMotion ? 0 : 0.6 }}
             >
-              <h1 className="text-3xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white tracking-tight">
-                ASEE 2025
-              </h1>
-              <p className="text-white/80 text-base sm:text-lg font-light">
-                Powered by Blue Sands STEM Labs
-              </p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        <AnimatePresence mode="wait">
-          {isActive && (
-            <motion.div
-              key="asee-headline"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="space-y-3"
-            >
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
-                Africa STEM EdTech Expo
-              </h2>
-
-              <p className="text-white/90 text-lg sm:text-xl font-medium">
-                Comfort Hall Okeir Bridge Bus Stop, off Addo Road, Ajah
-              </p>
-
-              <p className="text-white/90 text-lg sm:text-xl font-medium">
-                25th November 2025
-              </p>
-            </motion.div>
+              Virtual + AI, Reinventing STEM Education
+            </motion.h1>
           )}
         </AnimatePresence>
 
@@ -173,64 +143,63 @@ const AseeSlide = ({ isActive }) => {
           {isActive && (
             <motion.p
               key="asee-desc"
-              initial={{ opacity: 0, y: 15 }}
+              className="text-sm sm:text-base md:text-lg text-white/90 leading-loose max-w-2xl mx-auto lg:mx-0"
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="text-white/90 text-base sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0"
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
-              A convening for teachers, school leaders, students, EdTech
-              founders, investors, NGOs, and government education stakeholders
-              to experience immersive VR/AR education tools, digital STEM labs,
-              classroom AI tools, and African-aligned digital content.
+              Practical, project-based STEM and AI learning that empowers
+              students to think, build, innovate, and lead in an AI-powered
+              world.
             </motion.p>
           )}
         </AnimatePresence>
 
         {isActive && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.7, duration: 0.4 }}
-            className="pt-4"
-          >
-            <Link href="/asee-2025/register">
-              <button className="bg-white text-[#02345a] px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg hover:bg-white/95 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 inline-block">
-                Register for Event
-              </button>
+          <div className="gap-4">
+            <Link href="https://app.bluesandstemlabs.com/auth/register">
+              <motion.button
+                className="px-8 sm:px-10 py-3 sm:py-4 bg-white text-secondary font-bold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+                whileHover={{ scale: shouldReduceMotion ? 1 : 1.05 }}
+                whileTap={{ scale: shouldReduceMotion ? 1 : 0.95 }}
+              >
+                Sign Up
+              </motion.button>
             </Link>
-          </motion.div>
+          </div>
         )}
       </div>
 
       {/* Image Section */}
-      <div className="w-full max-w-6xl mx-auto ml-5 md:ml-20 mt-10 lg:mt-0">
-        <AnimatePresence mode="wait">
-          {isActive && (
-            <motion.div
-              key="asee-image"
-              className="relative rounded-2xl overflow-hidden inline-block"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
-            >
-              <Image
-                src="/asee/hero.jpg"
-                alt="ASEE 2025 Event"
-                width={1200} // ← Put the REAL natural width here
-                height={700} // ← Put the REAL natural height here
-                className="object-contain w-auto h-[70vh]"
-                priority
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
+      <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-0 md:mt-10 lg:mt-0">
+        <div className="relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[5/5] lg:aspect-[6/5] xl:aspect-[5/4] flex justify-center items-center max-h-[80vh]">
+          <AnimatePresence mode="wait">
+            {isActive && (
+              <motion.div
+                key="asee-image"
+                className="relative w-full h-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-5xl xl:max-w-5xl rounded-2xl overflow-hidden"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+              >
+                <Image
+                  src="/hero/1.jpg"
+                  alt="Virtual STEM Education"
+                  fill
+                  sizes="(max-width: 768px) 90vw, (max-width: 1024px) 80vw, 1200px"
+                  className="object-contain rounded-2xl"
+                  priority
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </>
   );
 };
-
 const Slide1 = ({ isActive }) => {
   const shouldReduceMotion = useReducedMotion();
 
@@ -505,7 +474,7 @@ const HeroSlider = () => {
   const isAseeSlide = currentSlide === 0;
 
   const getSlideHeight = () => {
-    if (currentSlide === 0) return "h-[1100px]"; // ASEE
+    if (currentSlide === 0) return "h-[650px]"; // was h-[1100px]// ASEE
     if (currentSlide === 1) return "h-[650px]"; // Slide1
     if (currentSlide === 2) return "h-[900px]"; // Slide2
     if (currentSlide === 3) return "h-[700px]"; // Slide3
@@ -516,7 +485,7 @@ const HeroSlider = () => {
     <section
       className={clsx(
         `relative overflow-hidden ${getSlideHeight()} sm:min-h-[650px] md:min-h-[500px] md:max-h-[650px] flex items-center`,
-        backgroundClasses[getBackground()]
+        backgroundClasses[getBackground()],
       )}
     >
       {/* Grid Line Vector Background */}

@@ -65,8 +65,8 @@ export default function EmpoweringLearningSection() {
           </h2>
 
           <p className="text-white/80 text-xl max-w-3xl mx-auto">
-            Built by Blue Sands Academy Limited for African next-generation of
-            innovators
+            Built for African innovators — hands-on STEM and AI that transforms
+            curiosity into innovation.
           </p>
         </div>
 
