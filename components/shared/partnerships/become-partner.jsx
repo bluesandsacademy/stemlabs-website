@@ -24,7 +24,7 @@ export default function BecomePartnerCTA() {
       id: 3,
       icon: Globe,
       label: "Website",
-      value: "https://www.bluesandstemlabs.com/",
+      value: "bluesandstemlabs.com",
       href: "https://www.bluesandstemlabs.com/",
     },
   ];
@@ -80,12 +80,12 @@ export default function BecomePartnerCTA() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group"
+              className="group min-w-0"
             >
-              <div className="bg-white rounded-2xl lg:rounded-3xl p-8 lg:p-10 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+              <div className="bg-white rounded-2xl lg:rounded-3xl p-6 lg:p-8 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 min-w-0">
                 {/* Icon */}
                 <div className="flex justify-center mb-5">
-                  <div className="w-16 h-16  rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-16 h-16 rounded-full bg-[#0483e2] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
                     <method.icon
                       className="w-8 h-8 text-white"
                       strokeWidth={2}
@@ -94,12 +94,12 @@ export default function BecomePartnerCTA() {
                 </div>
 
                 {/* Label */}
-                <h3 className="text-xl lg:text-2xl font-bold text-secondary mb-3">
+                <h3 className="text-xl lg:text-2xl font-bold text-[#02345a] mb-3">
                   {method.label}
                 </h3>
 
-                {/* Value */}
-                <p className="text-sm lg:text-base text-gray-600 font-medium">
+                {/* Value — break long strings like email addresses */}
+                <p className="text-sm lg:text-base text-gray-600 font-medium break-all leading-snug">
                   {method.value}
                 </p>
               </div>
@@ -117,7 +117,7 @@ export default function BecomePartnerCTA() {
         >
           <Link
             href="/apply-partner"
-            className="group relative px-8 lg:px-10 py-3.5 lg:py-4 bg-white text-[#02345a] rounded-xl lg:rounded-2xl font-semibold text-base lg:text-lg hover:shadow-xl transition-all duration-300 "
+            className="group relative px-8 lg:px-10 py-3.5 lg:py-4 bg-white text-[#02345a] rounded-xl lg:rounded-2xl font-semibold text-base lg:text-lg hover:shadow-xl transition-all duration-300"
           >
             Apply to Partner
           </Link>
