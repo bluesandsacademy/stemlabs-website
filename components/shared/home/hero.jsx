@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, memo } from "react";
+import React, { useState, useEffect, memo } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import clsx from "clsx";
@@ -117,89 +117,6 @@ const FloatingCards = memo(() => {
 FloatingCards.displayName = "FloatingCards";
 
 // Individual Slide Components
-const AseeSlide = ({ isActive }) => {
-  const shouldReduceMotion = useReducedMotion();
-
-  return (
-    <>
-      {/* Text Section */}
-      <div className="space-y-6 md:space-y-6 text-center lg:text-left max-h-[90%] pt-20 md:pt-0">
-        <AnimatePresence mode="wait">
-          {isActive && (
-            <motion.h1
-              key="asee-title"
-              className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: shouldReduceMotion ? 0 : 0.6 }}
-            >
-              Virtual + AI, Reinventing STEM Education
-            </motion.h1>
-          )}
-        </AnimatePresence>
-
-        <AnimatePresence mode="wait">
-          {isActive && (
-            <motion.p
-              key="asee-desc"
-              className="text-sm sm:text-base md:text-lg text-white/90 leading-loose max-w-2xl mx-auto lg:mx-0"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              Practical, project-based STEM and AI learning that empowers
-              students to think, build, innovate, and lead in an AI-powered
-              world.
-            </motion.p>
-          )}
-        </AnimatePresence>
-
-        {isActive && (
-          <div className="gap-4">
-            <Link href="https://app.bluesandstemlabs.com/auth/register">
-              <motion.button
-                className="px-8 sm:px-10 py-3 sm:py-4 bg-white text-secondary font-bold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
-                whileHover={{ scale: shouldReduceMotion ? 1 : 1.05 }}
-                whileTap={{ scale: shouldReduceMotion ? 1 : 0.95 }}
-              >
-                Sign Up
-              </motion.button>
-            </Link>
-          </div>
-        )}
-      </div>
-
-      {/* Image Section */}
-      <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-0 md:mt-10 lg:mt-0">
-        <div className="relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[5/5] lg:aspect-[6/5] xl:aspect-[5/4] flex justify-center items-center max-h-[80vh]">
-          <AnimatePresence mode="wait">
-            {isActive && (
-              <motion.div
-                key="asee-image"
-                className="relative w-full h-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-5xl xl:max-w-5xl rounded-2xl overflow-hidden"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
-              >
-                <Image
-                  src="/hero/1.jpg"
-                  alt="Virtual STEM Education"
-                  fill
-                  sizes="(max-width: 768px) 90vw, (max-width: 1024px) 80vw, 1200px"
-                  className="object-contain rounded-2xl"
-                  priority
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
-    </>
-  );
-};
 const Slide1 = ({ isActive }) => {
   const shouldReduceMotion = useReducedMotion();
 
@@ -452,7 +369,7 @@ const Slide3 = ({ isActive }) => {
 
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = 4; // ASEE + 3 regular slides
+  const totalSlides = 3;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -461,24 +378,18 @@ const HeroSlider = () => {
     return () => clearInterval(interval);
   }, [totalSlides]);
 
-  const goToSlide = useCallback((index) => setCurrentSlide(index), []);
-
   // Determine background based on current slide
   const getBackground = () => {
-    if (currentSlide === 0) return "secondary"; // ASEE
-    if (currentSlide === 1) return "primary"; // Slide 1
-    if (currentSlide === 2) return "secondary"; // Slide 2
+    if (currentSlide === 0) return "primary"; // Slide 1
+    if (currentSlide === 1) return "secondary"; // Slide 2
     return "primary"; // Slide 3
   };
 
-  const isAseeSlide = currentSlide === 0;
-
   const getSlideHeight = () => {
-    if (currentSlide === 0) return "h-[650px]"; // was h-[1100px]// ASEE
-    if (currentSlide === 1) return "h-[650px]"; // Slide1
-    if (currentSlide === 2) return "h-[900px]"; // Slide2
-    if (currentSlide === 3) return "h-[700px]"; // Slide3
-    return "h-[1100px]";
+    if (currentSlide === 0) return "h-[650px]"; // Slide1
+    if (currentSlide === 1) return "h-[900px]"; // Slide2
+    if (currentSlide === 2) return "h-[700px]"; // Slide3
+    return "h-[650px]";
   };
 
   return (
@@ -500,18 +411,7 @@ const HeroSlider = () => {
         />
       </div>
 
-      {/* Decorative dots pattern (only for ASEE slide) */}
-      {isAseeSlide && (
-        <div className="absolute right-0 top-0 bottom-0 w-1/3 opacity-60 hidden md:block z-[1]">
-          <div className="grid grid-cols-6 gap-4 h-full items-center pr-8">
-            {[...Array(60)].map((_, i) => (
-              <div key={i} className="w-2 h-2 rounded-full bg-white/20" />
-            ))}
-          </div>
-        </div>
-      )}
-
-      <div className="max-w-8xl w-full mx-auto px-4 sm:px-6 lg:px-12  md:py-10 relative z-10">
+<div className="max-w-8xl w-full mx-auto px-4 sm:px-6 lg:px-12  md:py-10 relative z-10">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -521,10 +421,9 @@ const HeroSlider = () => {
             transition={{ duration: 0.65, ease: "easeOut" }}
             className="grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-24 items-center"
           >
-            {currentSlide === 0 && <AseeSlide isActive={true} />}
-            {currentSlide === 1 && <Slide1 isActive={true} />}
-            {currentSlide === 2 && <Slide2 isActive={true} />}
-            {currentSlide === 3 && <Slide3 isActive={true} />}
+            {currentSlide === 0 && <Slide1 isActive={true} />}
+            {currentSlide === 1 && <Slide2 isActive={true} />}
+            {currentSlide === 2 && <Slide3 isActive={true} />}
           </motion.div>
         </AnimatePresence>
       </div>
