@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { img } from "@/lib/cloudinary";
 
 export default function ExperienceSection() {
   return (
@@ -54,7 +55,7 @@ export default function ExperienceSection() {
             {/* Main Image */}
             <div className="relative aspect-video">
               <Image
-                src="/features/exp.jpg"
+                src={img("/features/exp.jpg")}
                 alt="Student experiencing virtual reality science lab"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"

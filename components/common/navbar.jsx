@@ -8,6 +8,7 @@ import { GoArrowRight } from "react-icons/go";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { FaChevronDown } from "react-icons/fa";
+import { img } from "@/lib/cloudinary";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -112,7 +113,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
-              src="/logo.png"
+              src={img("/logo.png")}
               width={140}
               height={50}
               alt="Blue Sands STEM Labs Logo"

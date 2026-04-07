@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { img } from "@/lib/cloudinary";
 
 export default function TeachersSection() {
   const howItWorksSteps = [
@@ -118,7 +119,7 @@ export default function TeachersSection() {
               <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl bg-linear-to-br from-orange-100 via-orange-50 to-yellow-50 p-3">
                 <div className="relative aspect-4/3 rounded-4xl overflow-hidden">
                   <Image
-                    src="/features/teacher1.jpg"
+                    src={img("/features/teacher1.jpg")}
                     alt="Teacher in classroom with tablet"
                     fill
                     className="object-cover"
@@ -146,7 +147,7 @@ export default function TeachersSection() {
               <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl bg-linear-to-br from-orange-100 via-orange-50 to-yellow-50 p-3">
                 <div className="relative aspect-4/3 rounded-4xl overflow-hidden">
                   <Image
-                    src="/features/teacher2.jpg"
+                    src={img("/features/teacher2.jpg")}
                     alt="Teacher helping student"
                     fill
                     className="object-cover"

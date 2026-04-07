@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { img } from "@/lib/cloudinary";
 
 const PricingHeroSection = () => {
   return (
@@ -89,7 +90,7 @@ const PricingHeroSection = () => {
                 className="relative aspect-square rounded-full overflow-hidden shadow-2xl"
               >
                 <Image
-                  src="/pricing/1.jpg"
+                  src={img("/pricing/1.jpg")}
                   alt="Student using mobile phone for learning"
                   fill
                   className="object-cover"

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import { img } from "@/lib/cloudinary";
 
 const SolutionWorksHero = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -16,7 +17,7 @@ const SolutionWorksHero = () => {
           {/* Background Image */}
           <div className="relative w-full aspect-[21/9] sm:aspect-[21/8] lg:aspect-[21/7]">
             <Image
-              src="/video/1.jpg"
+              src={img("/video/1.jpg")}
               alt="Student using VR technology"
               fill
               className="object-cover"

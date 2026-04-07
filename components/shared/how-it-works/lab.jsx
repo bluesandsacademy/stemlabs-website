@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Play } from "lucide-react";
+import Image from "next/image";
+import { img } from "@/lib/cloudinary";
 
 export default function VirtualLabVideoSection() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -41,10 +43,12 @@ export default function VirtualLabVideoSection() {
           {/* Video Thumbnail/Player */}
           <div className="relative aspect-video bg-gray-900">
             {/* Replace with your actual video thumbnail */}
-            <img
-              src="/features/17.png"
+            <Image
+              src={img("/features/17.png")}
               alt="Virtual Lab Preview"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
             />
 
             {/* Overlay gradient */}

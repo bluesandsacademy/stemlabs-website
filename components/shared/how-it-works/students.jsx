@@ -4,6 +4,7 @@ import { studentFeatures } from "@/lib/data";
 import { FeatureCard } from "./card";
 import Image from "next/image";
 import { useEffect } from "react";
+import { img } from "@/lib/cloudinary";
 
 export default function ForStudentsSection() {
   // Preload critical images on component mount
@@ -22,7 +23,7 @@ export default function ForStudentsSection() {
     <section className="relative py-0 bg-primary overflow-hidden font-sans">
       {/* Grid Background Pattern */}
       <div className="absolute inset-0 opacity-40">
-        <Image src="/grid.png" alt="" fill className="object-cover" priority />
+        <Image src={img("/grid.png")} alt="" fill className="object-cover" priority />
       </div>
 
       {/* Content */}

@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import { img } from "@/lib/cloudinary";
 
 const NewsletterSection = () => {
   const [email, setEmail] = useState("");
@@ -66,7 +67,7 @@ const NewsletterSection = () => {
           {/* Background Image */}
           <div className="relative h-[500px] md:h-[600px]">
             <Image
-              src="/blog/1.jpg"
+              src={img("/blog/1.jpg")}
               alt="Teacher working on laptop"
               fill
               className="object-cover brightness-90 group-hover:scale-105 transition-transform duration-700"

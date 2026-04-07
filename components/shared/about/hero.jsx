@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { img } from "@/lib/cloudinary";
 
 const AboutHero = () => {
   return (
@@ -43,7 +44,7 @@ const AboutHero = () => {
         >
           {/* Background Image */}
           <Image
-            src="/about/1.jpg"
+            src={img("/about/1.jpg")}
             alt="Blue Sands STEM Labs team in office"
             fill
             className="object-cover object-[center_top]"

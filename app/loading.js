@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { img } from "@/lib/cloudinary";
 
 function Loading() {
   const [progress, setProgress] = useState(0);
@@ -36,7 +37,7 @@ function Loading() {
       <div className="relative z-10 flex flex-col items-center gap-6">
         <div className="relative w-24 h-24 flex items-center justify-center">
           <Image
-            src="/logo.png"
+            src={img("/logo.png")}
             alt="Blue Stem Labs"
             width={96}
             height={96}

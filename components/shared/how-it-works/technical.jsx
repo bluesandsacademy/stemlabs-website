@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { img } from "@/lib/cloudinary";
 
 export default function TechnicalHighlightsSection() {
   const keyCapabilities = [
@@ -80,7 +81,7 @@ export default function TechnicalHighlightsSection() {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                 <div className="relative aspect-[4/3]">
                   <Image
-                    src="/features/technical1.jpg"
+                    src={img("/features/technical1.jpg")}
                     alt="Students using VR headsets for science experiments"
                     fill
                     className="object-cover"
@@ -268,7 +269,7 @@ export default function TechnicalHighlightsSection() {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                 <div className="relative aspect-[4/3]">
                   <Image
-                    src="/features/technical2.jpg"
+                    src={img("/features/technical2.jpg")}
                     alt="Student studying with laptop and taking notes"
                     fill
                     className="object-cover"

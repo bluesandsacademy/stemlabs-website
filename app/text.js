@@ -6,6 +6,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import clsx from "clsx";
 import Link from "next/link";
 import { BiAtom } from "react-icons/bi";
+import { img } from "@/lib/cloudinary";
 
 const backgroundClasses = {
   primary: "bg-[#0483e2]",
@@ -30,7 +31,7 @@ const FloatingCards = memo(() => {
               className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-300 border-2 border-white overflow-hidden"
             >
               <Image
-                src={`/hero/community/${i}.jpg`}
+                src={img(`/hero/community/${i}.jpg`)}
                 alt="Student"
                 fill
                 className="object-cover"
@@ -216,7 +217,7 @@ const AseeSlide = ({ isActive }) => {
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
               <Image
-                src="/asee/hero.jpg"
+                src={img("/asee/hero.jpg")}
                 alt="ASEE 2025 Event"
                 width={1200} // ← Put the REAL natural width here
                 height={700} // ← Put the REAL natural height here
@@ -299,7 +300,7 @@ const Slide1 = ({ isActive }) => {
                 transition={{ duration: 0.7, ease: "easeOut" }}
               >
                 <Image
-                  src="/hero/1.jpg"
+                  src={img("/hero/1.jpg")}
                   alt="STEM Student"
                   fill
                   sizes="(max-width: 768px) 90vw, (max-width: 1024px) 80vw, 1200px"
@@ -382,7 +383,7 @@ const Slide2 = ({ isActive }) => {
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
               <Image
-                src="/hero/3.jpg"
+                src={img("/hero/3.jpg")}
                 alt="ASEE 2025 Event"
                 width={1200} // ← Put the REAL natural width here
                 height={700} // ← Put the REAL natural height here
@@ -466,7 +467,7 @@ const Slide3 = ({ isActive }) => {
                 transition={{ duration: 0.7, ease: "easeOut" }}
               >
                 <Image
-                  src="/hero/2.png"
+                  src={img("/hero/2.png")}
                   alt="STEM Student"
                   fill
                   sizes="(max-width: 768px) 90vw, (max-width: 1024px) 80vw, 1200px"
@@ -522,7 +523,7 @@ const HeroSlider = () => {
       {/* Grid Line Vector Background */}
       <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
         <Image
-          src="/grid.png"
+          src={img("/grid.png")}
           alt="Grid background pattern"
           fill
           className="object-cover opacity-90"

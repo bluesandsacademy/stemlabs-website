@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import BlogPostCard from "@/components/shared/admin/card";
+import { img } from "@/lib/cloudinary";
 
 export default function BlogManagementPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -12,7 +13,7 @@ export default function BlogManagementPage() {
   const blogPosts = [
     {
       id: 1,
-      image: "/blog/1.jpg",
+      image: img("/blog/1.jpg"),
       title: "Bill Walsh leadership lessons",
       description:
         "Like to know the secrets of transforming a 2-14 team into a 3x Super Bowl winning Dynasty?",
@@ -22,7 +23,7 @@ export default function BlogManagementPage() {
     },
     {
       id: 2,
-      image: "/blog/presentation.jpg",
+      image: img("/blog/presentation.jpg"),
       title: "PM mental models",
       description:
         "Mental models are simple expressions of complex processes or relationships.",
@@ -32,7 +33,7 @@ export default function BlogManagementPage() {
     },
     {
       id: 3,
-      image: "/blog/workspace.jpg",
+      image: img("/blog/workspace.jpg"),
       title: "What is Wireframing?",
       description:
         "Introduction to Wireframing and its Principles. Learn from the best in the industry.",
@@ -42,7 +43,7 @@ export default function BlogManagementPage() {
     },
     {
       id: 4,
-      image: "/blog/workspace.jpg",
+      image: img("/blog/workspace.jpg"),
       title: "What is Wireframing?",
       description:
         "Introduction to Wireframing and its Principles. Learn from the best in the industry.",
@@ -52,7 +53,7 @@ export default function BlogManagementPage() {
     },
     {
       id: 5,
-      image: "/blog/lab-equipment.jpg",
+      image: img("/blog/lab-equipment.jpg"),
       title: "Bill Walsh leadership lessons",
       description:
         "Like to know the secrets of transforming a 2-14 team into a 3x Super Bowl winning Dynasty?",
@@ -62,7 +63,7 @@ export default function BlogManagementPage() {
     },
     {
       id: 6,
-      image: "/blog/presentation.jpg",
+      image: img("/blog/presentation.jpg"),
       title: "PM mental models",
       description:
         "Mental models are simple expressions of complex processes or relationships.",
@@ -72,7 +73,7 @@ export default function BlogManagementPage() {
     },
     {
       id: 7,
-      image: "/blog/workspace.jpg",
+      image: img("/blog/workspace.jpg"),
       title: "What is Wireframing?",
       description:
         "Introduction to Wireframing and its Principles. Learn from the best in the industry.",
@@ -82,7 +83,7 @@ export default function BlogManagementPage() {
     },
     {
       id: 8,
-      image: "/blog/workspace.jpg",
+      image: img("/blog/workspace.jpg"),
       title: "What is Wireframing?",
       description:
         "Introduction to Wireframing and its Principles. Learn from the best in the industry.",

@@ -4,6 +4,8 @@
  * Empowering message with call-to-action button and grid background
  */
 
+import { img } from "@/lib/cloudinary";
+
 export default function HeroCTA() {
   return (
     <section className="relative w-full bg-gradient-to-br from-primary to-secondary py-10 md:py-12 lg:py-20 overflow-hidden">
@@ -11,7 +13,7 @@ export default function HeroCTA() {
       <div
         className="absolute inset-0 opacity-10"
         style={{
-          backgroundImage: `url("/grid.png")`,
+          backgroundImage: `url(${img("/grid.png")})`,
           backgroundSize: "60px 60px",
         }}
       />

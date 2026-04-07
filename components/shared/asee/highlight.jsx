@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { img } from "@/lib/cloudinary";
 
 /**
  * Event Highlight Section
@@ -25,38 +26,38 @@ export default function EventHighlight() {
     {
       // Slide 1
       large: {
-        src: "/asee/slide11.jpg",
+        src: img("/asee/slide11.jpg"),
         alt: "Interactive lab demo with digital display",
       },
       topRight: {
-        src: "/asee/slide12.jpg",
+        src: img("/asee/slide12.jpg"),
         alt: "Students engaging with technology",
       },
       bottomRight: {
-        src: "/asee/slide13.jpg",
+        src: img("/asee/slide13.jpg"),
         alt: "AI Teacher demonstration",
       },
     },
     {
       // Slide 2
-      large: { src: "/asee/slide21.jpg", alt: "Panel discussion session" },
-      topRight: { src: "/asee/slide22.jpg", alt: "Team photo at event" },
+      large: { src: img("/asee/slide21.jpg"), alt: "Panel discussion session" },
+      topRight: { src: img("/asee/slide22.jpg"), alt: "Team photo at event" },
       bottomRight: {
-        src: "/asee/slide23.jpg",
+        src: img("/asee/slide23.jpg"),
         alt: "Hands-on VR demonstration",
       },
     },
     {
       // Slide 3
-      large: { src: "/asee/slide31.jpg", alt: "Partner collaboration space" },
-      topRight: { src: "/asee/slide32.jpg", alt: "Student tech challenge" },
-      bottomRight: { src: "/asee/slide33.jpg", alt: "VR experience showcase" },
+      large: { src: img("/asee/slide31.jpg"), alt: "Partner collaboration space" },
+      topRight: { src: img("/asee/slide32.jpg"), alt: "Student tech challenge" },
+      bottomRight: { src: img("/asee/slide33.jpg"), alt: "VR experience showcase" },
     },
     {
       // Slide 4
-      large: { src: "/asee/slide41.jpg", alt: "Networking session" },
-      topRight: { src: "/asee/slide42.jpg", alt: "Technology exhibition" },
-      bottomRight: { src: "/asee/slide43.jpg", alt: "Interactive workshop" },
+      large: { src: img("/asee/slide41.jpg"), alt: "Networking session" },
+      topRight: { src: img("/asee/slide42.jpg"), alt: "Technology exhibition" },
+      bottomRight: { src: img("/asee/slide43.jpg"), alt: "Interactive workshop" },
     },
   ];
 

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { img } from "@/lib/cloudinary";
 
 export default function WhyPartnerSection() {
   const reasons = [
@@ -62,7 +63,7 @@ export default function WhyPartnerSection() {
               <div className="relative rounded-[2rem] lg:rounded-[2.5rem] p-2 lg:p-3 bg-white shadow-2xl">
                 <div className="relative w-full h-[380px] lg:h-[480px] rounded-[1.5rem] lg:rounded-[2rem] overflow-hidden">
                   <Image
-                    src="/partnerships/7.jpg"
+                    src={img("/partnerships/7.jpg")}
                     alt="Professional woman working on tablet - Blue Sands STEM Labs partner"
                     fill
                     className="object-cover object-center"

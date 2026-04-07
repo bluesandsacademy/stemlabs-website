@@ -1,3 +1,5 @@
+import Image from "next/image";
+import { img } from "@/lib/cloudinary";
 export default function OfficeHours() {
   return (
     <section className="py-16 px-6 bg-secondary">
@@ -5,11 +7,13 @@ export default function OfficeHours() {
         <div className="grid lg:grid-cols-2 gap-8 items-center">
           {/* Image */}
           <div className="relative">
-            <div className="rounded-3xl overflow-hidden border-8 border-white shadow-2xl">
-              <img
-                src="/contact/2.jpg"
+            <div className="relative rounded-3xl overflow-hidden border-8 border-white shadow-2xl aspect-video">
+              <Image
+                src={img("/contact/2.jpg")}
                 alt="Person working at desk"
-                className="w-full h-full object-cover aspect-video"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
           </div>

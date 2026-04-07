@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { img } from "@/lib/cloudinary";
 
 /**
  * Partnership & Event Desk Section
@@ -14,7 +15,7 @@ export default function PartnershipDesk() {
       role: "Partnerships & Ecosystem",
       phone: "+234 813 307 7505",
       email: "partnership@bluesandstemlabs.org",
-      image: "/home/team/1.png",
+      image: img("/home/team/1.png"),
     },
     {
       id: 2,
@@ -22,7 +23,7 @@ export default function PartnershipDesk() {
       role: "Events & School Relations",
       phone: "+234 916 431 0578",
       email: "info@bluesandstemlabs.com",
-      image: "/home/team/1.png",
+      image: img("/home/team/1.png"),
     },
   ];
 

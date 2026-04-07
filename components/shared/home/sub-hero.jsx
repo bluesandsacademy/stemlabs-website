@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { statistics, stats } from "@/lib/data";
+import { img } from "@/lib/cloudinary";
 
 const SubHero = () => {
   const containerVariants = {
@@ -58,8 +59,8 @@ const SubHero = () => {
   };
 
   return (
-    <div className="w-full overflow-x-hidden bg-[#f8f9fb] py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-6">
-      <div className="max-w-9xl mx-auto w-full">
+    <div className="w-full overflow-x-hidden bg-[#f8f9fb] py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12">
+      <div className="w-full">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -76,18 +77,26 @@ const SubHero = () => {
           </p>
         </motion.div>
 
-        {/* Grid */}
+        {/*
+         * Responsive grid strategy:
+         *   mobile  (< lg): 2-col — flag columns sit side-by-side like a 2×3 card grid;
+         *                           text / map / stats each span both columns (col-span-2)
+         *   desktop (lg+):  5-col — all five panels in one row
+         *
+         * This replaced the broken grid-cols-1 / sm:grid-cols-2 mix that left the two
+         * flag blocks stacked in a single column at mobile and misaligned at tablet.
+         */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-2 items-center"
+          className="grid grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr_2fr] gap-6 sm:gap-10 lg:gap-8 items-center"
         >
-          {/* Column 1 - Left Stats */}
+          {/* Column 1 — Left Flags (Nigeria, Ghana, Rwanda) */}
           <motion.div
             variants={containerVariants}
-            className="flex flex-row sm:flex-col items-center sm:items-end gap-6 lg:col-span-1"
+            className="flex flex-col items-center gap-6"
           >
             {stats.slice(0, 3).map((stat, index) => (
               <motion.div
@@ -109,7 +118,7 @@ const SubHero = () => {
                   />
                 </motion.div>
                 <motion.h3
-                  className="text-primary text-base sm:text-lg font-bold text-center"
+                  className="text-primary text-sm sm:text-base lg:text-lg font-bold text-center"
                   style={{ fontFamily: "var(--font-jarkata)" }}
                 >
                   {stat.stat}
@@ -118,10 +127,10 @@ const SubHero = () => {
             ))}
           </motion.div>
 
-          {/* Column 2 - Extra Flags */}
+          {/* Column 2 — Extra Flags (Kenya, South Africa, Uganda) */}
           <motion.div
             variants={containerVariants}
-            className="flex flex-row sm:flex-col items-center justify-center gap-6 lg:col-span-1"
+            className="flex flex-col items-center gap-6"
           >
             {stats.slice(3).map((stat, index) => (
               <motion.div
@@ -143,7 +152,7 @@ const SubHero = () => {
                   />
                 </motion.div>
                 <motion.h3
-                  className="text-primary text-base sm:text-xl font-bold"
+                  className="text-primary text-sm sm:text-base lg:text-lg font-bold text-center"
                   style={{ fontFamily: "var(--font-jarkata)" }}
                 >
                   {stat.stat}
@@ -152,42 +161,43 @@ const SubHero = () => {
             ))}
           </motion.div>
 
-          {/* Column 3 - Text */}
+          {/* Column 3 — Descriptor text */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6, duration: 0.6 }}
-            className="flex items-center justify-center sm:col-span-2 lg:col-span-1"
+            className="col-span-2 lg:col-span-1 flex items-center justify-center"
           >
             <p
               className="text-[#6b7280] text-sm sm:text-base text-center leading-relaxed font-normal max-w-[220px]"
               style={{ fontFamily: "var(--font-jarkata)" }}
             >
-              secondary schools lack adequate laboratory infrastructure
+              of secondary schools lack adequate laboratory infrastructure
             </p>
           </motion.div>
 
-          {/* Column 4 - Map */}
+          {/* Column 4 — Africa Map */}
           <motion.div
             variants={mapVariants}
-            className="flex items-center justify-center sm:col-span-2 lg:col-span-1"
+            className="col-span-2 lg:col-span-1 flex items-center justify-center"
           >
-            <div className="relative w-full max-w-60 aspect-[4/5]">
+            <div className="relative w-full max-w-[180px] sm:max-w-60 aspect-4/5">
               <Image
-                src="/map.png"
+                src={img("/map.png")}
                 alt="Africa map"
                 fill
                 className="object-contain"
                 priority
+                sizes="240px"
               />
             </div>
           </motion.div>
 
-          {/* Column 5 - Right Stats */}
+          {/* Column 5 — Key Statistics */}
           <motion.div
             variants={containerVariants}
-            className="flex flex-col items-start gap-6 sm:col-span-2 lg:col-span-1"
+            className="col-span-2 lg:col-span-1 flex flex-col items-start gap-6 w-full max-w-sm lg:max-w-none mx-auto lg:mx-0"
           >
             {statistics.map((stat, index) => (
               <motion.div
@@ -197,13 +207,13 @@ const SubHero = () => {
                 className="flex items-start gap-3 w-full"
               >
                 <motion.h3
-                  className="text-primary text-lg sm:text-xl lg:text-[26px] font-bold shrink-0 min-w-[90px] lg:min-w-[110px]"
+                  className="text-primary text-lg sm:text-xl lg:text-[26px] font-bold shrink-0 min-w-20 sm:min-w-[90px] lg:min-w-[110px]"
                   style={{ fontFamily: "var(--font-jarkata)" }}
                 >
                   {stat.percentage}
                 </motion.h3>
                 <motion.p
-                  className="text-[#6b7280] text-sm sm:text-base leading-relaxed font-normal pt-1"
+                  className="text-[#6b7280] text-xs sm:text-sm leading-relaxed font-normal pt-1"
                   style={{ fontFamily: "var(--font-jarkata)" }}
                 >
                   {stat.description}

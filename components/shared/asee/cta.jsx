@@ -6,13 +6,14 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { img } from "@/lib/cloudinary";
 
 export default function RegisterCTA() {
   return (
     <section className="w-full bg-secondary py-16 md:py-24 relative overflow-hidden">
       {/* Grid Background Image */}
       <div className="absolute inset-0 opacity-60">
-        <Image src="/grid.png" alt="" fill className="object-cover" priority />
+        <Image src={img("/grid.png")} alt="" fill className="object-cover" priority />
       </div>
 
       <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-4xl relative z-10">
