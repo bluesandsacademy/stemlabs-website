@@ -3,13 +3,14 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { img } from "@/lib/cloudinary";
 
 export default function HeroSection() {
   return (
     <section className="relative min-h-[600px] bg-secondary overflow-hidden">
       {/* Grid Background Pattern - Using your image */}
       <div className="absolute inset-0 opacity-40">
-        <Image src="/grid.png" alt="" fill className="object-cover" priority />
+        <Image src={img("/grid.png")} alt="" fill className="object-cover" priority />
       </div>
 
       <div className="max-w-8xl w-full mx-auto px-4 sm:px-6 lg:px-12 py-16 md:py-24 relative z-10">
@@ -89,7 +90,7 @@ export default function HeroSection() {
                   {/* Lab Interface */}
                   <div className="relative aspect-video bg-linear-to-br from-gray-100 to-gray-200">
                     <Image
-                      src="/features/lab.png"
+                      src={img("/features/lab.png")}
                       alt="Virtual Lab Interface"
                       fill
                       className="object-cover"
@@ -154,7 +155,7 @@ export default function HeroSection() {
                 {/* Phone Screen */}
                 <div className="relative aspect-9/19 bg-linear-to-br from-gray-100 to-gray-200">
                   <Image
-                    src="/features/lab.png"
+                    src={img("/features/lab.png")}
                     alt="Mobile Lab Interface"
                     fill
                     className="object-cover"

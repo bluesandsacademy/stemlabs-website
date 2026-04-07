@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { img } from "@/lib/cloudinary";
 
 export default function ForSchoolsSection() {
   const administratorSteps = [
@@ -38,7 +39,7 @@ export default function ForSchoolsSection() {
     <section className="relative py-20 lg:py-32 bg-secondary overflow-hidden font-sans">
       {/* Grid Background Pattern */}
       <div className="absolute inset-0 opacity-40">
-        <Image src="/grid.png" alt="" fill className="object-cover" priority />
+        <Image src={img("/grid.png")} alt="" fill className="object-cover" priority />
       </div>
 
       {/* Additional Decorative Elements */}
@@ -77,7 +78,7 @@ export default function ForSchoolsSection() {
               <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl bg-white p-4">
                 <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden">
                   <Image
-                    src="/features/school1.jpg"
+                    src={img("/features/school1.jpg")}
                     alt="School administrators meeting"
                     fill
                     className="object-cover"
@@ -209,7 +210,7 @@ export default function ForSchoolsSection() {
               <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl bg-white p-4">
                 <div className="relative aspect-[4/3] rounded-[2rem] overflow-hidden">
                   <Image
-                    src="/features/school2.jpg"
+                    src={img("/features/school2.jpg")}
                     alt="School educators collaborating"
                     fill
                     className="object-cover"

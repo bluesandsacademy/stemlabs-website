@@ -4,6 +4,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { img } from "@/lib/cloudinary";
 
 export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
   const pathname = usePathname();
@@ -77,7 +78,7 @@ export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
           <div className="flex items-center h-16 px-6 border-b border-gray-200">
             <Link href="/" className="flex items-center">
               <Image
-                src="/logo.png"
+                src={img("/logo.png")}
                 alt="Blue Sands STEM Labs"
                 width={140}
                 height={40}
@@ -120,7 +121,7 @@ export default function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
           <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200">
             <Link href="/" className="flex items-center">
               <Image
-                src="/logo.png"
+                src={img("/logo.png")}
                 alt="Blue Sands STEM Labs"
                 width={140}
                 height={40}

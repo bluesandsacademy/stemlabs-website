@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { img } from "@/lib/cloudinary";
 
 const OurWhySection = () => {
   const coreValues = [
@@ -191,7 +192,7 @@ const OurWhySection = () => {
               style={{ transformStyle: "preserve-3d" }}
             >
               <Image
-                src="/about/place1.jpg"
+                src={img("/about/place1.jpg")}
                 alt="Team collaboration in office"
                 fill
                 className="object-cover"
@@ -214,7 +215,7 @@ const OurWhySection = () => {
               style={{ transformStyle: "preserve-3d" }}
             >
               <Image
-                src="/about/place2.jpg"
+                src={img("/about/place2.jpg")}
                 alt="Professional working at desk"
                 fill
                 className="object-cover"
@@ -293,7 +294,7 @@ const OurWhySection = () => {
               style={{ transformStyle: "preserve-3d" }}
             >
               <Image
-                src="/about/place3.jpg"
+                src={img("/about/place3.jpg")}
                 alt="Team meeting in conference room"
                 fill
                 className="object-cover"

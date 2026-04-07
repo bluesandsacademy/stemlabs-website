@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { img } from "@/lib/cloudinary";
 
 export default function AseeHero() {
   const headline = "Africa STEM EdTech Expo";
@@ -13,7 +14,7 @@ export default function AseeHero() {
         <div
           className="absolute inset-0 w-full h-full opacity-40"
           style={{
-            backgroundImage: "url(/grid.png)", // Adjust the path to your actual file name
+            backgroundImage: `url(${img('/grid.png')})`, // Adjust the path to your actual file name
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -132,7 +133,7 @@ export default function AseeHero() {
 
             <div className="relative w-full max-w-md mx-auto lg:max-w-none">
               <Image
-                src="/asee/hero.jpg"
+                src={img("/asee/hero.jpg")}
                 alt="ASEE 2025 Event Mockup"
                 width={600}
                 height={600}

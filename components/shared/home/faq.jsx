@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { img } from "@/lib/cloudinary";
 
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(0);
@@ -46,9 +47,9 @@ const FAQSection = () => {
   ];
 
   const teamMembers = [
-    { image: "/home/random/1.jpg", name: "Team Member 1" },
-    { image: "/home/random/2.png", name: "Team Member 2" },
-    { image: "/home/random/3.jpg", name: "Team Member 3" },
+    { image: img("/home/random/1.jpg"), name: "Team Member 1" },
+    { image: img("/home/random/2.png"), name: "Team Member 2" },
+    { image: img("/home/random/3.jpg"), name: "Team Member 3" },
   ];
 
   return (

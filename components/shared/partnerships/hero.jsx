@@ -4,6 +4,7 @@ import CalendlyButton from "@/components/common/calendly-popup";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { img } from "@/lib/cloudinary";
 
 export default function PartnershipsHeroSection() {
   return (
@@ -12,7 +13,7 @@ export default function PartnershipsHeroSection() {
       <div
         className="absolute inset-0 opacity-40"
         style={{
-          backgroundImage: "url('/grid.png')",
+          backgroundImage: `url(${img('/grid.png')})`,
           backgroundSize: "contain",
           backgroundPosition: "center right",
           backgroundRepeat: "no-repeat",
@@ -111,7 +112,7 @@ export default function PartnershipsHeroSection() {
             {/* Blob Background */}
             <div className="relative w-full max-w-[600px] aspect-square">
               <Image
-                src="/pricing/irregular.png"
+                src={img("/pricing/irregular.png")}
                 alt=""
                 fill
                 className="object-contain"
@@ -122,7 +123,7 @@ export default function PartnershipsHeroSection() {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative w-[85%] h-[85%]">
                   <Image
-                    src="/partnerships/hero.png"
+                    src={img("/partnerships/hero.png")}
                     alt="Partnership illustration"
                     fill
                     className="object-contain"

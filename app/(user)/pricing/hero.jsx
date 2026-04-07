@@ -1,12 +1,13 @@
 import React from "react";
 import Image from "next/image";
+import { img } from "@/lib/cloudinary";
 
 const PricingHeader = () => {
   return (
     <div className="relative w-full bg-primary overflow-hidden">
       {/* Background Grid Pattern */}
       <div className="absolute inset-0 opacity-60">
-        <Image src="/grid.png" alt="" fill className="object-cover" priority />
+        <Image src={img("/grid.png")} alt="" fill className="object-cover" priority />
       </div>
 
       <div className="max-w-8xl w-full mx-auto px-4 sm:px-6 lg:px-12 py-8 md:py-10 relative z-10">
@@ -36,7 +37,7 @@ const PricingHeader = () => {
             {/* Blob Background */}
             <div className="relative w-full max-w-[600px] aspect-square">
               <Image
-                src="/pricing/irregular.png"
+                src={img("/pricing/irregular.png")}
                 alt=""
                 fill
                 className="object-contain"
@@ -47,7 +48,7 @@ const PricingHeader = () => {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative w-[85%] h-[85%]">
                   <Image
-                    src="/pricing/Vector.png"
+                    src={img("/pricing/Vector.png")}
                     alt="Student with laptop and credit card"
                     fill
                     className="object-contain"

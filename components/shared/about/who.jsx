@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { img } from "@/lib/cloudinary";
 
 const WhoWeAre = () => {
   return (
@@ -10,7 +11,7 @@ const WhoWeAre = () => {
           <div className="relative flex justify-center lg:justify-start">
             <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-[450px] lg:h-[450px]">
               <Image
-                src="/about/blob.svg"
+                src={img("/about/blob.svg")}
                 alt="Student using VR headset for virtual science lab"
                 fill
                 className="object-contain"

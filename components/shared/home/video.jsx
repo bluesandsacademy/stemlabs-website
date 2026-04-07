@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { FaPlay } from "react-icons/fa";
+import { img } from "@/lib/cloudinary";
 
 const VideoSection = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -30,7 +31,7 @@ const VideoSection = () => {
                 <div className="relative aspect-video rounded-[1.6rem] overflow-hidden">
                   {/* Thumbnail */}
                   <Image
-                    src="/hero/videothumbnail.jpg"
+                    src={img("/hero/videothumbnail.jpg")}
                     alt="Blue Sands STEM Labs"
                     fill
                     className="object-cover"

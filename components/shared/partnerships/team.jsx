@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { img } from "@/lib/cloudinary";
 
 export default function PartnershipTeam() {
   const teamMembers = [
@@ -9,14 +10,14 @@ export default function PartnershipTeam() {
       id: 1,
       name: "Alero Thompson",
       title: "Founder & CEO",
-      image: "/home/team/alero.png",
+      image: img("/home/team/alero.png"),
       titleColor: "#0483e2",
     },
     {
       id: 2,
       name: "Kingsley Okechukwu",
       title: "Chief Technology Officer",
-      image: "/home/team/kingsley.jpg",
+      image: img("/home/team/kingsley.jpg"),
       titleColor: "#0483e2",
     },
   ];

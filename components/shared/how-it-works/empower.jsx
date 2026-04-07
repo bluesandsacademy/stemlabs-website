@@ -3,13 +3,14 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { img } from "@/lib/cloudinary";
 
 export default function EmpoweringFutureSection() {
   return (
     <section className="relative py-10 lg:py-12 bg-primary overflow-hidden">
       {/* Grid Background Pattern */}
       <div className="absolute inset-0 opacity-10">
-        <Image src="/grid.png" alt="" fill className="object-cover" priority />
+        <Image src={img("/grid.png")} alt="" fill className="object-cover" priority />
       </div>
 
       {/* Additional Decorative Elements */}

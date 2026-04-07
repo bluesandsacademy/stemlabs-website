@@ -6,6 +6,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import clsx from "clsx";
 import Link from "next/link";
 import { BiAtom } from "react-icons/bi";
+import { img } from "@/lib/cloudinary";
 
 const backgroundClasses = {
   primary: "bg-[#0483e2]",
@@ -30,7 +31,7 @@ const FloatingCards = memo(() => {
               className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-300 border-2 border-white overflow-hidden"
             >
               <Image
-                src={`/hero/community/${i}.jpg`}
+                src={img(`/hero/community/${i}.jpg`)}
                 alt="Student"
                 fill
                 className="object-cover"
@@ -78,7 +79,6 @@ const FloatingCards = memo(() => {
             </svg>
             <div className="absolute w-full flex flex-col items-center justify-center top-[48%]">
               <div className="w-3 h-3 bg-primary rounded-full my-2"></div>
-
               <span className="text-xs sm:text-sm font-bold text-primary">
                 87.6%
               </span>
@@ -123,12 +123,12 @@ const Slide1 = ({ isActive }) => {
   return (
     <>
       {/* Text Section */}
-      <div className=" md:space-y-6 text-center lg:text-left max-h-[90%] pt-20 md:pt-0">
+      <div className="space-y-5 md:space-y-6 text-center lg:text-left">
         <AnimatePresence mode="wait">
           {isActive && (
             <motion.h1
               key="slide1-title"
-              className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight"
+              className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-white leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -143,7 +143,7 @@ const Slide1 = ({ isActive }) => {
           {isActive && (
             <motion.p
               key="slide1-desc"
-              className="text-sm sm:text-base md:text-lg text-white/90 leading-loose max-w-2xl mx-auto lg:mx-0"
+              className="text-sm sm:text-base md:text-lg text-white/90 leading-relaxed max-w-2xl mx-auto lg:mx-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -157,7 +157,7 @@ const Slide1 = ({ isActive }) => {
         </AnimatePresence>
 
         {isActive && (
-          <div className="gap-4">
+          <div>
             <Link href="https://app.bluesandstemlabs.com/auth/register">
               <motion.button
                 className="px-8 sm:px-10 py-3 sm:py-4 bg-white text-secondary font-bold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
@@ -172,29 +172,30 @@ const Slide1 = ({ isActive }) => {
       </div>
 
       {/* Image Section */}
-      <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-0 md:mt-10  lg:mt-0">
-        <div className="relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[5/5] lg:aspect-[6/5] xl:aspect-[5/4] flex justify-center items-center max-h-[80vh]">
+      <div className="relative w-full mt-6 lg:mt-0">
+        <div className="relative w-full aspect-4/5 sm:aspect-3/4 lg:aspect-5/4 max-h-[70vh] flex justify-center items-center">
           <AnimatePresence mode="wait">
             {isActive && (
               <motion.div
                 key="slide1-image"
-                className="relative w-full h-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-5xl xl:max-w-5xl rounded-2xl overflow-hidden"
+                className="relative w-full h-full rounded-2xl overflow-hidden"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
               >
                 <Image
-                  src="/hero/1.jpg"
+                  src={img("/hero/1.jpg")}
                   alt="STEM Student"
                   fill
-                  sizes="(max-width: 768px) 90vw, (max-width: 1024px) 80vw, 1200px"
+                  sizes="(max-width: 768px) 90vw, (max-width: 1024px) 80vw, 50vw"
                   className="object-contain rounded-2xl"
                   priority
                 />
               </motion.div>
             )}
           </AnimatePresence>
+          <FloatingCards />
         </div>
       </div>
     </>
@@ -207,12 +208,12 @@ const Slide2 = ({ isActive }) => {
   return (
     <>
       {/* Text Section */}
-      <div className="space-y-6 md:space-y-6 text-center lg:text-left max-h-[90%]">
+      <div className="space-y-5 md:space-y-6 text-center lg:text-left">
         <AnimatePresence mode="wait">
           {isActive && (
             <motion.h1
               key="slide2-title"
-              className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight"
+              className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-white leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -228,7 +229,7 @@ const Slide2 = ({ isActive }) => {
           {isActive && (
             <motion.p
               key="slide2-desc"
-              className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl mx-auto lg:mx-0"
+              className="text-sm sm:text-base md:text-lg text-white/90 leading-relaxed max-w-2xl mx-auto lg:mx-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -241,7 +242,7 @@ const Slide2 = ({ isActive }) => {
         </AnimatePresence>
 
         {isActive && (
-          <div className="gap-4">
+          <div>
             <Link href="https://app.bluesandstemlabs.com/auth/register">
               <motion.button
                 className="px-8 sm:px-10 py-3 sm:py-4 bg-white text-secondary font-bold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
@@ -256,29 +257,31 @@ const Slide2 = ({ isActive }) => {
       </div>
 
       {/* Image Section */}
-      <div className="w-full max-w-6xl mx-auto md:ml-20 mt-10 lg:mt-0 relative">
+      <div className="relative w-full mt-6 lg:mt-0">
         <AnimatePresence mode="wait">
           {isActive && (
             <motion.div
               key="slide-2"
-              className="relative rounded-2xl overflow-hidden z-10 inline-block ml-12"
+              className="relative rounded-2xl overflow-hidden z-10"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
               <Image
-                src="/hero/3.jpg"
+                src={img("/hero/3.jpg")}
                 alt="ASEE 2025 Event"
-                width={1200} // ← Put the REAL natural width here
-                height={700} // ← Put the REAL natural height here
-                className="object-contain w-auto h-[70vh] "
+                width={1200}
+                height={700}
+                className="object-contain w-full h-[45vh] sm:h-[55vh] lg:h-[65vh]"
                 priority
+                sizes="(max-width: 768px) 90vw, (max-width: 1024px) 80vw, 50vw"
               />
             </motion.div>
           )}
         </AnimatePresence>
-        <div className="border-4 rounded-2xl border-white h-[450px] md:h-[500px] w-[300px] absolute top-8 md:top-6 left-24"></div>
+        {/* Decorative border — desktop only; hidden on mobile to prevent overflow */}
+        <div className="hidden lg:block border-4 rounded-2xl border-white h-[420px] w-[300px] absolute top-8 left-8 -z-10" />
       </div>
     </>
   );
@@ -290,12 +293,12 @@ const Slide3 = ({ isActive }) => {
   return (
     <>
       {/* Text Section */}
-      <div className="space-y-6 md:space-y-6 text-center lg:text-left max-h-[90%]">
+      <div className="space-y-5 md:space-y-6 text-center lg:text-left">
         <AnimatePresence mode="wait">
           {isActive && (
             <motion.h1
               key="slide3-title"
-              className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mt-20 md:mt-0"
+              className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-white leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -310,7 +313,7 @@ const Slide3 = ({ isActive }) => {
           {isActive && (
             <motion.p
               key="slide3-desc"
-              className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl mx-auto lg:mx-0"
+              className="text-sm sm:text-base md:text-lg text-white/90 leading-relaxed max-w-2xl mx-auto lg:mx-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -324,7 +327,7 @@ const Slide3 = ({ isActive }) => {
         </AnimatePresence>
 
         {isActive && (
-          <div className="gap-4">
+          <div>
             <Link href="https://app.bluesandstemlabs.com/auth/register">
               <motion.button
                 className="px-8 sm:px-10 py-3 sm:py-4 bg-white text-secondary font-bold rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
@@ -339,23 +342,23 @@ const Slide3 = ({ isActive }) => {
       </div>
 
       {/* Image Section */}
-      <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-5 lg:mt-0">
-        <div className="relative aspect-[4/5] sm:aspect-[3/4] md:aspect-[5/5] lg:aspect-[6/5] xl:aspect-[5/4] flex justify-center items-center max-h-screen">
+      <div className="relative w-full mt-6 lg:mt-0">
+        <div className="relative w-full aspect-4/5 sm:aspect-3/4 lg:aspect-5/4 max-h-[70vh] flex justify-center items-center">
           <AnimatePresence mode="wait">
             {isActive && (
               <motion.div
                 key="slide3-image"
-                className="relative w-full h-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-5xl xl:max-w-5xl rounded-2xl overflow-hidden"
+                className="relative w-full h-full rounded-2xl overflow-hidden"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
               >
                 <Image
-                  src="/hero/2.png"
+                  src={img("/hero/2.png")}
                   alt="STEM Student"
                   fill
-                  sizes="(max-width: 768px) 90vw, (max-width: 1024px) 80vw, 1200px"
+                  sizes="(max-width: 768px) 90vw, (max-width: 1024px) 80vw, 50vw"
                   className="object-contain"
                 />
               </motion.div>
@@ -378,40 +381,37 @@ const HeroSlider = () => {
     return () => clearInterval(interval);
   }, [totalSlides]);
 
-  // Determine background based on current slide
   const getBackground = () => {
-    if (currentSlide === 0) return "primary"; // Slide 1
-    if (currentSlide === 1) return "secondary"; // Slide 2
-    return "primary"; // Slide 3
-  };
-
-  const getSlideHeight = () => {
-    if (currentSlide === 0) return "h-[650px]"; // Slide1
-    if (currentSlide === 1) return "h-[900px]"; // Slide2
-    if (currentSlide === 2) return "h-[700px]"; // Slide3
-    return "h-[650px]";
+    if (currentSlide === 1) return "secondary";
+    return "primary";
   };
 
   return (
     <section
       className={clsx(
-        `relative overflow-hidden ${getSlideHeight()} sm:min-h-[650px] md:min-h-[500px] md:max-h-[650px] flex items-center`,
+        // overflow-x-hidden clips the grid background and floating cards horizontally
+        // without cutting off vertical content on mobile — the section expands to fit.
+        "relative overflow-x-hidden min-h-[600px] sm:min-h-[650px] lg:min-h-[700px] flex items-center",
         backgroundClasses[getBackground()],
       )}
     >
       {/* Grid Line Vector Background */}
       <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
         <Image
-          src="/grid.png"
+          src={img("/grid.png")}
           alt="Grid background pattern"
           fill
           className="object-cover opacity-90"
           priority
-          quality={100}
         />
       </div>
 
-<div className="max-w-8xl w-full mx-auto px-4 sm:px-6 lg:px-12  md:py-10 relative z-10">
+      {/*
+       * pt-20 clears the fixed navbar (≈64px tall) at mobile/tablet where slides
+       * stack vertically. At lg (2-column side-by-side), the section's min-h gives
+       * enough room so the extra top padding is reduced.
+       */}
+      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-12 pt-24 pb-10 sm:pt-20 sm:pb-12 lg:py-14 relative z-10">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -419,7 +419,7 @@ const HeroSlider = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -40, scale: 0.96 }}
             transition={{ duration: 0.65, ease: "easeOut" }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-0 md:gap-24 items-center"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
           >
             {currentSlide === 0 && <Slide1 isActive={true} />}
             {currentSlide === 1 && <Slide2 isActive={true} />}

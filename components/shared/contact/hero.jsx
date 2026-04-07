@@ -1,4 +1,6 @@
+import Image from "next/image";
 import CalendlyButton from "@/components/common/calendly-popup";
+import { img } from "@/lib/cloudinary";
 
 export default function ContactHero() {
   return (
@@ -125,11 +127,13 @@ export default function ContactHero() {
             <div className="relative w-full max-w-lg ml-auto">
               {/* Main image container */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-white p-2">
-                <div className="rounded-2xl overflow-hidden aspect-square">
-                  <img
-                    src="/contact/1.jpg"
+                <div className="relative rounded-2xl overflow-hidden aspect-square">
+                  <Image
+                    src={img("/contact/1.jpg")}
                     alt="Person waving at laptop"
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 512px"
                   />
                 </div>
               </div>

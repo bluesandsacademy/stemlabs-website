@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { testimonials } from "@/lib/data";
+import { img } from "@/lib/cloudinary";
 
 const TestimonialsSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -26,11 +27,12 @@ const TestimonialsSection = () => {
             {/* Video Thumbnail */}
             <div className="relative w-full aspect-[16/9] sm:aspect-[21/10] lg:aspect-[21/9]">
               <Image
-                src="/testimonials/1.jpg"
+                src={img("/testimonials/1.jpg")}
                 alt="Parent testimonials"
                 fill
                 className="object-cover"
                 priority
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1280px"
               />
 
               {/* Gradient Overlay */}

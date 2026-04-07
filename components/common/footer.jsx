@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { FaTwitter, FaLinkedinIn, FaFacebookF } from "react-icons/fa";
+import { img } from "@/lib/cloudinary";
 
 const Footer = () => {
   const companyLinks = [
@@ -40,7 +41,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-12">
           <div className="lg:col-span-1">
             <Image
-              src="/logo-white.png"
+              src={img("/logo-white.png")}
               width={140}
               height={50}
               alt="Blue Sands STEM Labs Logo"

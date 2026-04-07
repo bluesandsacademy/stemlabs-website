@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { img } from "@/lib/cloudinary";
 
 const CTA = () => {
   const ctaBlocks = [
@@ -13,7 +14,7 @@ const CTA = () => {
         "We believe that collaboration drives transformation. Join us as we create sustainable change in education across Africa. Whether you're an investor, development agency, corporate organization, or educational institution, your partnership can help shape the future of learning.",
       buttonText: "Partner With Us",
       buttonLink: "/contact",
-      image: "/about/3.jpg",
+      image: img("/about/3.jpg"),
       imageAlt: "Team collaboration and partnership meeting",
       imagePosition: "left",
     },

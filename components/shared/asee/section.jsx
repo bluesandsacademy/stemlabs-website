@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { img } from "@/lib/cloudinary";
 
 export default function AseeSection() {
   return (
@@ -10,7 +11,7 @@ export default function AseeSection() {
             {/* Left: Large Image - Stretches full height */}
             <div className="relative rounded-2xl overflow-hidden row-span-2">
               <Image
-                src="/asee/as1.jpg"
+                src={img("/asee/as1.jpg")}
                 alt="Student using VR headset"
                 fill
                 className="object-cover"
@@ -20,7 +21,7 @@ export default function AseeSection() {
             {/* Right: Two Stacked Images */}
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
               <Image
-                src="/asee/as2.jpg"
+                src={img("/asee/as2.jpg")}
                 alt="Teacher demonstrating technology"
                 fill
                 className="object-cover"
@@ -28,7 +29,7 @@ export default function AseeSection() {
             </div>
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
               <Image
-                src="/asee/as3.jpg"
+                src={img("/asee/as3.jpg")}
                 alt="Technology in classroom"
                 fill
                 className="object-cover"
