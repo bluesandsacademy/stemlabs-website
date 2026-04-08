@@ -126,7 +126,7 @@ const OurWhySection = () => {
   return (
     <div className="w-full bg-primary py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <motion.div
-        className="max-w-[1400px] mx-auto"
+        className="max-w-8xl mx-auto"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}

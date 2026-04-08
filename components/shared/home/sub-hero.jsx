@@ -59,8 +59,8 @@ const SubHero = () => {
   };
 
   return (
-    <div className="w-full overflow-x-hidden bg-[#f8f9fb] py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-12">
-      <div className="w-full">
+    <div className="w-full overflow-x-hidden bg-[#f8f9fb] py-16 sm:py-20 lg:py-24">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -69,10 +69,10 @@ const SubHero = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16 sm:mb-20"
         >
-          <h1 className="font-bold text-4xl sm:text-5xl lg:text-[56px] text-secondary leading-tight mb-4">
+          <h1 className="font-bold text-4xl sm:text-5xl lg:text-6xl text-secondary leading-tight mb-4">
             Transforming African STEM Education
           </h1>
-          <p className="font-normal text-xl text-[#6b7280] max-w-3xl mx-auto">
+          <p className="font-normal text-xl text-gray-600 max-w-3xl mx-auto">
             Addressing the unique challenges facing African schools and students
           </p>
         </motion.div>
@@ -119,7 +119,6 @@ const SubHero = () => {
                 </motion.div>
                 <motion.h3
                   className="text-primary text-sm sm:text-base lg:text-lg font-bold text-center"
-                  style={{ fontFamily: "var(--font-jarkata)" }}
                 >
                   {stat.stat}
                 </motion.h3>
@@ -153,7 +152,6 @@ const SubHero = () => {
                 </motion.div>
                 <motion.h3
                   className="text-primary text-sm sm:text-base lg:text-lg font-bold text-center"
-                  style={{ fontFamily: "var(--font-jarkata)" }}
                 >
                   {stat.stat}
                 </motion.h3>
@@ -170,8 +168,7 @@ const SubHero = () => {
             className="col-span-2 lg:col-span-1 flex items-center justify-center"
           >
             <p
-              className="text-[#6b7280] text-sm sm:text-base text-center leading-relaxed font-normal max-w-[220px]"
-              style={{ fontFamily: "var(--font-jarkata)" }}
+              className="text-gray-600 text-sm sm:text-base text-center leading-relaxed font-normal max-w-[220px]"
             >
               of secondary schools lack adequate laboratory infrastructure
             </p>
@@ -207,14 +204,12 @@ const SubHero = () => {
                 className="flex items-start gap-3 w-full"
               >
                 <motion.h3
-                  className="text-primary text-lg sm:text-xl lg:text-[26px] font-bold shrink-0 min-w-20 sm:min-w-[90px] lg:min-w-[110px]"
-                  style={{ fontFamily: "var(--font-jarkata)" }}
+                  className="text-primary text-lg sm:text-xl lg:text-2xl font-bold shrink-0 min-w-20 sm:min-w-[90px] lg:min-w-[110px]"
                 >
                   {stat.percentage}
                 </motion.h3>
                 <motion.p
-                  className="text-[#6b7280] text-xs sm:text-sm leading-relaxed font-normal pt-1"
-                  style={{ fontFamily: "var(--font-jarkata)" }}
+                  className="text-gray-600 text-xs sm:text-sm leading-relaxed font-normal pt-1"
                 >
                   {stat.description}
                 </motion.p>

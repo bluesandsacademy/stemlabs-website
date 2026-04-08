@@ -104,7 +104,7 @@ const FAQSection = () => {
                 </span>
 
                 <div
-                  className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center
+                  className={`shrink-0 w-6 h-6 rounded-full flex items-center justify-center
                             ${
                               openIndex === index
                                 ? "bg-primary text-white"
@@ -169,7 +169,7 @@ const FAQSection = () => {
               {teamMembers.map((member, index) => (
                 <div
                   key={index}
-                  className="w-12 h-12 rounded-full border-4 border-white overflow-hidden bg-gradient-to-br from-primary to-secondary"
+                  className="w-12 h-12 rounded-full border-4 border-white overflow-hidden bg-linear-to-br from-primary to-secondary"
                 >
                   <Image
                     src={member.image}

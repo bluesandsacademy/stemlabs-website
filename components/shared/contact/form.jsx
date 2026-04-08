@@ -149,7 +149,7 @@ export default function ContactOptionsForms() {
 
   return (
     <section className="py-16 px-6 bg-white">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-8xl mx-auto">
         <h2 className="text-4xl font-bold text-secondary text-center mb-12">
           Contact Options
         </h2>

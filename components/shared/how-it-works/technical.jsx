@@ -53,7 +53,7 @@ export default function TechnicalHighlightsSection() {
       <div className="absolute top-20 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-40 left-0 w-80 h-80 bg-secondary/5 rounded-full blur-3xl"></div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-8xl mx-auto px-6">
         {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -126,7 +126,7 @@ export default function TechnicalHighlightsSection() {
                       className="flex items-start gap-3"
                     >
                       {/* Checkmark */}
-                      <div className="flex-shrink-0 w-6 h-6 mt-0.5">
+                      <div className="shrink-0 w-6 h-6 mt-0.5">
                         <svg
                           className="w-6 h-6 text-primary"
                           fill="none"
@@ -197,7 +197,7 @@ export default function TechnicalHighlightsSection() {
                       className="flex items-start gap-3"
                     >
                       {/* Checkmark */}
-                      <div className="flex-shrink-0 w-6 h-6 mt-0.5">
+                      <div className="shrink-0 w-6 h-6 mt-0.5">
                         <svg
                           className="w-6 h-6 text-primary"
                           fill="none"
@@ -234,7 +234,7 @@ export default function TechnicalHighlightsSection() {
                       className="flex items-start gap-3"
                     >
                       {/* Checkmark */}
-                      <div className="flex-shrink-0 w-6 h-6 mt-0.5">
+                      <div className="shrink-0 w-6 h-6 mt-0.5">
                         <svg
                           className="w-6 h-6 text-primary"
                           fill="none"

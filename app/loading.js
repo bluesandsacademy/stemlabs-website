@@ -32,7 +32,7 @@ function Loading() {
 
   return (
     <div className="fixed inset-0 bg-white z-50 flex items-center justify-center transition-opacity duration-500">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50 opacity-60" />
+      <div className="absolute inset-0 bg-linear-to-br from-blue-50 via-white to-blue-50 opacity-60" />
 
       <div className="relative z-10 flex flex-col items-center gap-6">
         <div className="relative w-24 h-24 flex items-center justify-center">
@@ -55,7 +55,7 @@ function Loading() {
 
         <div className="w-48 h-1 bg-gray-100 rounded-full overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-primary to-secondary rounded-full transition-all duration-100 ease-out"
+            className="h-full bg-linear-to-r from-primary to-secondary rounded-full transition-all duration-100 ease-out"
             style={{ width: `${Math.min(progress, 100)}%` }}
           />
         </div>

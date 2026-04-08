@@ -30,7 +30,7 @@ export default function BecomePartnerCTA() {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#0483e2] via-[#0483e2] to-[#0370c7] py-16 lg:py-24">
+    <section className="relative overflow-hidden bg-linear-to-br from-[#0483e2] via-[#0483e2] to-[#0370c7] py-16 sm:py-20 lg:py-24">
       {/* Diagonal Pattern Overlay */}
       <div
         className="absolute inset-0 opacity-10"
@@ -45,7 +45,7 @@ export default function BecomePartnerCTA() {
         }}
       />
 
-      <div className="relative container mx-auto px-6 lg:px-12 max-w-7xl">
+      <div className="relative max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -85,7 +85,7 @@ export default function BecomePartnerCTA() {
               <div className="bg-white rounded-2xl lg:rounded-3xl p-6 lg:p-8 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 min-w-0">
                 {/* Icon */}
                 <div className="flex justify-center mb-5">
-                  <div className="w-16 h-16 rounded-full bg-[#0483e2] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                  <div className="w-16 h-16 rounded-full bg-[#0483e2] flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shrink-0">
                     <method.icon
                       className="w-8 h-8 text-white"
                       strokeWidth={2}

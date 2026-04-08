@@ -8,7 +8,7 @@ import { team } from "@/lib/data";
 const TeamSection = () => {
   return (
     <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-8xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16 lg:mb-20">
           <motion.p

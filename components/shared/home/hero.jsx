@@ -411,7 +411,7 @@ const HeroSlider = () => {
        * stack vertically. At lg (2-column side-by-side), the section's min-h gives
        * enough room so the extra top padding is reduced.
        */}
-      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-12 pt-24 pb-10 sm:pt-20 sm:pb-12 lg:py-14 relative z-10">
+      <div className="max-w-8xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10 sm:pt-20 sm:pb-12 lg:py-14 relative z-10">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}

@@ -8,7 +8,7 @@ const SolutionWorksHero = () => {
 
   return (
     <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-8xl mx-auto">
         {/* Video Card */}
         <div
           className="relative rounded-[32px] overflow-hidden shadow-2xl group cursor-pointer"
@@ -25,7 +25,7 @@ const SolutionWorksHero = () => {
             />
 
             {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent" />
 
             {/* Content Overlay */}
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 sm:gap-8">

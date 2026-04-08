@@ -57,7 +57,7 @@ export default function EmpoweringLearningSection() {
         </svg>
       </div>
 
-      <div className="relative max-w-7xl mx-auto">
+      <div className="relative max-w-8xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-3 leading-14">

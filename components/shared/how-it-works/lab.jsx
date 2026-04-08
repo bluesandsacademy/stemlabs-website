@@ -37,7 +37,7 @@ export default function VirtualLabVideoSection() {
         </svg>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Video Container */}
         <div className="relative rounded-3xl overflow-hidden shadow-2xl group cursor-pointer">
           {/* Video Thumbnail/Player */}
@@ -52,7 +52,7 @@ export default function VirtualLabVideoSection() {
             />
 
             {/* Overlay gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+            <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent"></div>
 
             {/* Play Button */}
             {!isPlaying && (

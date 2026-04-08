@@ -81,7 +81,7 @@ export default function EventHighlight() {
 
   return (
     <section className="w-full bg-white py-16 md:py-24">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-8xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           {/* Left Column - Text Content */}
           <div className="space-y-6">
@@ -93,7 +93,7 @@ export default function EventHighlight() {
               {highlights.map((highlight, index) => (
                 <li key={index} className="flex gap-3 items-start">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary/40 mt-2.5 shrink-0" />
-                  <span className="text-foreground/60 text-base md:text-lg leading-relaxed font-light">
+                  <span className="text-gray-600 text-base md:text-lg leading-relaxed font-light">
                     {highlight}
                   </span>
                 </li>

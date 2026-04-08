@@ -18,7 +18,7 @@ export default function NotFound() {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-50 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-blue-50 via-white to-blue-50 px-4">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
@@ -48,12 +48,12 @@ export default function NotFound() {
                 <div className="w-full aspect-square flex items-center justify-center">
                   <div className="text-center space-y-4">
                     <div
-                      className="text-9xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+                      className="text-9xl font-bold bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent"
                       style={{ fontFamily: "var(--font-jarkata)" }}
                     >
                       404
                     </div>
-                    <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
+                    <div className="w-24 h-1 bg-linear-to-r from-primary to-secondary mx-auto rounded-full" />
                   </div>
                 </div>
               )}
@@ -90,7 +90,7 @@ export default function NotFound() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
               <Link href="/">
                 <button
-                  className="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-lg
+                  className="px-8 py-4 bg-linear-to-r from-primary to-secondary text-white font-semibold rounded-lg
                                  hover:shadow-xl hover:scale-105 transition-all duration-300 w-full sm:w-auto"
                   style={{ fontFamily: "var(--font-jarkata)" }}
                 >

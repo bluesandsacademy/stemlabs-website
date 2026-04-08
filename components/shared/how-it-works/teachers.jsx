@@ -36,12 +36,12 @@ export default function TeachersSection() {
   ];
 
   return (
-    <section className="relative py-20 lg:py-20 bg-white overflow-hidden font-sans">
+    <section className="relative py-16 sm:py-20 lg:py-24 bg-white overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute top-20 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-40 right-0 w-80 h-80 bg-secondary/5 rounded-full blur-3xl"></div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-8xl mx-auto px-6">
         {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

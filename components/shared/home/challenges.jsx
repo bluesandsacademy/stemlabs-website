@@ -31,7 +31,7 @@ const STEMChallengesSection = () => {
   const isImageLoaded = (index) => loadedImages.has(index);
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-secondary via-[#024570] to-secondary relative overflow-hidden">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-secondary via-[#024570] to-secondary relative overflow-hidden">
       {/* Grid Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div
@@ -43,7 +43,7 @@ const STEMChallengesSection = () => {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-8xl mx-auto relative z-10">
         {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -77,7 +77,7 @@ const STEMChallengesSection = () => {
                       transition={{ duration: 0.3 }}
                       className="absolute inset-0 z-10"
                     >
-                      <div className="w-full h-full bg-gradient-to-r from-white/10 via-white/20 to-white/10 animate-[shimmer_1.5s_infinite]" />
+                      <div className="w-full h-full bg-linear-to-r from-white/10 via-white/20 to-white/10 animate-[shimmer_1.5s_infinite]" />
                     </motion.div>
                   )}
                 </AnimatePresence>

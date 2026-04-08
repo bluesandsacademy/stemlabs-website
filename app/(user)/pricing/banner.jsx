@@ -45,7 +45,7 @@ const PricingHeroSection = () => {
         className="absolute top-1/2 right-[28%] -translate-y-1/2 w-32 h-32 lg:w-40 lg:h-40 bg-primary rounded-full hidden lg:block"
       />
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-8xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Text Content */}
           <motion.div

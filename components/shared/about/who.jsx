@@ -4,14 +4,14 @@ import { img } from "@/lib/cloudinary";
 
 const WhoWeAre = () => {
   return (
-    <section className="bg-[#172B4D] py-10 sm:py-10 lg:py-14 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section className="bg-[#172B4D] py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-8xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Side - Image with Decorative Blob */}
           <div className="relative flex justify-center lg:justify-start">
             <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-[450px] lg:h-[450px]">
               <Image
-                src={img("/about/blob.svg")}
+                src={"/about/blob.svg"}
                 alt="Student using VR headset for virtual science lab"
                 fill
                 className="object-contain"
