@@ -11,7 +11,7 @@ export default function ExperienceSection() {
       <div className="absolute top-20 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 left-0 w-80 h-80 bg-secondary/5 rounded-full blur-3xl"></div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-8xl mx-auto px-6">
         {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -50,7 +50,7 @@ export default function ExperienceSection() {
           {/* Image Container with Enhanced Styling */}
           <div className="relative rounded-3xl overflow-hidden shadow-2xl group">
             {/* Gradient Overlay for depth */}
-            <div className="absolute inset-0 bg-gradient-to-t from-secondary/20 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="absolute inset-0 bg-linear-to-t from-secondary/20 via-transparent to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
             {/* Main Image */}
             <div className="relative aspect-video">
@@ -71,7 +71,7 @@ export default function ExperienceSection() {
               className="absolute top-6 left-6 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-xl max-w-xs"
             >
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
                   <svg
                     className="w-5 h-5 text-primary"
                     fill="none"
@@ -111,7 +111,7 @@ export default function ExperienceSection() {
               className="absolute bottom-6 right-6 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-xl max-w-xs"
             >
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
                   <svg
                     className="w-5 h-5 text-primary"
                     fill="none"

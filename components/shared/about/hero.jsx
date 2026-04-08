@@ -7,7 +7,7 @@ import { img } from "@/lib/cloudinary";
 const AboutHero = () => {
   return (
     <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-8xl mx-auto">
         {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -53,7 +53,7 @@ const AboutHero = () => {
           />
 
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent" />
 
           {/* Content Overlay */}
           <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 lg:p-12">

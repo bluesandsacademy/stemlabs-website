@@ -24,7 +24,7 @@ const NewsletterSection = () => {
 
   return (
     <section className="w-full bg-[#f8f9fa] py-20 px-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-8xl mx-auto">
         {/* Newsletter Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-6 leading-tight">
@@ -74,7 +74,7 @@ const NewsletterSection = () => {
             />
 
             {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent" />
           </div>
 
           {/* Content Overlay */}
@@ -105,7 +105,7 @@ const NewsletterSection = () => {
 
               {/* Arrow Button */}
               <button
-                className="flex-shrink-0 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 group-hover:scale-110 shadow-lg"
+                className="shrink-0 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 group-hover:scale-110 shadow-lg"
                 aria-label="View lesson ideas"
               >
                 <ArrowUpRight className="w-6 h-6 md:w-7 md:h-7" />

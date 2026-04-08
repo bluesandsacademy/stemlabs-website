@@ -46,7 +46,7 @@ export default function ForSchoolsSection() {
       <div className="absolute top-20 right-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-40 left-20 w-80 h-80 bg-primary/10 rounded-full blur-3xl"></div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-8xl mx-auto px-6">
         {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -124,7 +124,7 @@ export default function ForSchoolsSection() {
                       className="flex items-start gap-4"
                     >
                       {/* Checkmark Circle */}
-                      <div className="flex-shrink-0 w-7 h-7 rounded-full bg-white flex items-center justify-center mt-0.5">
+                      <div className="shrink-0 w-7 h-7 rounded-full bg-white flex items-center justify-center mt-0.5">
                         <svg
                           className="w-4 h-4 text-primary"
                           fill="none"
@@ -176,7 +176,7 @@ export default function ForSchoolsSection() {
                     className="flex items-start gap-4"
                   >
                     {/* Checkmark Circle */}
-                    <div className="flex-shrink-0 w-7 h-7 rounded-full bg-white flex items-center justify-center mt-0.5">
+                    <div className="shrink-0 w-7 h-7 rounded-full bg-white flex items-center justify-center mt-0.5">
                       <svg
                         className="w-4 h-4 text-primary"
                         fill="none"

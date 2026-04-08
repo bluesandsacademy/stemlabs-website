@@ -57,7 +57,7 @@ const Features = () => {
         <Image src={img("/grid.png")} alt="" fill className="object-cover" priority />
       </div>
 
-      <div className="relative max-w-7xl mx-auto z-10">
+      <div className="relative max-w-8xl mx-auto z-10">
         {/* Header Section */}
         <div className="text-center mb-12 sm:mb-16">
           <h2

@@ -26,7 +26,7 @@ export default function SimpleSetupSection() {
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-8xl mx-auto px-6 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
           <p className="text-white/80 text-lg mb-4">Simple Setup</p>
@@ -98,7 +98,7 @@ export default function SimpleSetupSection() {
               {/* Arrow (not after last item) */}
               {index < setupSteps.length - 1 && (
                 <ArrowRight
-                  className="hidden lg:block text-white/50 flex-shrink-0 mb-12"
+                  className="hidden lg:block text-white/50 shrink-0 mb-12"
                   size={40}
                   strokeWidth={2.5}
                 />

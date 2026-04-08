@@ -20,7 +20,7 @@ const VideoSection = () => {
   return (
     <>
       <section className="py-12 sm:py-4 lg:py-5 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-8xl mx-auto">
           {/* Video Player Container */}
           <div className="relative w-full max-w-6xl mx-auto">
             {/* Device Frame */}

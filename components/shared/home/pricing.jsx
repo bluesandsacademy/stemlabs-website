@@ -90,8 +90,8 @@ const PricingSection = () => {
   };
 
   return (
-    <section className="py-14 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <div className="max-w-8xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <motion.p
