@@ -70,4 +70,3 @@ for (const file of files) {
 console.log(
   "\nDone! You can now remove CLOUDINARY_API_KEY and CLOUDINARY_API_SECRET from .env.local",
 );
-CLOUDINARY_API_SECRET = K - mx8sux4iTcm4MeEUZKawpshU8;
