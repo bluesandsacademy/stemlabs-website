@@ -117,3 +117,91 @@ body {
     background-position: 200% 0;
   }
 }
+
+/* ── Hero slider spring easing ─────────────────────────────────────────────── */
+/* Fallback: expo-out cubic-bezier for Safari / iOS which don't support linear() */
+:root {
+  --ease-spring-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* Progressive enhancement: true spring with ~0.3% overshoot for Chrome / Firefox */
+@supports (animation-timing-function: linear(0, 1)) {
+  :root {
+    --ease-spring-out: linear(
+      0, 0.006 2.2%, 0.051 6.6%, 0.169 13.9%,
+      0.428 26.1%, 0.568 32.9%, 0.688 40%,
+      0.810 48.3%, 0.887 55.4%, 0.943 63.2%,
+      0.979 71.6%, 0.997 80.5%, 1.003 89.7%,
+      1.003 94.6%, 1
+    );
+  }
+}
+
+/* ── Hero slider enter / exit animations ───────────────────────────────────── */
+/* Text & CTA — clip-path wipe reveals from left to right (reading direction).
+   More editorial than a translate; the content "unveils" from behind an invisible
+   curtain rather than physically flying in. */
+@keyframes hero-enter-left {
+  from { opacity: 0; clip-path: inset(0 100% 0 0); }
+  to   { opacity: 1; clip-path: inset(0 0%   0 0); }
+}
+
+/* Image panels — sweep in from the right with a subtle scale spring */
+@keyframes hero-enter-right {
+  from { opacity: 0; transform: translateX(38px) scale(0.96); }
+  to   { opacity: 1; transform: translateX(0)    scale(1);    }
+}
+
+/* Ken Burns idle — slow pan+zoom that runs continuously between transitions.
+   Applied to an inner wrapper inside the overflow:hidden image container so
+   the pan is clipped cleanly. `alternate` makes it breathe back and forth. */
+@keyframes hero-ken-burns {
+  from { transform: scale(1.0)  translate(0,     0);    }
+  to   { transform: scale(1.06) translate(-1.5%, -1%);  }
+}
+
+/* Floating cards — diagonal corner entries for a sense of depth */
+@keyframes hero-enter-nw {
+  from { opacity: 0; transform: translate(-18px, -18px) scale(0.94); }
+  to   { opacity: 1; transform: translate(0, 0) scale(1); }
+}
+@keyframes hero-enter-ne {
+  from { opacity: 0; transform: translate(18px, -18px) scale(0.94); }
+  to   { opacity: 1; transform: translate(0, 0) scale(1); }
+}
+@keyframes hero-enter-sw {
+  from { opacity: 0; transform: translate(-18px, 18px) scale(0.94); }
+  to   { opacity: 1; transform: translate(0, 0) scale(1); }
+}
+
+/* Directional exits — old slide travels toward the side the new one enters from.
+   Forward (auto-advance): content exits left  → new content enters from right.
+   Backward (dot click):   content exits right → new content enters from left. */
+@keyframes hero-exit-left {
+  from { opacity: 1; filter: blur(0px); transform: translateX(0)    scale(1);    }
+  to   { opacity: 0; filter: blur(8px);  transform: translateX(-60px) scale(0.97); }
+}
+@keyframes hero-exit-right {
+  from { opacity: 1; filter: blur(0px); transform: translateX(0)   scale(1);    }
+  to   { opacity: 0; filter: blur(8px);  transform: translateX(60px) scale(0.97); }
+}
+
+/* Floating card idle bob — runs continuously after enter animation finishes.
+   Each card uses a different duration so they never sync up. */
+@keyframes hero-card-bob {
+  0%, 100% { transform: translateY(0px);  }
+  50%       { transform: translateY(-7px); }
+}
+
+/* Honour system-level reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  /* Strip all spatial movement; keep only opacity fades */
+  @keyframes hero-enter-left  { from { opacity: 0; clip-path: inset(0 0 0 0); } to { opacity: 1; clip-path: inset(0 0 0 0); } }
+  @keyframes hero-enter-right { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes hero-enter-nw    { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes hero-enter-ne    { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes hero-enter-sw    { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes hero-exit-left   { from { opacity: 1; } to { opacity: 0; } }
+  @keyframes hero-exit-right  { from { opacity: 1; } to { opacity: 0; } }
+  @keyframes hero-card-bob    { from { } to { } } /* disabled */
+  @keyframes hero-ken-burns   { from { } to { } } /* disabled */
+}
