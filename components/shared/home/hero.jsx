@@ -398,7 +398,12 @@ const HeroSlider = () => {
   // 1 = forward (exit left), -1 = backward (exit right)
   const directionRef = useRef(1);
 
-  const shouldReduceMotion = !!useReducedMotion();
+  const prefersReducedMotion = useReducedMotion();
+  const [shouldReduceMotion, setShouldReduceMotion] = useState(false);
+
+  useEffect(() => {
+    setShouldReduceMotion(!!prefersReducedMotion);
+  }, [prefersReducedMotion]);
 
   // ── Transition orchestrator ──────────────────────────────────────────────────
   const go = useCallback(
