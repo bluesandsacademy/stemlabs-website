@@ -6,7 +6,7 @@ import { useState } from "react";
 import DeleteConfirmModal from "./delete-post";
 import ViewPostModal from "./view-post";
 
-export default function BlogPostCard({ post }) {
+export default function BlogPostCard({ post, onDelete }) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
 
@@ -15,7 +15,7 @@ export default function BlogPostCard({ post }) {
   };
 
   const handleDelete = () => {
-    console.log("Deleting post:", post.id);
+    onDelete && onDelete(post.id);
   };
 
   return (
@@ -26,12 +26,20 @@ export default function BlogPostCard({ post }) {
           className="relative aspect-video bg-gray-100 cursor-pointer group"
           onClick={() => setShowViewModal(true)}
         >
-          <Image
-            src={post.image}
-            alt={post.title}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
-          />
+          {post.image ? (
+            <Image
+              src={post.image}
+              alt={post.title}
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          ) : (
+            <div className="w-full h-full bg-linear-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
+              <svg className="w-12 h-12 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+          )}
           {/* View overlay on hover */}
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
             <div className="opacity-0 group-hover:opacity-100 transition-opacity">
@@ -79,7 +87,7 @@ export default function BlogPostCard({ post }) {
 
           {/* Description */}
           <p className="text-sm text-gray-600 line-clamp-2">
-            {post.description}
+            {post.excerpt || post.description}
           </p>
 
           {/* Status and Actions */}
@@ -184,7 +192,7 @@ export default function BlogPostCard({ post }) {
         isOpen={showDeleteModal}
         onClose={() => setShowDeleteModal(false)}
         onConfirm={handleDelete}
-        itemName={post.title}
+        itemTitle={post.title}
       />
     </>
   );

@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+sql/blog-schema.sql
+public/ceo.jpeg
+scripts/create-test-post.mjs

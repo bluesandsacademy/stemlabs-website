@@ -10,7 +10,7 @@ export default function PartnershipTeam() {
       id: 1,
       name: "Alero Thompson",
       title: "Founder & CEO",
-      image: img("/home/team/alero.png"),
+      image: img("/ceo.jpeg"),
       titleColor: "#0483e2",
     },
     {

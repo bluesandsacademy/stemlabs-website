@@ -3,23 +3,30 @@
 import React, { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import { img } from "@/lib/cloudinary";
+import Link from "next/link";
+import toast from "react-hot-toast";
 
-const NewsletterSection = () => {
+const NewsletterSection = ({ featuredPost }) => {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    // Add your newsletter subscription logic here
-    console.log("Subscribing:", email);
-
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (!res.ok) throw new Error("Subscription failed");
+      toast.success("You're subscribed! Check your inbox soon.");
       setEmail("");
-    }, 1000);
+    } catch {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -62,57 +69,57 @@ const NewsletterSection = () => {
           </form>
         </div>
 
-        {/* Featured Lesson Card */}
-        <div className="relative rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 group max-w-6xl mx-auto">
-          {/* Background Image */}
-          <div className="relative h-[500px] md:h-[600px]">
-            <Image
-              src={img("/blog/1.jpg")}
-              alt="Teacher working on laptop"
-              fill
-              className="object-cover brightness-90 group-hover:scale-105 transition-transform duration-700"
-            />
-
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent" />
-          </div>
-
-          {/* Content Overlay */}
-          <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-            {/* Meta Info */}
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-primary font-semibold text-sm md:text-base">
-                Blue Sands Academy
-              </span>
-              <span className="text-white/60">•</span>
-              <span className="text-white/80 text-sm md:text-base">
-                17 Jan 2025
-              </span>
+        {/* Featured Post Card */}
+        {featuredPost && (
+          <Link
+            href={`/blog/${featuredPost.slug || featuredPost.id}`}
+            className="relative rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 group max-w-6xl mx-auto block"
+          >
+            <div className="relative h-[500px] md:h-[600px] bg-gray-900">
+              {featuredPost.cover_image ? (
+                <Image
+                  src={featuredPost.cover_image}
+                  alt={featuredPost.title}
+                  fill
+                  className="object-cover brightness-90 group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 768px) 100vw, 1152px"
+                />
+              ) : (
+                <div className="w-full h-full bg-linear-to-br from-primary/30 to-secondary/60" />
+              )}
+              <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent" />
             </div>
 
-            {/* Title and Description */}
-            <div className="flex items-end justify-between gap-6">
-              <div className="flex-1">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
-                  Lesson Ideas
-                </h3>
-                <p className="text-white/90 text-base md:text-lg max-w-2xl leading-relaxed">
-                  Short, classroom-ready sequences built around one simulation.
-                  Includes objectives, timing, printable worksheet, and
-                  assessment suggestions.
-                </p>
+            <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-primary font-semibold text-sm md:text-base">
+                  {featuredPost.author}
+                </span>
+                <span className="text-white/60">•</span>
+                <span className="text-white/80 text-sm md:text-base">
+                  {featuredPost.date}
+                </span>
               </div>
 
-              {/* Arrow Button */}
-              <button
-                className="shrink-0 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 group-hover:scale-110 shadow-lg"
-                aria-label="View lesson ideas"
-              >
-                <ArrowUpRight className="w-6 h-6 md:w-7 md:h-7" />
-              </button>
+              <div className="flex items-end justify-between gap-6">
+                <div className="flex-1">
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight line-clamp-2">
+                    {featuredPost.title}
+                  </h3>
+                  {featuredPost.excerpt && (
+                    <p className="text-white/90 text-base md:text-lg max-w-2xl leading-relaxed line-clamp-2">
+                      {featuredPost.excerpt}
+                    </p>
+                  )}
+                </div>
+
+                <div className="shrink-0 w-14 h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 group-hover:scale-110 shadow-lg">
+                  <ArrowUpRight className="w-6 h-6 md:w-7 md:h-7" />
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </Link>
+        )}
       </div>
     </section>
   );

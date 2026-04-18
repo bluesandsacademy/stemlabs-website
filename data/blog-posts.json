@@ -1,0 +1,110 @@
+[
+  {
+    "id": "post-1001",
+    "title": "Lesson Ideas: Building Virtual STEM Labs",
+    "content": "Short, classroom-ready sequences built around one simulation. Our lesson ideas provide structured approaches to integrating virtual STEM labs into your curriculum.\n\nEach lesson plan includes clear learning objectives, suggested timing, printable worksheets, and assessment suggestions. Teachers can adapt these plans to fit their specific classroom needs and curriculum standards.\n\nThe Blue Sands Virtual STEM Lab makes it possible for students to conduct experiments that would otherwise be impossible due to equipment costs, safety concerns, or logistical limitations. From chemistry titrations to physics projectile simulations, the platform covers a wide range of STEM disciplines.\n\nKey benefits of using virtual labs in your classroom:\n- Unlimited experiment repetitions without material costs\n- Safe environment for dangerous chemical or electrical experiments\n- Instant data collection and visualization\n- Accessible from any device, anywhere\n\nGet started today by exploring our library of over 200 simulation-based lesson plans.",
+    "excerpt": "Short, classroom-ready sequences built around one simulation. Includes objectives, timing, printable worksheet, and assessment suggestions.",
+    "author": "Blue Sands Academy",
+    "date": "17 Jan 2025",
+    "publishDate": "2025-01-17",
+    "status": "published",
+    "tags": [
+      { "label": "STEM Education", "color": "primary" },
+      { "label": "Lesson Plans", "color": "green" }
+    ],
+    "image": "https://res.cloudinary.com/dgjbx9xqq/image/upload/f_auto,q_auto/bls/blog/1.jpg",
+    "category": "Lesson Ideas",
+    "createdAt": "2025-01-17T00:00:00.000Z",
+    "updatedAt": "2025-01-17T00:00:00.000Z"
+  },
+  {
+    "id": "post-1002",
+    "title": "Assessment & Analytics: Tracking Student Progress",
+    "content": "Effective assessment is at the heart of great teaching. The Blue Sands platform provides teachers with powerful analytics tools to track individual student progress and identify areas where additional support is needed.\n\nOur built-in assessment tools include:\n- Pre and post-simulation quizzes\n- Real-time performance dashboards\n- Automatic grading and feedback\n- Export to common LMS formats\n\nWith detailed analytics, teachers can make data-driven decisions about pacing, differentiation, and intervention strategies. The platform tracks engagement metrics, time-on-task, and experiment outcomes to give a complete picture of student learning.\n\nCase studies from partner schools show a 23% improvement in science test scores after 6 months of using Blue Sands virtual labs. The combination of immediate feedback and hands-on simulation creates powerful learning moments that stick.",
+    "excerpt": "Powerful analytics tools to track individual student progress and identify areas where additional support is needed.",
+    "author": "Blue Sands Academy",
+    "date": "14 Jan 2025",
+    "publishDate": "2025-01-14",
+    "status": "published",
+    "tags": [
+      { "label": "Analytics", "color": "purple" },
+      { "label": "Assessment", "color": "primary" }
+    ],
+    "image": "https://res.cloudinary.com/dgjbx9xqq/image/upload/f_auto,q_auto/bls/blog/presentation.jpg",
+    "category": "Assessment",
+    "createdAt": "2025-01-14T00:00:00.000Z",
+    "updatedAt": "2025-01-14T00:00:00.000Z"
+  },
+  {
+    "id": "post-1003",
+    "title": "Connectivity & Access: STEM Education for Every Student",
+    "content": "One of the greatest challenges in African education is connectivity. Many schools operate in areas with unreliable internet access, making cloud-based tools difficult to use consistently.\n\nBlue Sands has built its platform with offline-first principles. Once a simulation is loaded, it runs entirely in the browser without an active internet connection. Student progress is cached locally and synced to the cloud when connectivity is restored.\n\nThis approach means that a student in a rural school with intermittent connectivity can have the same quality learning experience as a student in an urban school with high-speed broadband.\n\nOur offline capabilities include:\n- Full simulation functionality without internet\n- Automatic progress sync when connection is restored\n- Downloadable lesson packs for completely offline deployment\n- SMS-based progress reporting for low-bandwidth environments\n\nWe believe every student deserves access to world-class STEM education, regardless of where they live.",
+    "excerpt": "Blue Sands is built for Africa's connectivity realities. Run simulations offline, sync when connected.",
+    "author": "Blue Sands Academy",
+    "date": "10 Jan 2025",
+    "publishDate": "2025-01-10",
+    "status": "published",
+    "tags": [
+      { "label": "Accessibility", "color": "green" },
+      { "label": "EdTech", "color": "primary" }
+    ],
+    "image": "https://res.cloudinary.com/dgjbx9xqq/image/upload/f_auto,q_auto/bls/blog/workspace.jpg",
+    "category": "Connectivity",
+    "createdAt": "2025-01-10T00:00:00.000Z",
+    "updatedAt": "2025-01-10T00:00:00.000Z"
+  },
+  {
+    "id": "post-1004",
+    "title": "How Collaboration Makes Better STEM Teachers",
+    "content": "Teaching is inherently collaborative, but many teachers operate in isolation. The Blue Sands platform includes a teacher collaboration hub where educators can share lesson plans, discuss strategies, and learn from each other's experiences.\n\nOur teacher community has grown to over 5,000 educators across 12 African countries. Members share:\n- Customized lesson plans and assessments\n- Tips for specific curriculum standards\n- Troubleshooting advice for common student misconceptions\n- Best practices for integrating technology into traditional classrooms\n\nResearch consistently shows that teacher collaboration improves student outcomes. When teachers share and refine their practice together, the benefits ripple out to thousands of students.\n\nJoin the Blue Sands teacher community today and connect with like-minded educators who are transforming STEM education across Africa.",
+    "excerpt": "Collaboration can make our teams stronger, and our individual teaching practice better.",
+    "author": "Blue Sands Academy",
+    "date": "7 Jan 2025",
+    "publishDate": "2025-01-07",
+    "status": "published",
+    "tags": [
+      { "label": "Community", "color": "pink" },
+      { "label": "Teacher Development", "color": "primary" }
+    ],
+    "image": "https://res.cloudinary.com/dgjbx9xqq/image/upload/f_auto,q_auto/bls/blog/lab-equipment.jpg",
+    "category": "Community",
+    "createdAt": "2025-01-07T00:00:00.000Z",
+    "updatedAt": "2025-01-07T00:00:00.000Z"
+  },
+  {
+    "id": "post-1005",
+    "title": "Case Studies: Schools Transformed by Virtual STEM Labs",
+    "content": "Across Africa, schools that have adopted the Blue Sands Virtual STEM Lab platform are seeing remarkable results. Here are three case studies from our partner schools.\n\n**Lagos State Secondary School, Nigeria**\nAfter implementing Blue Sands in 2024, this school saw a 31% increase in WAEC science scores. The head of science noted that students who previously struggled with abstract chemistry concepts thrived with the visual, interactive simulations.\n\n**Nairobi Academy, Kenya**\nWith 800 students and limited lab equipment, Nairobi Academy was struggling to give every student hands-on science experience. Blue Sands solved this problem overnight. Every student now completes 3-4 virtual experiments per week.\n\n**Cape Town High School, South Africa**\nThe Blue Sands offline mode was a game-changer for this school, which experiences frequent load-shedding. Students can now continue their experiments during power outages on tablets charged before the outage.\n\nThese stories represent thousands of students getting access to quality STEM education that was previously out of reach.",
+    "excerpt": "Real-world impact: see how schools across Africa are using Blue Sands to transform STEM outcomes.",
+    "author": "Blue Sands Academy",
+    "date": "3 Jan 2025",
+    "publishDate": "2025-01-03",
+    "status": "published",
+    "tags": [
+      { "label": "Case Studies", "color": "gray" },
+      { "label": "Impact", "color": "green" }
+    ],
+    "image": "https://res.cloudinary.com/dgjbx9xqq/image/upload/f_auto,q_auto/bls/blog/workspace.jpg",
+    "category": "Case Studies",
+    "createdAt": "2025-01-03T00:00:00.000Z",
+    "updatedAt": "2025-01-03T00:00:00.000Z"
+  },
+  {
+    "id": "post-1006",
+    "title": "Product Updates: What's New in Blue Sands Platform",
+    "content": "We're constantly improving the Blue Sands platform based on feedback from teachers and students across Africa. Here's a roundup of our latest updates.\n\n**New Simulations Added**\n- Advanced Genetics & DNA Replication\n- Thermodynamics & Heat Transfer\n- Electromagnetic Induction\n- Acid-Base Titration (upgraded)\n\n**Platform Improvements**\n- 40% faster simulation loading time\n- Improved offline sync reliability\n- New teacher dashboard with class-wide analytics\n- Student portfolio feature for tracking progress over time\n\n**Mobile App Updates**\n- New iOS app with full offline support\n- Android app performance improvements\n- Tablet-optimized interface for classroom use\n\nAll updates are automatically available to existing subscribers. If you haven't tried the new simulations yet, log into your account and explore the updated simulation library.",
+    "excerpt": "Latest platform updates, new simulations, and improvements to the Blue Sands learning experience.",
+    "author": "Blue Sands Academy",
+    "date": "28 Dec 2024",
+    "publishDate": "2024-12-28",
+    "status": "published",
+    "tags": [
+      { "label": "Product Updates", "color": "primary" },
+      { "label": "Features", "color": "purple" }
+    ],
+    "image": "https://res.cloudinary.com/dgjbx9xqq/image/upload/f_auto,q_auto/bls/blog/presentation.jpg",
+    "category": "Product Updates",
+    "createdAt": "2024-12-28T00:00:00.000Z",
+    "updatedAt": "2024-12-28T00:00:00.000Z"
+  }
+]
