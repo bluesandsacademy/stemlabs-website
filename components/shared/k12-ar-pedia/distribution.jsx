@@ -87,7 +87,7 @@ function NigeriaMap() {
 
 export default function DistributionSection() {
   return (
-    <section className="relative bg-white py-16 sm:py-20 lg:py-24">
+    <section className="relative bg-white py-16 sm:py-20 lg:py-24 overflow-hidden">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
