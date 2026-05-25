@@ -264,7 +264,7 @@ export default function K12PricingSection() {
                       </p>
                     </div>
                     <Link
-                      href="/contact"
+                      href="/products/k12-ar-pedia/preorder"
                       className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-300 ${
                         pkg.popular
                           ? "bg-white text-primary hover:bg-gray-50"
@@ -292,7 +292,7 @@ export default function K12PricingSection() {
                       </p>
                     </div>
                     <Link
-                      href="/contact"
+                      href="/products/k12-ar-pedia/preorder"
                       className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-300 border ${
                         pkg.popular
                           ? "border-white/40 text-white hover:bg-white/10"

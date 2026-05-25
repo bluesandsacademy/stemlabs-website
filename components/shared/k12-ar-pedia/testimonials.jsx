@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { MessageCircle } from "lucide-react";
 
 const quotes = [
   {
@@ -46,8 +47,12 @@ function Stars({ count }) {
 
 export default function TestimonialsSection() {
   return (
-    <section className="relative bg-gray-50 py-16 sm:py-20 lg:py-24 overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-gray-200 to-transparent" />
+    <section className="relative bg-emerald-50 py-16 sm:py-20 lg:py-24 overflow-hidden">
+      {/* CSS shape decorations — no text emoji */}
+      <div className="absolute top-10 left-10 w-10 h-10 rounded-full bg-emerald-400/20 pointer-events-none" />
+      <div className="absolute top-8 right-12 w-7 h-7 rounded-full bg-emerald-500/15 pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-10 h-10 rounded-full border-2 border-emerald-300/30 pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-emerald-200 to-transparent" />
 
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -58,6 +63,10 @@ export default function TestimonialsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-14 space-y-4"
         >
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-sm font-bold">
+            <MessageCircle className="w-4 h-4" />
+            Educator Voices
+          </div>
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary"
             style={{ fontFamily: "var(--font-jarkata)" }}
@@ -81,7 +90,7 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: i * 0.1 }}
-              className="relative bg-white rounded-2xl p-6 lg:p-8 shadow-sm border border-gray-100 hover:shadow-md hover:border-primary/15 transition-all duration-300 flex flex-col"
+              className="relative bg-white rounded-3xl p-6 lg:p-8 shadow-sm border-2 border-emerald-100 hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 flex flex-col"
             >
               {/* Stars */}
               <div className="mb-4">

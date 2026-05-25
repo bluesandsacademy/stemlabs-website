@@ -42,14 +42,16 @@ export default function StickyCta() {
 
             {/* CTAs */}
             <div className="flex items-center gap-2 shrink-0">
-              <Link
-                href="/contact"
+              <a
+                href="https://calendly.com/REPLACE_WITH_YOUR_LINK"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-4 py-2.5 border border-primary text-primary text-xs font-bold rounded-xl hover:bg-primary/5 transition-colors whitespace-nowrap"
               >
                 Request Demo
-              </Link>
+              </a>
               <Link
-                href="#pricing"
+                href="/products/k12-ar-pedia/preorder"
                 className="px-4 py-2.5 bg-primary text-white text-xs font-bold rounded-xl hover:bg-primary/90 transition-colors shadow-md whitespace-nowrap"
               >
                 Preorder Now
