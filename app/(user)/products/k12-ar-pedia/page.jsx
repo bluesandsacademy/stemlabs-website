@@ -22,7 +22,7 @@ export const metadata = {
 
 export default function K12ArPediaPage() {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <K12HeroSection />
       <CountdownSection />
       <WhatIsSection />

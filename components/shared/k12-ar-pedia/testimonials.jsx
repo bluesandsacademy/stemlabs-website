@@ -46,7 +46,7 @@ function Stars({ count }) {
 
 export default function TestimonialsSection() {
   return (
-    <section className="relative bg-gray-50 py-16 sm:py-20 lg:py-24">
+    <section className="relative bg-gray-50 py-16 sm:py-20 lg:py-24 overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-gray-200 to-transparent" />
 
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
