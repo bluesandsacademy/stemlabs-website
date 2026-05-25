@@ -42,3 +42,4 @@ next-env.d.ts
 sql/blog-schema.sql
 public/ceo.jpeg
 scripts/create-test-post.mjs
+LANDING_PAGE_COPY.md

@@ -3,7 +3,6 @@ import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import Navbar from "@/components/common/navbar";
 import Footer from "@/components/common/footer";
 import { Toaster } from "react-hot-toast";
-import AseeDisclaimerPopup from "@/components/shared/asee/disclaimer-popup";
 
 export const metadata = {
   title: "BLUESANDS STEM LABS | Africa STEM EdTech Expo",
@@ -20,7 +19,6 @@ export default function UserLayout({ children }) {
         <main className="flex-1 pt-20">{children}</main>
         <Footer />
       </div>
-      <AseeDisclaimerPopup />
       <Toaster position="top-center" />
     </>
   );

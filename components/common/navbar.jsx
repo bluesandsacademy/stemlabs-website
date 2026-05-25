@@ -13,10 +13,14 @@ import { img } from "@/lib/cloudinary";
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-
+  {
+    name: "Products",
+    dropdown: [
+      { name: "K12 AR Pedia", href: "/products/k12-ar-pedia" },
+    ],
+  },
   {
     name: "Simulations",
-
     dropdown: [
       { name: "Simulations", href: "/simulations" },
       { name: "How it works", href: "/how-it-works" },
@@ -29,8 +33,6 @@ const navLinks = [
     dropdown: [
       { name: "Blog", href: "/blog" },
       { name: "ASEE 2025", href: "/asee-2025" },
-
-      // Future: { name: "Case Studies", href: "/case-studies" },
     ],
   },
   { name: "Contact", href: "/contact" },
