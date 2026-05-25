@@ -86,20 +86,22 @@ export default function FinalCtaSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10"
         >
-          <Link
-            href="/contact"
+          <a
+            href="https://calendly.com/REPLACE_WITH_YOUR_LINK"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-8 py-4 bg-white text-primary font-bold rounded-xl hover:bg-gray-50 transition-all duration-300 shadow-lg hover:shadow-xl text-base w-full sm:w-auto text-center"
           >
             Request a Demo
-          </Link>
+          </a>
           <Link
-            href="#pricing"
+            href="/products/k12-ar-pedia/preorder"
             className="px-8 py-4 bg-secondary text-white font-bold rounded-xl hover:bg-secondary/90 transition-all duration-300 shadow-lg hover:shadow-xl border border-white/10 text-base w-full sm:w-auto text-center"
           >
             Preorder Now
           </Link>
           <Link
-            href="#coordinator"
+            href="/products/k12-ar-pedia/apply"
             className="px-8 py-4 bg-transparent text-white font-bold rounded-xl hover:bg-white/10 transition-all duration-300 border border-white/40 text-base w-full sm:w-auto text-center"
           >
             Become a Partner

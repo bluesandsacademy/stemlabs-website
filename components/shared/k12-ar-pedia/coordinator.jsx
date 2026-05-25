@@ -160,7 +160,7 @@ export default function CoordinatorSection() {
           className="text-center"
         >
           <Link
-            href="/contact"
+            href="/products/k12-ar-pedia/apply"
             className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-semibold rounded-xl hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl text-base"
           >
             Apply Now

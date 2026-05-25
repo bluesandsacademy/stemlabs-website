@@ -237,15 +237,17 @@ export default function K12HeroSection() {
               className="flex flex-col gap-3 pt-1"
             >
               <div className="flex flex-col sm:flex-row gap-3">
-                <Link
-                  href="/contact"
+                <a
+                  href="https://calendly.com/REPLACE_WITH_YOUR_LINK"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-6 py-3.5 bg-white text-primary font-bold rounded-xl hover:bg-gray-50 transition-all duration-300 shadow-lg hover:shadow-xl text-center text-sm sm:text-base"
                   style={{ fontFamily: "var(--font-jarkata)" }}
                 >
                   Request School Demo
-                </Link>
+                </a>
                 <Link
-                  href="#pricing"
+                  href="/products/k12-ar-pedia/preorder"
                   className="px-6 py-3.5 bg-secondary text-white font-bold rounded-xl hover:bg-secondary/90 transition-all duration-300 shadow-lg hover:shadow-xl border border-white/10 text-center text-sm sm:text-base"
                   style={{ fontFamily: "var(--font-jarkata)" }}
                 >
@@ -253,7 +255,7 @@ export default function K12HeroSection() {
                 </Link>
               </div>
               <Link
-                href="#coordinator"
+                href="/products/k12-ar-pedia/apply"
                 className="px-6 py-3 bg-transparent text-white/90 font-semibold rounded-xl hover:bg-white/10 transition-all duration-300 border border-white/30 text-center text-sm sm:text-base sm:self-start"
                 style={{ fontFamily: "var(--font-jarkata)" }}
               >
