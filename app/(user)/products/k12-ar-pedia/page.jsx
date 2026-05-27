@@ -1,5 +1,6 @@
 import K12HeroSection from "@/components/shared/k12-ar-pedia/hero";
-import CountdownSection from "@/components/shared/k12-ar-pedia/countdown";
+import SocialProofTicker from "@/components/shared/k12-ar-pedia/social-proof-ticker";
+import CountdownFloat from "@/components/shared/k12-ar-pedia/countdown-float";
 import WhatIsSection from "@/components/shared/k12-ar-pedia/what-is";
 import WhySwitchSection from "@/components/shared/k12-ar-pedia/why-switch";
 import BenefitsSection from "@/components/shared/k12-ar-pedia/benefits";
@@ -24,7 +25,7 @@ export default function K12ArPediaPage() {
   return (
     <div className="overflow-x-hidden">
       <K12HeroSection />
-      <CountdownSection />
+      <SocialProofTicker />
       <WhatIsSection />
       <WhySwitchSection />
       <BenefitsSection />
@@ -37,6 +38,7 @@ export default function K12ArPediaPage() {
       <K12PricingSection />
       <FinalCtaSection />
       <StickyCta />
+      <CountdownFloat />
     </div>
   );
 }

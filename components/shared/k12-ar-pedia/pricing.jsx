@@ -1,72 +1,62 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
+import { Users, GraduationCap, CheckCircle2, Star, Award } from "lucide-react";
 
-const packages = [
-  {
-    id: "explorer",
-    badge: "Individual Learner",
-    name: "Explorer Pack",
-    tagline:
-      "For individual children, gifted learners, after-school programs, and STEM clubs.",
-    ageRange: "Ages 5–11",
-    includes: [
-      "1 AR Pedia Tablet",
-      "3 Interactive AR Books",
-      "Starter STEM Learning Modules",
-      "Parent Setup Guide",
-    ],
-    benefits: [
-      "Interactive science exploration",
-      "Fun STEM discovery",
-      "Improved curiosity & engagement",
-      "Learning beyond textbooks",
-    ],
-    fullUSD: 100,
-    fullNGN: 140000,
-    depositUSD: 30,
-    depositNGN: 42000,
-    depositLabel: "30% Deposit",
-    popular: false,
-  },
+const plans = [
   {
     id: "family",
+    planParam: "family",
     badge: "Most Popular",
+    Icon: Users,
+    iconBg: "bg-amber-400",
+    iconShadow: "shadow-amber-400/50",
     name: "Smart Family STEM Pack",
-    tagline:
-      "For parents, homeschool families, and multi-child households wanting quality STEM at home.",
-    ageRange: "Whole Family",
-    includes: [
+    tagline: "For parents, homeschool families & multi-child households.",
+    cardBg: "from-amber-50 via-orange-50 to-yellow-50",
+    border: "border-amber-200",
+    priceBg: "bg-amber-100/70",
+    accentText: "text-amber-600",
+    checkBg: "bg-amber-400/15",
+    checkColor: "text-amber-600",
+    glow: "bg-amber-300/20",
+    ctaPrimary: "bg-amber-400 hover:bg-amber-500 text-white shadow-xl shadow-amber-400/30",
+    ctaSecondary: "border-amber-300 text-amber-700 hover:bg-amber-50",
+    fullUSD: 150, fullNGN: 210000,
+    depositUSD: 45, depositNGN: 63000,
+    highlights: [
       "1 AR Pedia Tablet",
       "5 Interactive AR Books",
       "STEM Challenges & Activities",
       "Parent Support Community",
       "Monthly STEM Challenges",
-      "Learning Analytics",
+      "Learning Analytics Dashboard",
     ],
-    benefits: [
-      "Shared family learning",
-      "Screen time with educational value",
-      "Early STEM exposure",
-      "AI-era preparation",
-    ],
-    fullUSD: 150,
-    fullNGN: 210000,
-    depositUSD: 45,
-    depositNGN: 63000,
-    depositLabel: "30% Deposit",
     popular: true,
   },
   {
     id: "school",
-    badge: "School Starter",
+    planParam: "school",
+    badge: "For Schools",
+    Icon: GraduationCap,
+    iconBg: "bg-primary",
+    iconShadow: "shadow-primary/50",
     name: "Smart Classroom Starter",
-    tagline:
-      "For nursery & primary schools and small STEM academies with 100–300 students.",
-    ageRange: "100–300 Students",
-    includes: [
+    tagline: "For nursery & primary schools with 100–300 students.",
+    cardBg: "from-blue-50 via-sky-50 to-indigo-50",
+    border: "border-blue-200",
+    priceBg: "bg-blue-100/70",
+    accentText: "text-primary",
+    checkBg: "bg-primary/10",
+    checkColor: "text-primary",
+    glow: "bg-blue-300/20",
+    ctaPrimary: "bg-primary hover:bg-secondary text-white shadow-xl shadow-primary/30",
+    ctaSecondary: "border-blue-300 text-primary hover:bg-blue-50",
+    fullUSD: 300, fullNGN: 420000,
+    depositUSD: 90, depositNGN: 126000,
+    highlights: [
       "5–10 AR Pedia Tablets",
       "Classroom AR Book Library",
       "Teacher Orientation",
@@ -75,17 +65,6 @@ const packages = [
       "STEM Showcase Session",
       "Basic Technical Support",
     ],
-    benefits: [
-      "Classroom transformation",
-      "Higher student engagement",
-      "STEM positioning advantage",
-      "Parent attraction & retention",
-    ],
-    fullUSD: 300,
-    fullNGN: 420000,
-    depositUSD: 90,
-    depositNGN: 126000,
-    depositLabel: "30% Deposit",
     popular: false,
   },
 ];
@@ -93,13 +72,20 @@ const packages = [
 export default function K12PricingSection() {
   const [currency, setCurrency] = useState("ngn");
 
-  const formatPrice = (usd, ngn) =>
-    currency === "usd"
-      ? `$${usd.toLocaleString()}`
-      : `₦${ngn.toLocaleString()}`;
+  const fmt = (usd, ngn) =>
+    currency === "usd" ? `$${usd.toLocaleString()}` : `₦${ngn.toLocaleString()}`;
 
   return (
-    <section id="pricing" className="relative bg-white py-16 sm:py-20 lg:py-24 overflow-hidden">
+    <section
+      id="pricing"
+      className="relative py-16 sm:py-20 lg:py-24 overflow-hidden"
+      style={{ background: "#FFFBF0" }}
+    >
+      {/* Background blobs */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-64 bg-amber-200/30 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-72 h-72 bg-blue-200/25 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-amber-200/20 rounded-full blur-3xl pointer-events-none" />
+
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -107,210 +93,151 @@ export default function K12PricingSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12 space-y-4 max-w-3xl mx-auto"
+          className="text-center mb-16 space-y-4 max-w-2xl mx-auto"
         >
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary text-white text-sm font-bold shadow-lg shadow-primary/30">
+            <Star className="w-4 h-4" />
+            Choose Your Plan
+          </div>
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary"
+            className="text-3xl sm:text-4xl lg:text-5xl font-black text-secondary leading-tight"
             style={{ fontFamily: "var(--font-jarkata)" }}
           >
-            Choose Your Package
+            One Plan.{" "}
+            <span className="text-primary">Infinite Discovery.</span>
           </h2>
-          <p
-            className="text-gray-600 text-base sm:text-lg"
-            style={{ fontFamily: "var(--font-jarkata)" }}
-          >
-            Flexible packages designed for every learning context — from a
-            single child to an entire school.
+          <p className="text-gray-600 text-base sm:text-lg" style={{ fontFamily: "var(--font-jarkata)" }}>
+            Pick the right fit — for home or for school.
           </p>
 
           {/* Currency toggle */}
-          <div className="flex items-center justify-center gap-3 pt-2">
-            <span
-              className={`text-sm font-semibold ${currency === "usd" ? "text-secondary" : "text-gray-400"}`}
-            >
-              USD
-            </span>
+          <div className="flex items-center justify-center gap-3 pt-1">
+            <span className={`text-sm font-bold ${currency === "usd" ? "text-secondary" : "text-gray-400"}`}>USD</span>
             <button
               onClick={() => setCurrency(currency === "usd" ? "ngn" : "usd")}
               aria-label="Toggle currency"
-              className="relative w-14 h-7 bg-primary rounded-full transition-all duration-300"
+              className="relative w-14 h-7 bg-primary rounded-full transition-all duration-300 shadow-inner"
             >
               <span
-                className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full transition-transform duration-300 ${
-                  currency === "ngn" ? "translate-x-7" : ""
-                }`}
+                className={`absolute top-1 left-1 w-5 h-5 bg-white rounded-full shadow transition-transform duration-300 ${currency === "ngn" ? "translate-x-7" : ""}`}
               />
             </button>
-            <span
-              className={`text-sm font-semibold ${currency === "ngn" ? "text-secondary" : "text-gray-400"}`}
-            >
-              NGN
-            </span>
+            <span className={`text-sm font-bold ${currency === "ngn" ? "text-secondary" : "text-gray-400"}`}>NGN</span>
           </div>
         </motion.div>
 
-        {/* Package cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {packages.map((pkg, i) => (
+        {/* Plan cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {plans.map((plan, i) => (
             <motion.div
-              key={pkg.id}
-              initial={{ opacity: 0, y: 30 }}
+              key={plan.id}
+              initial={{ opacity: 0, y: 36 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className={`relative rounded-2xl overflow-hidden flex flex-col ${
-                pkg.popular ? "ring-2 ring-primary" : ""
-              }`}
+              transition={{ duration: 0.65, delay: i * 0.12 }}
+              className="relative"
             >
-              <div
-                className={`h-full flex flex-col p-6 sm:p-7 rounded-2xl transition-all duration-300 ${
-                  pkg.popular
-                    ? "bg-primary text-white shadow-xl"
-                    : "bg-white text-secondary shadow-md hover:shadow-lg border border-gray-100"
-                }`}
-              >
-                {/* Badge */}
-                <div className="mb-4">
-                  <span
-                    className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
-                      pkg.popular
-                        ? "bg-white/20 text-white"
-                        : "bg-primary text-white"
-                    }`}
+              {/* Floating "Most Popular" badge above card */}
+              {plan.popular && (
+                <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-10">
+                  <div
+                    className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full bg-amber-400 text-white text-xs font-black shadow-lg shadow-amber-400/40 whitespace-nowrap"
+                    style={{ fontFamily: "var(--font-jarkata)" }}
                   >
-                    {pkg.badge}
-                  </span>
-                </div>
-
-                {/* Name + tagline */}
-                <h3
-                  className="text-xl font-bold mb-2"
-                  style={{ fontFamily: "var(--font-jarkata)" }}
-                >
-                  {pkg.name}
-                </h3>
-                <p
-                  className={`text-sm leading-relaxed mb-4 ${pkg.popular ? "text-white/85" : "text-gray-600"}`}
-                  style={{ fontFamily: "var(--font-jarkata)" }}
-                >
-                  {pkg.tagline}
-                </p>
-
-                {/* Age / size indicator */}
-                <div
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold mb-6 self-start ${
-                    pkg.popular ? "bg-white/15 text-white" : "bg-gray-50 text-gray-700 border border-gray-200"
-                  }`}
-                >
-                  {pkg.ageRange}
-                </div>
-
-                {/* What's included */}
-                <div className="mb-5 flex-1">
-                  <p
-                    className={`text-xs uppercase tracking-wider font-bold mb-3 ${pkg.popular ? "text-white/60" : "text-gray-400"}`}
-                  >
-                    Package Includes
-                  </p>
-                  <ul className="space-y-2">
-                    {pkg.includes.map((item) => (
-                      <li key={item} className="flex items-start gap-2.5">
-                        <div
-                          className={`shrink-0 w-4 h-4 rounded-full flex items-center justify-center mt-0.5 ${
-                            pkg.popular ? "bg-white/20" : "bg-primary/10"
-                          }`}
-                        >
-                          <svg
-                            className={`w-2.5 h-2.5 ${pkg.popular ? "text-white" : "text-primary"}`}
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </div>
-                        <span
-                          className={`text-sm ${pkg.popular ? "text-white/90" : "text-gray-700"}`}
-                          style={{ fontFamily: "var(--font-jarkata)" }}
-                        >
-                          {item}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Pricing */}
-                <div
-                  className={`rounded-xl p-4 mb-5 space-y-3 ${
-                    pkg.popular ? "bg-white/10" : "bg-gray-50 border border-gray-100"
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p
-                        className={`text-[10px] uppercase tracking-wider font-semibold mb-0.5 ${pkg.popular ? "text-white/60" : "text-gray-400"}`}
-                      >
-                        Pay in Full
-                      </p>
-                      <p
-                        className={`text-2xl font-bold ${pkg.popular ? "text-white" : "text-secondary"}`}
-                        style={{ fontFamily: "var(--font-jarkata)" }}
-                      >
-                        {formatPrice(pkg.fullUSD, pkg.fullNGN)}
-                      </p>
-                    </div>
-                    <Link
-                      href="/products/k12-ar-pedia/preorder"
-                      className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-300 ${
-                        pkg.popular
-                          ? "bg-white text-primary hover:bg-gray-50"
-                          : "bg-primary text-white hover:bg-secondary"
-                      }`}
-                    >
-                      Pay in Full
-                    </Link>
+                    <Star className="w-3.5 h-3.5 fill-white" />
+                    Most Popular
                   </div>
-
-                  <div className="h-px bg-current opacity-10" />
-
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p
-                        className={`text-[10px] uppercase tracking-wider font-semibold mb-0.5 ${pkg.popular ? "text-white/60" : "text-gray-400"}`}
-                      >
-                        {pkg.depositLabel}
-                      </p>
-                      <p
-                        className={`text-xl font-bold ${pkg.popular ? "text-white/90" : "text-secondary"}`}
-                        style={{ fontFamily: "var(--font-jarkata)" }}
-                      >
-                        {formatPrice(pkg.depositUSD, pkg.depositNGN)}
-                      </p>
-                    </div>
-                    <Link
-                      href="/products/k12-ar-pedia/preorder"
-                      className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-300 border ${
-                        pkg.popular
-                          ? "border-white/40 text-white hover:bg-white/10"
-                          : "border-primary/30 text-primary hover:bg-primary/5"
-                      }`}
-                    >
-                      Pre-Order
-                    </Link>
-                  </div>
-                </div>
-              </div>
-
-              {/* Popular ribbon */}
-              {pkg.popular && (
-                <div className="absolute top-3 right-[-8%] bg-secondary text-white text-[10px] font-bold px-8 py-1.5 shadow-md transform rotate-30">
-                  Most Popular
                 </div>
               )}
+
+              <div
+                className={`relative rounded-3xl border-2 ${plan.border} bg-linear-to-br ${plan.cardBg} p-7 sm:p-8 flex flex-col gap-6 overflow-hidden h-full`}
+                style={{
+                  boxShadow: plan.popular
+                    ? "0 20px 60px rgba(245,158,11,0.18), 0 0 0 2px rgba(245,158,11,0.3)"
+                    : "0 20px 60px rgba(4,131,226,0.12)",
+                }}
+              >
+                {/* Decorative background glow */}
+                <div className={`absolute -top-12 -right-12 w-48 h-48 rounded-full ${plan.glow} pointer-events-none blur-2xl`} />
+
+                {/* Icon + name */}
+                <div className="flex items-start gap-4 relative">
+                  <div
+                    className={`w-20 h-20 rounded-2xl ${plan.iconBg} flex items-center justify-center shadow-2xl ${plan.iconShadow} shrink-0`}
+                  >
+                    <plan.Icon className="w-10 h-10 text-white" strokeWidth={1.5} />
+                  </div>
+                  <div className="pt-1">
+                    <span
+                      className={`inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider mb-2 ${plan.popular ? "bg-amber-400/20 text-amber-700" : "bg-primary/10 text-primary"}`}
+                    >
+                      {plan.badge}
+                    </span>
+                    <h3
+                      className="text-lg font-black text-secondary leading-tight"
+                      style={{ fontFamily: "var(--font-jarkata)" }}
+                    >
+                      {plan.name}
+                    </h3>
+                  </div>
+                </div>
+
+                <p className="text-gray-500 text-sm leading-relaxed -mt-2" style={{ fontFamily: "var(--font-jarkata)" }}>
+                  {plan.tagline}
+                </p>
+
+                {/* Price box */}
+                <div className={`rounded-2xl p-5 ${plan.priceBg} border ${plan.border}`}>
+                  <p className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-1">Full Price</p>
+                  <p
+                    className={`text-4xl font-black ${plan.accentText} leading-none`}
+                    style={{ fontFamily: "var(--font-jarkata)" }}
+                  >
+                    {fmt(plan.fullUSD, plan.fullNGN)}
+                  </p>
+                  <div className="mt-3 pt-3 border-t border-gray-200/60 flex items-center justify-between">
+                    <div>
+                      <p className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-0.5">30% Deposit</p>
+                      <p className="text-xl font-black text-secondary" style={{ fontFamily: "var(--font-jarkata)" }}>
+                        {fmt(plan.depositUSD, plan.depositNGN)}
+                      </p>
+                    </div>
+                    <span className="px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold uppercase tracking-wider">
+                      Reserve Now
+                    </span>
+                  </div>
+                </div>
+
+                {/* Features */}
+                <ul className="space-y-2.5 flex-1">
+                  {plan.highlights.map((item) => (
+                    <li key={item} className="flex items-center gap-3">
+                      <div className={`w-6 h-6 rounded-full ${plan.checkBg} flex items-center justify-center shrink-0`}>
+                        <CheckCircle2 className={`w-3.5 h-3.5 ${plan.checkColor}`} strokeWidth={2.5} />
+                      </div>
+                      <span
+                        className="text-sm font-medium text-gray-700"
+                        style={{ fontFamily: "var(--font-jarkata)" }}
+                      >
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* CTA */}
+                <div className="pt-2">
+                  <Link
+                    href={`/products/k12-ar-pedia/preorder?plan=${plan.planParam}`}
+                    className={`flex items-center justify-center gap-2 w-full py-4 rounded-2xl font-black text-base transition-all duration-300 ${plan.ctaPrimary}`}
+                    style={{ fontFamily: "var(--font-jarkata)" }}
+                  >
+                    <Award className="w-5 h-5 shrink-0" />
+                    Preorder {plan.popular ? "Family Pack" : "School Pack"}
+                  </Link>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -320,11 +247,10 @@ export default function K12PricingSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="text-center text-gray-500 text-sm mt-8"
+          className="text-center text-gray-400 text-sm mt-10"
           style={{ fontFamily: "var(--font-jarkata)" }}
         >
-          Nigeria&apos;s immersive STEM learning ecosystem for the next
-          generation. All prices include setup and onboarding support.
+          All prices include setup and onboarding support. Early access slots are limited.
         </motion.p>
       </div>
     </section>
