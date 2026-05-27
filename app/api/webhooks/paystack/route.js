@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
 import { supabaseAdmin } from "@/lib/supabase-admin";
-import { sendOrderConfirmation } from "@/lib/resend";
+import { sendOrderConfirmation, sendBalanceConfirmation, sendAdminPaymentAlert } from "@/lib/resend";
 
 export async function POST(request) {
   try {
@@ -53,25 +53,44 @@ export async function POST(request) {
         .select("full_name, email, selected_plan, device_count, payment_option")
         .single();
 
-      // Send confirmation email
+      // Send customer confirmation email (type-aware)
       if (preorder?.email) {
-        await sendOrderConfirmation({
+        const planLabel = preorder.selected_plan === "family" ? "Smart Family STEM Pack" : "Smart Classroom Starter";
+        const isBalance = payment.payment_type === "balance";
+
+        const emailFn = isBalance ? sendBalanceConfirmation : sendOrderConfirmation;
+        const subject  = isBalance
+          ? "Full Payment Received — Blue Sands K12 AR Pedia"
+          : "Order Confirmed — Blue Sands K12 AR Pedia";
+
+        await emailFn({
           to:          preorder.email,
           customerName: preorder.full_name,
-          plan:        preorder.selected_plan === "family" ? "Smart Family STEM Pack" : "Smart Classroom Starter",
+          plan:        planLabel,
           deviceCount: preorder.device_count,
           amountPaid:  amountNGN,
           paymentType: payment.payment_type,
           orderId:     payment.preorder_id,
-        }).catch((err) => console.error("[paystack webhook] Email error:", err));
+        }).catch((err) => console.error("[paystack webhook] Customer email error:", err));
 
         await supabaseAdmin.from("email_logs").insert({
           preorder_id: payment.preorder_id,
           recipient:   preorder.email,
-          subject:     "Order Confirmed — Blue Sands K12 AR Pedia",
-          email_type:  "order_confirmation",
+          subject,
+          email_type:  isBalance ? "balance_confirmation" : "order_confirmation",
           status:      "sent",
         });
+
+        // Notify admin
+        await sendAdminPaymentAlert({
+          paymentType:   payment.payment_type,
+          amountNGN,
+          customerName:  preorder.full_name,
+          customerEmail: preorder.email,
+          plan:          planLabel,
+          deviceCount:   preorder.device_count,
+          orderId:       payment.preorder_id,
+        }).catch((err) => console.error("[paystack webhook] Admin alert error:", err));
       }
     }
 

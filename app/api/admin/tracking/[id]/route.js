@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 import { requireAdmin } from "@/lib/admin-auth";
 import { createShipment } from "@/lib/logistics";
+import { sendTrackingNotification } from "@/lib/resend";
 
 export async function POST(request, { params }) {
   const { error: authError, user } = await requireAdmin();
@@ -88,10 +89,37 @@ export async function POST(request, { params }) {
   }
 
   // Update order status to shipped
-  await supabaseAdmin
+  const { data: updatedPreorder } = await supabaseAdmin
     .from("k12_preorders")
     .update({ order_status: "shipped" })
-    .eq("id", preorder_id);
+    .eq("id", preorder_id)
+    .select("full_name, email, selected_plan")
+    .single();
+
+  // Auto-notify customer with tracking details
+  if (updatedPreorder?.email) {
+    const siteUrl   = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+    const planLabel = updatedPreorder.selected_plan === "family" ? "Smart Family STEM Pack" : "Smart Classroom Starter";
+    const trackPageUrl = `${siteUrl}/track?ref=BSL-${preorder_id.slice(0, 8).toUpperCase()}`;
+
+    await sendTrackingNotification({
+      to:             updatedPreorder.email,
+      customerName:   updatedPreorder.full_name,
+      plan:           planLabel,
+      trackingNumber: trackingRow.tracking_number,
+      trackingUrl:    trackingRow.tracking_url || null,
+      provider:       trackingRow.logistics_provider || null,
+      trackPageUrl,
+    }).catch((err) => console.error("[tracking POST] Email error:", err));
+
+    await supabaseAdmin.from("email_logs").insert({
+      preorder_id,
+      recipient:  updatedPreorder.email,
+      subject:    "Your Order is On the Way! — Blue Sands K12 AR Pedia",
+      email_type: "tracking_update",
+      status:     "sent",
+    });
+  }
 
   return NextResponse.json({ success: true, tracking_id: trackingId });
 }
