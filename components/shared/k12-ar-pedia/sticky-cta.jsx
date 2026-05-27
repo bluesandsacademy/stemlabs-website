@@ -43,7 +43,7 @@ export default function StickyCta() {
             {/* CTAs */}
             <div className="flex items-center gap-2 shrink-0">
               <a
-                href="https://calendly.com/REPLACE_WITH_YOUR_LINK"
+                href="https://calendly.com/bluesandstemlabs/30min"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2.5 border border-primary text-primary text-xs font-bold rounded-xl hover:bg-primary/5 transition-colors whitespace-nowrap"

@@ -238,7 +238,7 @@ export default function K12HeroSection() {
             >
               <div className="flex flex-col sm:flex-row gap-3">
                 <a
-                  href="https://calendly.com/REPLACE_WITH_YOUR_LINK"
+                  href="https://calendly.com/bluesandstemlabs/30min"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-3.5 bg-white text-primary font-bold rounded-xl hover:bg-gray-50 transition-all duration-300 shadow-lg hover:shadow-xl text-center text-sm sm:text-base"

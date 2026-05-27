@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase-admin";
+import { initializeTransaction, generateReference } from "@/lib/paystack";
 
 const NIGERIAN_STATES = [
   "Abia","Adamawa","Akwa Ibom","Anambra","Bauchi","Bayelsa","Benue","Borno",
@@ -9,17 +10,24 @@ const NIGERIAN_STATES = [
   "Yobe","Zamfara",
 ];
 
-const VALID_USER_TYPES    = ["individual", "school", "institution"];
-const VALID_PAYMENT_OPT   = ["full", "installment", "discuss"];
-const VALID_NEEDS         = ["ar_books", "teacher_training", "school_demo", "installation_support", "lms_access"];
+const VALID_USER_TYPES  = ["individual", "school", "institution"];
+const VALID_PAYMENT_OPT = ["full", "deposit"];
+const VALID_NEEDS       = ["ar_books", "teacher_training", "school_demo", "installation_support", "lms_access"];
+
+// Per-device NGN rates matching the pricing page
+const PLAN_RATES = {
+  family: 210000,
+  school:  84000,
+};
 
 export async function POST(request) {
   try {
     const body = await request.json();
 
     const {
-      user_type, full_name, school_org_name, email, phone, whatsapp,
-      state, city, delivery_address, device_count, additional_needs,
+      selected_plan, user_type, full_name, school_org_name, email, phone, whatsapp,
+      state, lga, city, postal_code, address_line1, address_line2, landmark,
+      device_count, additional_needs,
       student_count, teacher_count, payment_option, agreed_to_contact,
     } = body;
 
@@ -42,6 +50,12 @@ export async function POST(request) {
     if (!state || !NIGERIAN_STATES.includes(state))
       return NextResponse.json({ error: "Please select a valid state." }, { status: 400 });
 
+    if (!city?.trim())
+      return NextResponse.json({ error: "City / town is required." }, { status: 400 });
+
+    if (!address_line1?.trim())
+      return NextResponse.json({ error: "Street address is required." }, { status: 400 });
+
     const parsedDeviceCount = parseInt(device_count, 10);
     if (!parsedDeviceCount || parsedDeviceCount < 1)
       return NextResponse.json({ error: "At least 1 device is required." }, { status: 400 });
@@ -54,10 +68,18 @@ export async function POST(request) {
 
     const sanitizedNeeds = (additional_needs || []).filter((n) => VALID_NEEDS.includes(n));
 
-    // ── Insert ────────────────────────────────────────────────────────────────
+    // ── Compute amount ────────────────────────────────────────────────────────
+    const ratePerDevice = PLAN_RATES[selected_plan] ?? PLAN_RATES.school;
+    const fullAmountNGN = ratePerDevice * parsedDeviceCount;
+    const chargeNGN     = payment_option === "deposit"
+      ? Math.round(fullAmountNGN * 0.3)
+      : fullAmountNGN;
+
+    // ── Insert preorder ───────────────────────────────────────────────────────
     const { data, error } = await supabaseAdmin
       .from("k12_preorders")
       .insert({
+        selected_plan:      selected_plan || null,
         user_type,
         full_name:          full_name.trim(),
         school_org_name:    school_org_name?.trim() || null,
@@ -65,24 +87,58 @@ export async function POST(request) {
         phone:              phone.trim(),
         whatsapp:           whatsapp.trim(),
         state,
-        city:               city?.trim() || null,
-        delivery_address:   delivery_address?.trim() || null,
+        lga:                lga?.trim() || null,
+        city:               city.trim(),
+        postal_code:        postal_code?.trim() || null,
+        address_line1:      address_line1.trim(),
+        address_line2:      address_line2?.trim() || null,
+        landmark:           landmark?.trim() || null,
         device_count:       parsedDeviceCount,
         additional_needs:   sanitizedNeeds,
         student_count:      student_count ? parseInt(student_count, 10) : null,
         teacher_count:      teacher_count ? parseInt(teacher_count, 10) : null,
         payment_option,
         agreed_to_contact:  Boolean(agreed_to_contact),
+        order_status:       "pending",
+        payment_status:     "unpaid",
       })
       .select("id")
       .single();
 
     if (error) throw error;
 
+    const preorderId = data.id;
+    const reference  = generateReference(preorderId);
+    const siteUrl    = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
+    // ── Initialize Paystack transaction ──────────────────────────────────────
+    const paystackData = await initializeTransaction({
+      email:       email.trim().toLowerCase(),
+      amountNGN:   chargeNGN,
+      reference,
+      callbackUrl: `${siteUrl}/preorder/callback?preorder_id=${preorderId}`,
+      metadata: {
+        preorder_id:    preorderId,
+        payment_type:   payment_option === "deposit" ? "deposit" : "full",
+        customer_name:  full_name.trim(),
+        plan:           selected_plan,
+        device_count:   parsedDeviceCount,
+      },
+    });
+
+    // ── Record pending payment ────────────────────────────────────────────────
+    await supabaseAdmin.from("order_payments").insert({
+      preorder_id:     preorderId,
+      payment_type:    payment_option === "deposit" ? "deposit" : "full",
+      amount_ngn:      chargeNGN,
+      paystack_ref:    reference,
+      paystack_status: "pending",
+    });
+
     return NextResponse.json({
-      success: true,
-      id: data.id,
-      message: "Your preorder has been received! We will contact you shortly.",
+      success:      true,
+      id:           preorderId,
+      paystack_url: paystackData.authorization_url,
     });
   } catch (err) {
     console.error("[POST /api/k12-ar-pedia/preorder]", err);

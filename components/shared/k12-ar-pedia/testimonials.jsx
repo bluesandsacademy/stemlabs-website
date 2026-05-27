@@ -5,30 +5,33 @@ import { MessageCircle } from "lucide-react";
 
 const quotes = [
   {
-    text: "Students became instantly more engaged during science lessons. The level of curiosity AR Pedia sparked was something we had never seen before.",
+    text: "Students became instantly more engaged. The curiosity AR Pedia sparked was something we had never seen before.",
     author: "Mrs. Adaeze Okonkwo",
-    role: "School Administrator",
-    org: "Greenfield Primary School, Lagos",
+    role: "School Admin · Greenfield Primary, Lagos",
     initials: "AO",
-    bg: "bg-primary",
+    avatarBg: "bg-primary",
+    cardBg: "bg-blue-50",
+    border: "border-blue-200",
     stars: 5,
   },
   {
-    text: "This is one of the most exciting STEM tools we have ever introduced. The children genuinely look forward to science class now — that is rare.",
+    text: "The children genuinely look forward to science class now — that is genuinely rare.",
     author: "Mr. Chukwuemeka Eze",
-    role: "Primary 5 Science Teacher",
-    org: "Sunrise STEM Academy, Abuja",
+    role: "Science Teacher · Sunrise STEM Academy, Abuja",
     initials: "CE",
-    bg: "bg-secondary",
+    avatarBg: "bg-secondary",
+    cardBg: "bg-indigo-50",
+    border: "border-indigo-200",
     stars: 5,
   },
   {
-    text: "Parents immediately noticed the difference in their children's enthusiasm and ability to explain what they were learning. That speaks volumes.",
+    text: "Parents noticed the difference in their children's enthusiasm immediately. That speaks volumes.",
     author: "Mrs. Funke Adeyemi",
-    role: "School Director",
-    org: "Bright Futures Learning Center, Rivers",
+    role: "School Director · Bright Futures, Rivers",
     initials: "FA",
-    bg: "bg-[#0D3B5C]",
+    avatarBg: "bg-emerald-600",
+    cardBg: "bg-emerald-50",
+    border: "border-emerald-200",
     stars: 5,
   },
 ];
@@ -47,12 +50,15 @@ function Stars({ count }) {
 
 export default function TestimonialsSection() {
   return (
-    <section className="relative bg-emerald-50 py-16 sm:py-20 lg:py-24 overflow-hidden">
-      {/* CSS shape decorations — no text emoji */}
-      <div className="absolute top-10 left-10 w-10 h-10 rounded-full bg-emerald-400/20 pointer-events-none" />
-      <div className="absolute top-8 right-12 w-7 h-7 rounded-full bg-emerald-500/15 pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-10 h-10 rounded-full border-2 border-emerald-300/30 pointer-events-none" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-emerald-200 to-transparent" />
+    <section
+      className="relative py-16 sm:py-20 lg:py-24 overflow-hidden"
+      style={{ background: "#FFFBF0" }}
+    >
+      {/* Decorations */}
+      <div className="absolute top-10 left-10 w-12 h-12 rounded-full bg-emerald-300/20 pointer-events-none" />
+      <div className="absolute top-8 right-14 w-7 h-7 rounded-full bg-blue-300/20 pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-14 h-14 rounded-full border-4 border-amber-300/25 pointer-events-none" />
+      <div className="absolute bottom-20 left-16 w-5 h-5 rounded-full bg-violet-400/20 pointer-events-none" />
 
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -61,61 +67,63 @@ export default function TestimonialsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-14 space-y-4"
+          className="text-center mb-14 space-y-3"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-sm font-bold">
             <MessageCircle className="w-4 h-4" />
-            Educator Voices
+            Real Stories
           </div>
           <h2
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary"
             style={{ fontFamily: "var(--font-jarkata)" }}
           >
-            What Educators Are Saying
+            Educators Love It
           </h2>
-          {/* Aggregate rating */}
           <div className="flex items-center justify-center gap-2 pt-1">
             <Stars count={5} />
-            <span className="text-gray-700 font-semibold text-sm">5.0</span>
-            <span className="text-gray-400 text-sm">· Based on early access feedback</span>
+            <span className="text-gray-600 font-semibold text-sm">5.0 · Early access feedback</span>
           </div>
         </motion.div>
 
-        {/* Quote cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {quotes.map(({ text, author, role, org, initials, bg, stars }, i) => (
+        {/* Speech bubble cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+          {quotes.map(({ text, author, role, initials, avatarBg, cardBg, border, stars }, i) => (
             <motion.div
               key={author}
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.55, delay: i * 0.1 }}
-              className="relative bg-white rounded-3xl p-6 lg:p-8 shadow-sm border-2 border-emerald-100 hover:shadow-xl hover:border-emerald-200 hover:-translate-y-1 transition-all duration-300 flex flex-col"
+              transition={{ duration: 0.55, delay: i * 0.12 }}
+              whileHover={{ y: -8 }}
+              className={`relative flex flex-col ${cardBg} rounded-3xl p-7 lg:p-8 border-2 ${border} shadow-sm hover:shadow-xl transition-all duration-300`}
             >
-              {/* Stars */}
-              <div className="mb-4">
-                <Stars count={stars} />
-              </div>
-
-              {/* Decorative quote mark */}
-              <div className="absolute top-4 right-6 text-6xl text-gray-100 font-serif leading-none pointer-events-none select-none">
+              {/* Giant decorative quote mark */}
+              <div
+                className="absolute top-4 right-6 text-9xl font-serif leading-none select-none pointer-events-none"
+                style={{ color: "rgba(0,0,0,0.05)", lineHeight: 1 }}
+              >
                 &ldquo;
               </div>
 
-              {/* Quote text */}
+              {/* Stars */}
+              <div className="mb-5">
+                <Stars count={stars} />
+              </div>
+
+              {/* Quote text — bigger, bolder */}
               <p
-                className="text-gray-700 text-base leading-relaxed mb-6 flex-1 relative z-10"
+                className="text-gray-800 text-lg leading-relaxed mb-8 flex-1 font-semibold relative z-10"
                 style={{ fontFamily: "var(--font-jarkata)" }}
               >
                 &ldquo;{text}&rdquo;
               </p>
 
               {/* Author */}
-              <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+              <div className="flex items-center gap-3.5 pt-4 border-t border-black/5">
                 <div
-                  className={`w-10 h-10 rounded-full ${bg} flex items-center justify-center shrink-0`}
+                  className={`w-12 h-12 rounded-full ${avatarBg} flex items-center justify-center shrink-0 shadow-md`}
                 >
-                  <span className="text-white text-xs font-bold">{initials}</span>
+                  <span className="text-white font-bold text-sm">{initials}</span>
                 </div>
                 <div>
                   <p
@@ -124,8 +132,7 @@ export default function TestimonialsSection() {
                   >
                     {author}
                   </p>
-                  <p className="text-primary text-xs font-medium">{role}</p>
-                  <p className="text-gray-400 text-xs">{org}</p>
+                  <p className="text-gray-500 text-xs leading-snug">{role}</p>
                 </div>
               </div>
             </motion.div>
