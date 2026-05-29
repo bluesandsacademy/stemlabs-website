@@ -3,11 +3,13 @@
 import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createBrowserClient } from "@supabase/ssr";
+import toast, { Toaster } from "react-hot-toast";
+import Image from "next/image";
 
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const next = searchParams.get("next") || "/admin/blog";
+  const next = searchParams.get("next") || "/admin";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,34 +30,55 @@ function LoginForm() {
     try {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
-      router.push(next);
-      router.refresh();
+      toast.success("Welcome back!", { duration: 1500 });
+      setTimeout(() => {
+        router.push(next);
+        router.refresh();
+      }, 800);
     } catch (err) {
       setError(err.message || "Invalid email or password");
-    } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        {/* Logo / Brand */}
+    <div
+      className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden"
+      style={{ background: "linear-gradient(135deg, #02345a 0%, #01253f 60%, #011828 100%)" }}
+    >
+      {/* Decorative blobs */}
+      <div className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-10 -translate-y-1/2 translate-x-1/2"
+        style={{ background: "#0483e2", filter: "blur(80px)" }} />
+      <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full opacity-10 translate-y-1/2 -translate-x-1/2"
+        style={{ background: "#0483e2", filter: "blur(60px)" }} />
+
+      <div className="w-full max-w-md relative z-10">
+        {/* Brand header */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10 mb-4">
-            <svg className="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-            </svg>
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 mb-5 overflow-hidden">
+            <Image
+              src="/android-chrome-192x192.png"
+              alt="Blue Sands STEM Labs"
+              width={52}
+              height={52}
+              className="object-contain"
+            />
           </div>
-          <h1 className="text-2xl font-bold text-secondary">Admin Login</h1>
-          <p className="text-sm text-gray-500 mt-1">Blue Sands Academy — Blog Dashboard</p>
+          <h1 className="text-2xl font-black text-white tracking-tight">
+            Blue Sands STEM Labs
+          </h1>
+          <p className="text-white/50 text-sm mt-1 font-medium">Admin Portal</p>
         </div>
 
         {/* Card */}
-        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
+        <div className="bg-white/6 backdrop-blur-md border border-white/15 rounded-3xl p-8 shadow-2xl">
+          <div className="mb-6">
+            <h2 className="text-white font-bold text-lg">Sign in to your account</h2>
+            <p className="text-white/40 text-sm mt-0.5">Restricted to authorised personnel only.</p>
+          </div>
+
           {error && (
-            <div className="mb-5 flex items-start gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700">
+            <div className="mb-5 flex items-start gap-3 p-4 bg-red-500/15 border border-red-400/30 rounded-xl text-sm text-red-300">
               <svg className="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                   d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -65,25 +88,23 @@ function LoginForm() {
           )}
 
           <form onSubmit={handleLogin} className="space-y-5">
-            {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+              <label className="block text-sm font-semibold text-white/70 mb-2">
                 Email address
               </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@bluesandsacademy.com"
+                placeholder="admin@bluesandsstem.com"
                 required
                 autoComplete="email"
-                className="w-full px-4 py-3 border border-gray-200 rounded-xl bg-gray-50 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-sm transition-colors"
+                className="w-full px-4 py-3 bg-white/8 border border-white/15 rounded-xl text-white placeholder-white/25 focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary/60 text-sm transition-all"
               />
             </div>
 
-            {/* Password */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+              <label className="block text-sm font-semibold text-white/70 mb-2">
                 Password
               </label>
               <div className="relative">
@@ -94,12 +115,12 @@ function LoginForm() {
                   placeholder="••••••••"
                   required
                   autoComplete="current-password"
-                  className="w-full px-4 py-3 pr-11 border border-gray-200 rounded-xl bg-gray-50 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-sm transition-colors"
+                  className="w-full px-4 py-3 pr-11 bg-white/8 border border-white/15 rounded-xl text-white placeholder-white/25 focus:outline-none focus:ring-2 focus:ring-primary/60 focus:border-primary/60 text-sm transition-all"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword((v) => !v)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/70 transition-colors"
                   tabIndex={-1}
                 >
                   {showPassword ? (
@@ -122,7 +143,8 @@ function LoginForm() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3 bg-primary text-white rounded-xl font-semibold text-sm hover:bg-primary/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full py-3.5 rounded-xl font-bold text-sm transition-all disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg"
+              style={{ background: isLoading ? "#0483e2aa" : "#0483e2", color: "#fff" }}
             >
               {isLoading ? (
                 <>
@@ -139,8 +161,8 @@ function LoginForm() {
           </form>
         </div>
 
-        <p className="text-center text-xs text-gray-400 mt-6">
-          Blue Sands Academy Admin · Restricted access
+        <p className="text-center text-xs text-white/25 mt-6">
+          Blue Sands STEM Labs · Admin Portal · Restricted Access
         </p>
       </div>
     </div>
@@ -149,8 +171,19 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <Suspense>
-      <LoginForm />
-    </Suspense>
+    <>
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          success: {
+            style: { background: "#02345a", color: "#fff", fontWeight: 600, borderRadius: "12px" },
+            iconTheme: { primary: "#0483e2", secondary: "#fff" },
+          },
+        }}
+      />
+      <Suspense>
+        <LoginForm />
+      </Suspense>
+    </>
   );
 }

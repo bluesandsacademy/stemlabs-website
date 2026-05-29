@@ -6,7 +6,7 @@ import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
 import {
   ChevronLeft, CheckCircle2, Package, MapPin, CreditCard,
-  Mail, Truck, StickyNote, XCircle, Send, AlertTriangle,
+  Mail, Truck, StickyNote, XCircle, Send, AlertTriangle, RefreshCw, PackageCheck,
 } from "lucide-react";
 
 const STATUS_COLORS = {
@@ -72,7 +72,7 @@ export default function PreorderDetailClient({ preorder, payments, tracking, ema
   const depositAmount = Math.round(fullAmount * 0.3);
   const balanceAmount = Math.round(fullAmount * 0.7);
 
-  async function updateStatus(order_status) {
+  const updateStatus = async (order_status) => {
     setLoading(order_status);
     try {
       const res = await fetch(`/api/admin/preorders/${preorder.id}`, {
@@ -88,9 +88,9 @@ export default function PreorderDetailClient({ preorder, payments, tracking, ema
     } finally {
       setLoading(null);
     }
-  }
+  };
 
-  async function sendEmail(email_type) {
+  const sendEmail = async (email_type) => {
     setLoading(email_type);
     try {
       const res = await fetch("/api/admin/email", {
@@ -107,9 +107,9 @@ export default function PreorderDetailClient({ preorder, payments, tracking, ema
     } finally {
       setLoading(null);
     }
-  }
+  };
 
-  async function saveNotes() {
+  const saveNotes = async () => {
     setSavingNotes(true);
     try {
       await fetch(`/api/admin/preorders/${preorder.id}`, {
@@ -123,9 +123,9 @@ export default function PreorderDetailClient({ preorder, payments, tracking, ema
     } finally {
       setSavingNotes(false);
     }
-  }
+  };
 
-  async function saveTracking() {
+  const saveTracking = async () => {
     setSavingTracking(true);
     try {
       const res = await fetch(`/api/admin/tracking/${preorder.id}`, {
@@ -134,7 +134,7 @@ export default function PreorderDetailClient({ preorder, payments, tracking, ema
         body: JSON.stringify(trackingForm),
       });
       if (!res.ok) throw new Error("Failed");
-      toast.success("Tracking info saved & order marked as shipped");
+      toast.success("Tracking saved — customer notified by email");
       router.refresh();
     } catch {
       toast.error("Failed to save tracking info");
@@ -220,32 +220,25 @@ export default function PreorderDetailClient({ preorder, payments, tracking, ema
             {payments.length === 0 ? (
               <p className="text-sm text-gray-400">No payments recorded yet.</p>
             ) : (
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="text-left text-xs font-bold text-gray-400 uppercase border-b border-gray-100">
-                    <th className="pb-2">Type</th>
-                    <th className="pb-2">Amount</th>
-                    <th className="pb-2">Ref</th>
-                    <th className="pb-2">Status</th>
-                    <th className="pb-2">Date</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-50">
-                  {payments.map((p) => (
-                    <tr key={p.id}>
-                      <td className="py-2.5 capitalize font-medium text-secondary">{p.payment_type}</td>
-                      <td className="py-2.5 text-gray-700">₦{Number(p.amount_ngn).toLocaleString("en-NG")}</td>
-                      <td className="py-2.5 text-gray-400 text-xs font-mono">{p.paystack_ref?.slice(0, 16)}…</td>
-                      <td className="py-2.5">
+              <div className="space-y-2">
+                {payments.map((p) => (
+                  <div key={p.id} className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap mb-1">
+                        <span className="text-sm font-bold text-secondary capitalize">{p.payment_type}</span>
                         <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-bold ${p.paystack_status === "success" ? "bg-emerald-100 text-emerald-700" : "bg-yellow-100 text-yellow-700"}`}>
                           {p.paystack_status}
                         </span>
-                      </td>
-                      <td className="py-2.5 text-gray-400 text-xs">{new Date(p.created_at).toLocaleDateString("en-GB")}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                      </div>
+                      <p className="text-xs text-gray-400 font-mono truncate">{p.paystack_ref?.slice(0, 20)}…</p>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <p className="font-bold text-secondary text-sm">₦{Number(p.amount_ngn).toLocaleString("en-NG")}</p>
+                      <p className="text-xs text-gray-400">{new Date(p.created_at).toLocaleDateString("en-GB")}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             )}
           </Section>
 
@@ -373,12 +366,24 @@ export default function PreorderDetailClient({ preorder, payments, tracking, ema
                 </button>
               )}
 
-              {/* Send tracking email */}
-              {tracking?.tracking_number && (
+              {/* Mark Delivered */}
+              {preorder.order_status === "shipped" && (
+                <button
+                  onClick={() => updateStatus("delivered")}
+                  disabled={loading === "delivered"}
+                  className="flex items-center gap-2 w-full px-4 py-3 bg-emerald-600 text-white rounded-xl text-sm font-bold hover:bg-emerald-700 transition-colors disabled:opacity-50"
+                >
+                  <PackageCheck className="w-4 h-4" />
+                  {loading === "delivered" ? "Updating…" : "Mark Delivered"}
+                </button>
+              )}
+
+              {/* Resend tracking email */}
+              {tracking?.tracking_number && preorder.order_status !== "delivered" && (
                 <button onClick={() => sendEmail("tracking_update")} disabled={loading === "tracking_update"}
-                  className="flex items-center gap-2 w-full px-4 py-3 bg-cyan-600 text-white rounded-xl text-sm font-bold hover:bg-cyan-700 transition-colors disabled:opacity-50">
-                  <Mail className="w-4 h-4" />
-                  {loading === "tracking_update" ? "Sending…" : "Send Tracking Email"}
+                  className="flex items-center gap-2 w-full px-4 py-3 border-2 border-cyan-200 text-cyan-700 rounded-xl text-sm font-bold hover:bg-cyan-50 transition-colors disabled:opacity-50">
+                  <RefreshCw className="w-4 h-4" />
+                  {loading === "tracking_update" ? "Sending…" : "Resend Tracking Email"}
                 </button>
               )}
 
