@@ -7,7 +7,7 @@ import Placeholder from "@tiptap/extension-placeholder";
 import { getExtensions } from "@/lib/tiptap-extensions";
 import { useState, useRef, useCallback, useEffect } from "react";
 import {
-  Bold, Italic, Underline, Strikethrough, Code, Link, LinkOff,
+  Bold, Italic, Underline, Strikethrough, Code, Link, Unlink,
   AlignLeft, AlignCenter, AlignRight, AlignJustify,
   List, ListOrdered, ListChecks, Image as ImageIcon, Youtube,
   Table as TableIcon, Quote, Code2, Minus, Undo2, Redo2,
@@ -517,7 +517,7 @@ export default function RichEditor({ value, onChange, placeholder = "Start writi
                   <button type="button" title="Remove link"
                     onMouseDown={(e) => { e.preventDefault(); editor.chain().focus().unsetLink().run(); }}
                     className="w-7 h-7 flex items-center justify-center rounded text-gray-400 hover:text-red-400 transition-colors">
-                    <LinkOff className="w-3.5 h-3.5" />
+                    <Unlink className="w-3.5 h-3.5" />
                   </button>
                 ) : (
                   <button type="button" title="Add link"
