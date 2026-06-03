@@ -147,7 +147,7 @@ const Footer = () => {
       <div className="bg-[#101828] border-t border-gray-700">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-gray-400">
-            ©2025 Blue Sands STEM Labs. All rights reserved.
+            ©{new Date().getFullYear()} Blue Sands STEM Labs. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <a
