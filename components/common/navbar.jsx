@@ -13,12 +13,16 @@ import { img } from "@/lib/cloudinary";
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
+
   {
-    name: "Products",
+    name: "Simulations",
     dropdown: [
-      { name: "K12 AR Pedia", href: "/products/k12-ar-pedia" },
+      { name: "Simulations", href: "/simulations" },
+      { name: "How it works", href: "/how-it-works" },
     ],
   },
+  { name: "Pricing", href: "/pricing" },
+  { name: "Partnership", href: "/partnerships" },
   {
     name: "Insights",
     dropdown: [
@@ -127,7 +131,14 @@ export default function Navbar() {
                 }
                 onMouseLeave={() => setOpenDropdown(null)}
               >
-                {link.dropdown ? (
+                {!link.dropdown ? (
+                  <Link
+                    href={link.href}
+                    className="text-sm font-medium text-foreground hover:text-primary transition-all duration-300 px-2.5 py-1.5 rounded-md hover:bg-primary/5 whitespace-nowrap"
+                  >
+                    {link.name}
+                  </Link>
+                ) : (
                   <>
                     <button
                       type="button"
@@ -160,13 +171,6 @@ export default function Navbar() {
                       )}
                     </AnimatePresence>
                   </>
-                ) : (
-                  <Link
-                    href={link.href}
-                    className="text-sm font-medium text-foreground hover:text-primary transition-all duration-300 px-2.5 py-1.5 rounded-md hover:bg-primary/5 whitespace-nowrap"
-                  >
-                    {link.name}
-                  </Link>
                 )}
               </li>
             ))}
@@ -223,7 +227,16 @@ export default function Navbar() {
         <div className="flex flex-col h-full overflow-y-auto">
           <nav className="flex-1 p-5 space-y-1">
             {navLinks.map((link) =>
-              link.dropdown ? (
+              !link.dropdown ? (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={closeMenu}
+                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
+                >
+                  {link.name}
+                </Link>
+              ) : (
                 <div key={link.name} className="space-y-1">
                   <button
                     onClick={() => toggleDropdown(link.name)}
@@ -251,15 +264,6 @@ export default function Navbar() {
                     </div>
                   )}
                 </div>
-              ) : (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={closeMenu}
-                  className="block px-4 py-3 text-base font-medium text-foreground hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
-                >
-                  {link.name}
-                </Link>
               ),
             )}
           </nav>
