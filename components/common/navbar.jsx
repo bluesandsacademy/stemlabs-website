@@ -13,12 +13,7 @@ import { img } from "@/lib/cloudinary";
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  {
-    name: "Products",
-    dropdown: [
-      { name: "K12 AR Pedia", href: "/products/k12-ar-pedia" },
-    ],
-  },
+
   {
     name: "Simulations",
     dropdown: [

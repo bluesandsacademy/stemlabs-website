@@ -13,9 +13,10 @@ export default function VirtualLabsSection() {
             Virtual Science Labs Built for African Classrooms
           </h1>
           <p className="text-gray-600 max-w-4xl mx-auto text-xl leading-relaxed font-inter">
-            Blue Sands STEM Labs, developed by Blue Sands Academy Limited,
-            delivers curriculum-aligned Physics, Chemistry, and Biology
-            experiments to students and teachers across Africa.
+            Blue Sands STEM Labs delivers immersive, curriculum-aligned Physics,
+            Chemistry, and Biology learning experiences, equipping Africa's next
+            generation of innovators, scientists, and problem-solvers with
+            practical STEM skills
           </p>
         </div>
 
