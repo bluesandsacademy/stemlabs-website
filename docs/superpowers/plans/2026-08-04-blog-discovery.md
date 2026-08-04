@@ -1041,7 +1041,6 @@ import BlogFiltersBar from "@/components/shared/blog/filters-bar";
 import FeaturedSpotlight from "@/components/shared/blog/featured-spotlight";
 import ArticleGrid from "@/components/shared/blog/article";
 import BlogPagination from "@/components/shared/blog/pagination";
-import NewsletterSection from "@/components/shared/blog/newsletter";
 
 export const revalidate = 60;
 
@@ -1075,7 +1074,7 @@ export default async function BlogPage({ searchParams }) {
 }
 ```
 
-Note: `NewsletterSection` was imported in the original file but never rendered — that's pre-existing dead code, not something this task introduces. Leave the import in place (harmless) since removing unrelated dead code isn't part of this plan's scope; if you want it gone, flag it separately rather than folding it into this diff.
+Note: the original file also imported `NewsletterSection` from `@/components/shared/blog/newsletter`, but never rendered it — pre-existing dead code. This rewrite drops that import entirely rather than carrying it forward.
 
 - [ ] **Step 2: End-to-end manual verification against the live page**
 
