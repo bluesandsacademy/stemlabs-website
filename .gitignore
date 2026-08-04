@@ -36,6 +36,9 @@ yarn-error.log*
 # Claude Code MCP configuration (may contain project refs / tokens)
 .mcp.json
 
+# Claude Code personal/local settings overrides
+.claude/settings.local.json
+
 # vercel
 .vercel
 
