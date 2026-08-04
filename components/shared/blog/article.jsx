@@ -81,23 +81,39 @@ const ArticleCard = ({ image, author, date, title, description, excerpt, tags, l
   );
 };
 
-const ArticleGrid = ({ posts }) => {
+const ArticleGrid = ({ posts, total, hasActiveFilters }) => {
   const items = posts || [];
 
   return (
     <section className="w-full bg-white py-16 px-6">
       <div className="max-w-8xl mx-auto">
         {items.length === 0 ? (
-          <div className="text-center py-24 text-gray-400">
-            <p className="text-lg font-medium">No articles published yet.</p>
-            <p className="text-sm mt-1">Check back soon!</p>
-          </div>
+          hasActiveFilters ? (
+            <div className="text-center py-24 text-gray-400">
+              <p className="text-lg font-medium">No articles match your search or filters.</p>
+              <p className="text-sm mt-1">
+                <Link href="/blog" className="text-primary hover:underline">Clear search and filters</Link> to see all articles.
+              </p>
+            </div>
+          ) : (
+            <div className="text-center py-24 text-gray-400">
+              <p className="text-lg font-medium">No articles published yet.</p>
+              <p className="text-sm mt-1">Check back soon!</p>
+            </div>
+          )
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-            {items.map((article, index) => (
-              <ArticleCard key={article.id || index} {...article} />
-            ))}
-          </div>
+          <>
+            {typeof total === "number" && (
+              <p className="text-sm text-gray-500 mb-8">
+                {total} article{total === 1 ? "" : "s"} found
+              </p>
+            )}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+              {items.map((article, index) => (
+                <ArticleCard key={article.id || index} {...article} />
+              ))}
+            </div>
+          </>
         )}
       </div>
     </section>

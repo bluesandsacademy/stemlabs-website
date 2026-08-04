@@ -1,5 +1,10 @@
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+
 /** @type {import('next').NextConfig} */
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const nextConfig = {
+  outputFileTracingRoot: __dirname,
   images: {
     // Hand all image URL construction to our Cloudinary loader.
     // Next.js will call this function for every srcset breakpoint and use the
