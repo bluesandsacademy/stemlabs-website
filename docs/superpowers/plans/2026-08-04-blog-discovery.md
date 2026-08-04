@@ -66,7 +66,7 @@ const assert = require("assert");
 assert.strictEqual(buildBlogHref({}, {}), "/blog");
 assert.strictEqual(buildBlogHref({}, { q: "stem" }), "/blog?q=stem");
 assert.strictEqual(buildBlogHref({ q: "stem" }, { page: 2 }), "/blog?q=stem&page=2");
-assert.strictEqual(buildBlogHref({ q: "stem", page: 2 }, { q: "" }), "/blog");
+assert.strictEqual(buildBlogHref({ q: "stem", page: 2 }, { q: "" }), "/blog?page=2"); // page is caller-owned: buildBlogHref never resets it implicitly
 assert.strictEqual(buildBlogHref({}, { sort: "newest" }), "/blog");
 assert.strictEqual(buildBlogHref({}, { sort: "popular" }), "/blog?sort=popular");
 assert.strictEqual(
@@ -87,7 +87,7 @@ import assert from "node:assert";
 assert.strictEqual(buildBlogHref({}, {}), "/blog");
 assert.strictEqual(buildBlogHref({}, { q: "stem" }), "/blog?q=stem");
 assert.strictEqual(buildBlogHref({ q: "stem" }, { page: 2 }), "/blog?q=stem&page=2");
-assert.strictEqual(buildBlogHref({ q: "stem", page: 2 }, { q: "" }), "/blog");
+assert.strictEqual(buildBlogHref({ q: "stem", page: 2 }, { q: "" }), "/blog?page=2"); // page is caller-owned: buildBlogHref never resets it implicitly
 assert.strictEqual(buildBlogHref({}, { sort: "newest" }), "/blog");
 assert.strictEqual(buildBlogHref({}, { sort: "popular" }), "/blog?sort=popular");
 assert.strictEqual(
