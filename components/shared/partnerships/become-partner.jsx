@@ -10,8 +10,8 @@ export default function BecomePartnerCTA() {
       id: 1,
       icon: Mail,
       label: "Email",
-      value: "partnerships@bluesandstemlabs.com",
-      href: "mailto:partnerships@bluesandstemlabs.com",
+      value: "cto@bluesandstemlabs.com",
+      href: "mailto:cto@bluesandstemlabs.com",
     },
     {
       id: 2,
