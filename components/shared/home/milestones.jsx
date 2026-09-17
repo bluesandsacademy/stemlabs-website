@@ -1,26 +1,21 @@
-import { Users, School, Globe, FlaskConical } from "lucide-react";
+import { Users, School, FlaskConical } from "lucide-react";
 
 export default function MilestonesSection() {
   const milestones = [
     {
       icon: Users,
-      stat: "20,000+ Users",
+      stat: "13,168 Users",
       description: "Students learning virtually across Nigeria",
     },
     {
       icon: School,
-      stat: "100+ Schools",
+      stat: "260 Schools",
       description: "Partnered institutions using Blue Sands STEM Labs",
     },
     {
       icon: FlaskConical,
-      stat: "150+ Simulations",
+      stat: "175 Simulations",
       description: "Across Physics, Chemistry & Biology",
-    },
-    {
-      icon: Globe,
-      stat: "6 Countries",
-      description: "Expanding impact in Africa",
     },
   ];
 
@@ -33,7 +28,7 @@ export default function MilestonesSection() {
         </h2>
 
         {/* Milestones Grid */}
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           {milestones.map((milestone, index) => {
             const Icon = milestone.icon;
             return (
