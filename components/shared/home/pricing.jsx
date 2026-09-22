@@ -42,32 +42,14 @@ const PricingSection = () => {
       buttonStyle: "primary",
       popular: false,
     },
-    {
-      name: "School Plan",
-      badge: "Most Popular!",
-      tagline:
-        "Empower your whole school with immersive practical science and powerful lessons.",
-      priceUSD: 50,
-      priceNGN: 50000,
-      period: "/Term",
-      features: [
-        "Multi-user school license (admins, teachers, students)",
-        "Teacher dashboard, performance analytics & exports",
-        "Auto-graded quizzes, rubrics & reports (CSV/PDF)",
-        "Offline Lab Packages & Sync for low connectivity",
-        "Priority onboarding & support",
-      ],
-      buttonText: "Subscribe",
-      buttonStyle: "white",
-      popular: true,
-    },
+
     {
       name: "Enterprise Plan",
       badge: "Custom Deployment",
       tagline:
         "For multi-campus institutions, ministries, and education networks that need scale and flexibility.",
-      priceUSD: null,
-      priceNGN: null,
+      priceUSD: 5,
+      priceNGN: 5000,
       period: null,
       features: [
         "Scalable deployment across campuses & geographies",
