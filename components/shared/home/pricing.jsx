@@ -48,8 +48,8 @@ const PricingSection = () => {
       badge: "Custom Deployment",
       tagline:
         "For multi-campus institutions, ministries, and education networks that need scale and flexibility.",
-      priceUSD: 5,
-      priceNGN: 5000,
+      priceUSD: null,
+      priceNGN: null,
       period: null,
       features: [
         "Scalable deployment across campuses & geographies",
@@ -64,11 +64,11 @@ const PricingSection = () => {
     },
   ];
 
-  const formatPrice = (usdPrice) => {
-    if (usdPrice === null) return "Custom";
-    return currency === "dollar"
-      ? `$${usdPrice}`
-      : `₦${Math.round(usdPrice * exchangeRate).toLocaleString()}`;
+  const formatPrice = (plan) => {
+    if (plan.priceUSD === null) return "Contact us";
+    if (currency === "dollar") return `$${plan.priceUSD}`;
+    const ngn = plan.priceNGN ?? Math.round(plan.priceUSD * exchangeRate);
+    return `₦${ngn.toLocaleString()}`;
   };
 
   return (
@@ -187,7 +187,7 @@ const PricingSection = () => {
                 <div className="mb-8">
                   <div className="flex items-baseline gap-1">
                     <span className="text-4xl sm:text-5xl font-bold">
-                      {formatPrice(plan.priceUSD)}
+                      {formatPrice(plan)}
                     </span>
                     {plan.period && (
                       <span
