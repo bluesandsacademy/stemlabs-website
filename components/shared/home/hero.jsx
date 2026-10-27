@@ -90,7 +90,7 @@ const FloatingCards = memo(({ shouldReduceMotion }) => (
             className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-300 border-2 border-white overflow-hidden"
           >
             <Image
-              src={img(`/hero/community/${i}.jpg`)}
+              src={i === 1 ? "/hero/k12/avatar-1.jpg" : img(`/hero/community/${i}.jpg`)}
               alt=""
               fill
               className="object-cover"
@@ -218,8 +218,8 @@ const Slide1 = ({ shouldReduceMotion, isTransitioning }) => (
           }}
         >
           <Image
-            src={img("/hero/1.jpg")}
-            alt="STEM student engaging with a virtual laboratory experiment"
+            src="/hero/k12/slide-1.jpg"
+            alt="Smiling secondary school student lifting a VR headset in a classroom"
             fill
             sizes="(max-width: 768px) 90vw, (max-width: 1024px) 80vw, 50vw"
             className="object-contain rounded-2xl"
@@ -282,8 +282,8 @@ const Slide2 = ({ shouldReduceMotion, isTransitioning }) => (
           {/* Ken Burns inner wrapper — scales/pans within overflow:hidden boundary */}
           <div className="absolute inset-0" style={aKenBurns(shouldReduceMotion)}>
             <Image
-              src={img("/hero/3.jpg")}
-              alt="Student in a virtual science lab wearing safety goggles"
+              src="/hero/k12/slide-2.jpg"
+              alt="Secondary school student in safety goggles using a dropper in a science lab"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 90vw, (max-width: 1024px) 80vw, 50vw"
@@ -353,8 +353,8 @@ const Slide3 = ({ shouldReduceMotion, isTransitioning }) => (
         {/* Ken Burns inner wrapper — pan is clipped to the blob boundary */}
         <div className="absolute inset-0" style={aKenBurns(shouldReduceMotion)}>
           <Image
-            src={img("/hero/2.png")}
-            alt="Students collaborating on a laptop using virtual STEM labs in a classroom"
+            src="/hero/k12/slide-3.jpg"
+            alt="Secondary school students exploring a 3D molecule simulation on a tablet"
             fill
             sizes="(max-width: 768px) 90vw, (max-width: 1024px) 80vw, 50vw"
             className="object-cover object-top"
